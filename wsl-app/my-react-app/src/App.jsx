@@ -10,7 +10,7 @@ import Auth from "./pages/Auth";
 const App = () => {
   return (
     <Router>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/client/login" element={<Auth />} />

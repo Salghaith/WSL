@@ -12,6 +12,7 @@ import {
   VALIDATOR_MAXLENGTH,
   VALIDATOR_MINLENGTH,
 } from "../components/util/validators";
+import { Link } from "react-router-dom";
 
 // import { AuthContext } from "../../shared/context/Auth-context";
 
@@ -43,7 +44,9 @@ const Auth = () => {
     <div className="container">
       <div className="left-section">
         <div className="logo">
-          <img src={logo} alt="WSL Logo" />
+          <Link to="/">
+            <img src={logo} alt="WSL Logo" />
+          </Link>
         </div>
         <div className="content">
           <div className="header">
