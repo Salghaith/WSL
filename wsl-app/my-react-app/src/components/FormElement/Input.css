@@ -1,0 +1,30 @@
+input {
+  width: 100%;
+  background-color: #f1f3f6;
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+input::placeholder {
+  color: #555555;
+  opacity: 40%;
+}
+
+.form-control {
+  width: 100%;
+}
+.form-control--invalid p {
+  font-size: 12px;
+
+  color: red;
+}
+
+.form-control--invalid input,
+.form-control--invalid textarea {
+  border-color: red;
+  background: #ffd1d1;
+}

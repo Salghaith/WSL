@@ -1,0 +1,162 @@
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+}
+
+.logo {
+  width: 278px;
+  height: 84px;
+  margin-top: 20px;
+}
+.logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-top: 120px;
+  align-items: center;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.form-content {
+  width: 100%;
+  height: 100%;
+  padding: 35px;
+  padding-left: 20%;
+}
+
+.input-group {
+  display: flex;
+  width: 85%;
+}
+
+label {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-top: 23px;
+}
+
+.icon-container {
+  position: relative;
+  left: 0;
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  padding: 13px;
+}
+
+.link-container {
+  margin-top: 10px;
+  margin-bottom: 25px;
+  text-align: end;
+  width: 85%;
+}
+
+a {
+  color: black;
+}
+.form-btn {
+  width: 85%;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.form-btn:hover {
+  transform: translateY(-7px);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 85%;
+  margin: 15px 0;
+  color: #9d9d9d;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #9d9d9d;
+}
+
+.divider:not(:empty)::before {
+  margin-right: 10px;
+}
+
+.divider:not(:empty)::after {
+  margin-left: 10px;
+}
+
+.right-section {
+  width: 65%;
+}
+
+.right-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.register {
+  margin-top: 30px;
+}
+
+.signup:hover {
+  background: transparent;
+  color: black;
+  border: 1px solid black;
+}
+
+@media (max-width: 965px) {
+  .right-section {
+    display: none;
+  }
+  .left-section {
+    width: 100%;
+  }
+}
+@media (max-height: 846px) {
+  .content {
+    margin-top: 10%;
+  }
+  .header {
+    margin-bottom: 10%;
+  }
+  .form-content {
+    padding-top: 0;
+  }
+  label {
+    margin-top: 11px;
+  }
+}
