@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./Auth.css";
-
+import axios from "axios";
 import logo from "../assets/logoWSL.svg";
 import userIcon from "../assets/username-icon.svg";
 import emailIcon from "../assets/email-icon.svg";
@@ -12,19 +12,19 @@ import {
   VALIDATOR_MAXLENGTH,
   VALIDATOR_MINLENGTH,
 } from "../components/util/validators";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // import { AuthContext } from "../../shared/context/Auth-context";
 
 const Auth = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
-
+  const navigate = useNavigate();
   //   const auth = useContext(AuthContext);
 
   const switchModeHandler = () => {
     setIsLoginMode((prevMode) => !prevMode);
   };
-  const authSubmitHandler = (event) => {
+  const authSubmitHandler = async (event) => {
     event.preventDefault();
     let username = "";
     if (!isLoginMode) {
@@ -32,9 +32,46 @@ const Auth = () => {
     }
     let email = event.target.email.value;
     let password = event.target.password.value;
-    console.log(username);
-    console.log(email);
-    console.log(password);
+
+    try {
+      if (isLoginMode) {
+        // Login Mode
+        const response = await axios.post('http://localhost:3001/api/auth/login', {
+          email,
+          password
+        },
+        { withCredentials: true}
+      );
+        localStorage.setItem("currentUser", JSON.stringify(response.data));
+        navigate("/");
+        console.log('Login successful:', response.data);
+        // Save the JWT token or session data
+        // localStorage.setItem('token', response.data.token);
+        // Redirect user to the dashboard or home page
+      } else {
+        // Register Mode
+        const res = await axios.post('http://localhost:3001/api/auth/register', {
+          name: username,
+          email,
+          password
+        },
+        { withCredentials: true}
+      );
+        navigate("/");
+        // Handle post-registration logic (e.g., auto-login, redirect)
+      }
+    } catch (error) {
+      if (error.response && error.response.data) {
+        // If the server sends a meaningful error message
+        console.log(error);
+        console.log("here")
+      } else {
+        // General error
+        console.log(error);
+      }
+      // Display error message to the user
+    }
+
 
     //After checking
     // auth.login(); => Login success!

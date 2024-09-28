@@ -1,17 +1,84 @@
 import User from "../models/user-model.js";
+import Business from "../models/business-model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import  createError from "../utils/createError.js";
 
+
+export const registerBusiness = async (req, res, next) => {
+    try {
+      const {
+        name,
+        email, // User's personal email
+        password,
+        businessName,
+        businessEmail, // Business contact email
+        phoneNumber,
+        city,
+        street,
+        categories,
+        description,
+        openingHours
+      } = req.body;
+  
+      // 1. Hash the password
+      const hash = await bcrypt.hash(password, 10);
+  
+      // 2. Create new user with isBusiness set to true
+      const newUser = new User({
+        name,
+        email, // User's personal email
+        password: hash,
+        isBusiness: true, // Marking as business user
+      });
+  
+      // 3. Save the user
+      const savedUser = await newUser.save();
+  
+      // 4. Create a business entry for the user
+      const newBusiness = new Business({
+        owner: savedUser._id, // Reference to the business owner (user)
+        businessName,
+        email: businessEmail, // Business contact email
+        phoneNumber,
+        location: {
+          city,
+          street,
+        },
+        categories,
+        description,
+        openingHours,
+      });
+  
+      // 5. Save the business
+      await newBusiness.save();
+  
+      // 6. Send success response
+      res.status(200).json({ message: 'Business registered successfully' });
+    } catch (error) {
+      // Handle duplicate errors (e.g., duplicate email)
+      if (error.code === 11000) {
+        if (error.keyPattern.email) {
+          return res.status(400).json({ message: 'Email already exists' });
+        } else if (error.keyPattern.name) {
+          return res.status(400).json({ message: 'Username already exists' });
+        }
+      }
+  
+      // For other errors, pass them to the next middleware
+      next(error);
+    }
+  };
+
 export const registerUser = async (req,res, next) => {
     try {
-        const hash = bcrypt.hashSync(req.body.password, 4);
+        const hash = await bcrypt.hash(req.body.password, 10);
         const newUser = new User ({
             ...req.body,
             password: hash
         });
         await newUser.save();
-        res.status(201).send("User added");
+        res.status(200).send("User added");
     } catch (error) {
         next(error);
     }

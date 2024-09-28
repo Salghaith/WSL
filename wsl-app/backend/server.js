@@ -4,12 +4,14 @@ import connectDB from "./config/db.js";
 import userRoute from "./routes/user-route.js";
 import authRoute from "./routes/auth-route.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
 
 // Middleware to parse JSON requests
 app.use(express.json());
+app.use(cors({origin: "http://localhost:3000", credentials: true}));
 app.use(cookieParser());
 
 // Routes
@@ -27,7 +29,7 @@ app.use((err,req,res,next) => {
 const startServer = async () => {
   await connectDB(); // Connect to DB before starting the server
 
-  const PORT = process.env.PORT || 3000;
+  const PORT = process.env.PORT || 3001;
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
