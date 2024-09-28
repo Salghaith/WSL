@@ -1,0 +1,142 @@
+.navExample {
+  width: 100%;
+  height: 124px;
+  background-color: red;
+}
+/*Delete when add the actual nav bar */
+
+.worker-section {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 14%;
+  width: 80%;
+}
+
+.worker-text {
+  font-size: 96px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  height: 328px;
+  width: 699px;
+  margin-top: 60px;
+}
+
+.worker-image {
+  width: 766px;
+  height: 473px;
+  margin-top: 35px;
+}
+
+.form-title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  margin-left: 13.5%;
+  height: 84px;
+}
+.register-from {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-left: 13.5%;
+}
+
+.form-section-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  height: 37px;
+}
+
+.form-section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 116px;
+}
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 10px;
+}
+
+.form-group label {
+  font-size: 20px;
+}
+
+.form-group select {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #555555;
+  height: 50px;
+  appearance: none;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgZmlsbD0iY3VycmVudENvbG9yIiBjbGFzcz0iYmkgYmktY2FyZXQtZG93bi1maWxsIiB2aWV3Qm94PSIwIDAgMTYgMTYiPjxwYXRoIGQ9Ik03LjI0NyAxMS4xNCAyLjQ1MSA1LjY1OEMxLjg4NSA1LjAxMyAyLjM0NSA0IDMuMjA0IDRoOS41OTJhMSAxIDAgMCAxIC43NTMgMS42NTlsLTQuNzk2IDUuNDhhMSAxIDAgMCAxLTEuNTA2IDB6Ii8+PC9zdmc+");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+}
+
+.form-group select:hover {
+  cursor: pointer;
+}
+
+.form-group select option {
+  font-family: "Poppins", sans-serif;
+  padding: 10px;
+  background-color: #f9f9f9;
+  color: #333333;
+}
+
+.form-group select {
+  background-color: #f1f3f6;
+  padding: 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.address-inputs {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.form-group .passwordInput {
+  width: 46%;
+}
+
+.submit-button {
+  margin: 20px 10px;
+  width: 20%;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.submit-button:hover {
+  transform: translateY(-7px);
+}
+
+/*Delete when add the actual footer bar */
+.footer {
+  height: 191px;
+  background-color: red;
+}
+
+
+@media (max-width: 965px) {
+    .worker-section {
+        display: none;
+    }
+
+}

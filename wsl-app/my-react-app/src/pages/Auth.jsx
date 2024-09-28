@@ -41,7 +41,7 @@ const Auth = () => {
   };
 
   return (
-    <div className="container">
+    <div className="auth-container">
       <div className="left-section">
         <div className="logo">
           <Link to="/">

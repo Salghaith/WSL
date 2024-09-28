@@ -7,7 +7,11 @@ const Input = (props) => {
   const [isValid, setIsValid] = useState(false);
 
   const changeHandler = (event) => {
-    setIsValid(validate(event.target.value, props.validators));
+    if (props.validators) {
+      setIsValid(validate(event.target.value, props.validators));
+    } else {
+      setIsValid(true);
+    }
   };
   const touchHandler = () => {
     setIsTouched(true);
@@ -27,9 +31,11 @@ const Input = (props) => {
       <textarea
         id={props.id}
         rows={props.rows || 3}
+        columns={props.columns || 3}
         onChange={changeHandler}
         onBlur={touchHandler}
         value={props.value}
+        placeholder={props.placeholder}
       />
     );
 
@@ -40,7 +46,7 @@ const Input = (props) => {
       }`}
     >
       {element}
-      {!isValid && isTouched && <p>{props.errorText}</p>}
+      <p className="errorP">{!isValid && isTouched && props.errorText}</p>
     </div>
   );
 };
