@@ -1,40 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./nav.css";
 import logo from "../assets/logoWSL.svg";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import { UserContext } from "../components/util/context";
 
 function Nav() {
-  const [loggedInUser, setLoggedInUser] = useState(null); // Track user info
-  const navigate = useNavigate(); // For handling logout and redirects
-
-  useEffect(() => {
-    // Check if the user is logged in when the component mounts
-    const user = JSON.parse(localStorage.getItem("currentUser"));
-    if (user) {
-      setLoggedInUser(user); // Store user info in state
-    }
-  }, []);
-
-  const handleLogout = async () => {
-    try {
-      // Make a request to the backend to clear the accessToken cookie
-      await axios.post(
-        "http://localhost:3001/api/auth/logout",
-        {},
-        { withCredentials: true }
-      );
-
-      // Clear localStorage and reset state on successful logout
-      localStorage.removeItem("currentUser");
-      setLoggedInUser(null);
-      navigate("/"); // Redirect to home page
-    } catch (error) {
-      console.error("Logout failed:", error);
-      alert("Error logging out. Please try again.");
-    }
-  };
+  const { loggedInUser, logout } = useContext(UserContext);
 
   return (
     <div className="navBar">
@@ -54,7 +25,7 @@ function Nav() {
               {!loggedInUser ? (
                 <Link to="/business/register">Register Your Business</Link>
               ) : (
-                <Link>Edit Your Business</Link>
+                <Link>Edit Your Profile</Link>
               )}
             </li>
           </ul>
@@ -64,7 +35,7 @@ function Nav() {
           {loggedInUser ? (
             <>
               <span>Hello, {loggedInUser.name}</span>
-              <button onClick={handleLogout} className="logout">
+              <button onClick={logout} className="logout">
                 Logout
               </button>
             </>

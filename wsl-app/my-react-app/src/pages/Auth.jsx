@@ -14,11 +14,14 @@ import {
   VALIDATOR_MINLENGTH,
 } from "../components/util/validators";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../components/util/context";
 
 const Auth = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
+
+  const { login } = useContext(UserContext);
 
   const switchModeHandler = () => {
     setIsLoginMode((prevMode) => !prevMode);
@@ -48,7 +51,8 @@ const Auth = () => {
           },
           { withCredentials: true }
         );
-        localStorage.setItem("currentUser", JSON.stringify(response.data));
+        
+        login(response.data);
         navigate("/");
         console.log("Login successful:", response.data);
         // Save the JWT token or session data
@@ -65,6 +69,7 @@ const Auth = () => {
           },
           { withCredentials: true }
         );
+        login(res.data);
         navigate("/");
         // Handle post-registration logic (e.g., auto-login, redirect)
       }
@@ -75,6 +80,7 @@ const Auth = () => {
       } else {
         // General error
         setErrorMessage("An error occurred. Please try again.");
+        console.log(error);
       }
       // Display error message to the user
     }
