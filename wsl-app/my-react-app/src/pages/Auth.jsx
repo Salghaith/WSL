@@ -62,7 +62,7 @@ const Auth = () => {
         },
         { withCredentials: true}
       );
-        navigate("/client/login");
+        navigate("/");
         // Handle post-registration logic (e.g., auto-login, redirect)
       }
     } catch (error) {

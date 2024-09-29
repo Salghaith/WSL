@@ -7,6 +7,11 @@ import  createError from "../utils/createError.js";
 
 export const registerBusiness = async (req, res, next) => {
     try {
+      const existingUser = await User.findOne({ email: req.body.email });
+      if (existingUser) {
+      return res.status(400).send("Email is already registered.");
+      }
+      
       const {
         name,
         email, // User's personal email
@@ -60,9 +65,7 @@ export const registerBusiness = async (req, res, next) => {
       if (error.code === 11000) {
         if (error.keyPattern.email) {
           return res.status(400).json({ message: 'Email already exists' });
-        } else if (error.keyPattern.name) {
-          return res.status(400).json({ message: 'Username already exists' });
-        }
+        } 
       }
   
       // For other errors, pass them to the next middleware
@@ -72,6 +75,11 @@ export const registerBusiness = async (req, res, next) => {
 
 export const registerUser = async (req,res, next) => {
     try {
+      const existingUser = await User.findOne({ email: req.body.email });
+      if (existingUser) {
+      return res.status(400).send("Email is already registered.");
+    }
+    
         const hash = await bcrypt.hash(req.body.password, 10);
         const newUser = new User ({
             ...req.body,
@@ -88,7 +96,6 @@ export const registerUser = async (req,res, next) => {
 export const login = async (req,res,next) => {
     try {
         const user = await User.findOne({email: req.body.email});
-
         if(!user) return next(createError(404,"Wrong email or password!"));
 
         const isCorrect = bcrypt.compareSync(req.body.password, user.password);

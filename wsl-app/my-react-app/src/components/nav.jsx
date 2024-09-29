@@ -65,7 +65,7 @@ function Nav() {
               <a href="/client/login" className="login">
                 Login
               </a>
-              <a href="/client/register">
+              <a href="/client/login">
                 <button className="signup">Signup Free</button>
               </a>
             </>

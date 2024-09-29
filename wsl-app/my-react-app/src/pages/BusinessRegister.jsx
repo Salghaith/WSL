@@ -51,7 +51,13 @@ const BusinessRegister = () => {
       navigate("/client/login");
     } catch (error) {
       // Handle error
-      console.log(error);
+      if (error.response) {
+        // If the server sends a meaningful error message
+        alert(error.response.data || 'An unknown error occurred');
+      } else {
+        // General error
+        alert('An error occurred. Please try again.');
+      }
     }
   };
 
