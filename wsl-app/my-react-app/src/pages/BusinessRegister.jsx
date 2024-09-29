@@ -12,6 +12,7 @@ import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../components/util/validators";
+import Footer from "../components/footer";
 
 const BusinessRegister = () => {
   const [businessName, setBusinessName] = useState("");
@@ -208,7 +209,6 @@ const BusinessRegister = () => {
           </button>
         </div>
       </form>
-      <div className="footer"></div>
     </React.Fragment>
   );
 };

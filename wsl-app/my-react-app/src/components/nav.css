@@ -1,0 +1,77 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px 10px 0;
+}
+
+.logo img {
+  width: 240px;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+.auth {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navBar .login {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-size: larger;
+}
+
+.navBar .signup {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: larger;
+}
+
+.navBar hr {
+  margin: 0;
+  border: none;
+  height: 1px;
+  background-color: #020202;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Stack header items on smaller screens */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .nav ul {
+    flex-direction: column; /* Stack nav items vertically */
+    gap: 10px; /* Adjust gap */
+  }
+
+  .nav ul li {
+    text-align: center; /* Center align text */
+  }
+}
