@@ -5,23 +5,23 @@
   overflow: hidden;
 }
 
-.left-section {
+.auth-container .left-section {
   display: flex;
   flex-direction: column;
   width: 35%;
 }
 
-.logo {
+.auth-container .logo {
   width: 278px;
   height: 84px;
   margin-top: 20px;
 }
-.logo img {
+.auth-container .logo img {
   width: 100%;
   height: 100%;
 }
 
-.content {
+.auth-container .content {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -30,37 +30,37 @@
   align-items: center;
 }
 
-.header {
+.auth-container .header {
   font-size: 24px;
   font-weight: 700;
   line-height: 30px;
 }
 
-.form-content {
+.auth-container .form-content {
   width: 100%;
   height: 100%;
   padding: 35px;
   padding-left: 20%;
 }
 
-.input-group {
+.auth-container .input-group {
   display: flex;
   width: 85%;
 }
 
-.input-group input {
+.auth-container .input-group input {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.form-content label {
+.auth-container .form-content label {
   display: block;
   font-size: 20px;
   margin-bottom: 10px;
   margin-top: 23px;
 }
 
-.icon-container {
+.auth-container .icon-container {
   position: relative;
   left: 0;
   border-radius: 8px;
@@ -72,17 +72,17 @@
   padding: 13px;
 }
 
-.link-container {
+.auth-container .link-container {
   margin-top: 10px;
   margin-bottom: 25px;
   text-align: end;
   width: 85%;
 }
 
-.link-container a {
+.auth-container .link-container a {
   color: black;
 }
-.form-btn {
+.auth-container .form-btn {
   width: 85%;
   background-color: black;
   color: white;
@@ -96,11 +96,11 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.form-btn:hover {
+.auth-container .form-btn:hover {
   transform: translateY(-7px);
 }
 
-.divider {
+.auth-container .divider {
   display: flex;
   align-items: center;
   text-align: center;
@@ -109,75 +109,75 @@
   color: #9d9d9d;
 }
 
-.divider::before,
-.divider::after {
+.auth-container .divider::before,
+.auth-container .divider::after {
   content: "";
   flex: 1;
   border-bottom: 1px solid #9d9d9d;
 }
 
-.divider:not(:empty)::before {
+.auth-container .divider:not(:empty)::before {
   margin-right: 10px;
 }
 
-.divider:not(:empty)::after {
+.auth-container .divider:not(:empty)::after {
   margin-left: 10px;
 }
 
-.right-section {
+.auth-container .right-section {
   width: 65%;
 }
 
-.right-section img {
+.auth-container .right-section img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.register {
+.auth-container .register {
   margin-top: 30px;
 }
 
-.signup:hover {
+.auth-container .signup:hover {
   background: transparent;
   color: black;
   border: 1px solid black;
 }
 
 @media (max-width: 965px) {
-  .right-section {
+  .auth-container .right-section {
     display: none;
   }
-  .left-section {
+  .auth-container .left-section {
     width: 100%;
   }
-  .input-group {
+  .auth-container .input-group {
     width: 100%;
   }
-  .form-content {
+  .auth-container .form-content {
     padding-left: 35px;
   }
-  .form-btn {
+  .auth-container .form-btn {
     width: 100%;
   }
-  .link-container {
+  .auth-container .link-container {
     width: 100%;
   }
-  .divider {
+  .auth-container .divider {
     width: 100%;
   }
 }
 @media (max-height: 846px) {
-  .content {
+  .auth-container .content {
     margin-top: 10%;
   }
-  .header {
-    margin-bottom: 10%;
+  .auth-container .header {
+    margin-bottom: 0%;
   }
-  .form-content {
+  .auth-container .form-content {
     padding-top: 0;
   }
-  label {
+  .form-content label {
     margin-top: 11px;
   }
 }

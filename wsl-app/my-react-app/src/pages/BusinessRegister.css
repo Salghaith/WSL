@@ -125,11 +125,16 @@
 }
 
 @media (max-height: 846px) {
+
+  .worker-section {
+    margin: 0 10%;
+  }
   .worker-text {
     font-size: 64px;
     margin-right: 4%;
   }
-  .worker-section {
-    margin: 0 10%;
+  .worker-image img {
+    width: 600px;
+    height: 366px;
   }
 }
