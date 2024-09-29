@@ -13,3 +13,10 @@
     height: 543px;
     margin-left: 25%;
 }
+
+@media (max-height: 846px) and (min-width:900px) {
+    .home-page img {
+        height: 450px;
+        margin-left: 22%;
+    }
+}

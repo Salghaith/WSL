@@ -155,7 +155,6 @@
 @media (max-height: 846px) and (min-width:900px){
 
   .worker-section {
-    width: 95%;
     margin: 0 10%;
     height: 400px;
   }
@@ -167,5 +166,6 @@
   .worker-image img {
     width: 600px;
     height: 366px;
+    margin-left: 55px;
   }
 }

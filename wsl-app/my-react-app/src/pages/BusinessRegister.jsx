@@ -56,7 +56,6 @@ const BusinessRegister = () => {
 
   return (
     <React.Fragment>
-      <div className="navExample"></div>
       <section className="worker-section">
         <div className="worker-text">
           <span>Discover Local Services with WSL</span>
