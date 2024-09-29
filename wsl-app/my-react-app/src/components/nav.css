@@ -45,7 +45,15 @@
   cursor: pointer;
   font-size: larger;
 }
-
+.navBar .logout{
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: larger;
+}
 .navBar hr {
   margin: 0;
   border: none;

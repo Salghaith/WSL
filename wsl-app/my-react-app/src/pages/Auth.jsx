@@ -7,6 +7,7 @@ import emailIcon from "../assets/email-icon.svg";
 import lockIcon from "../assets/lock-icon.svg";
 import homePic from "../assets/home-picture2.svg";
 import Input from "../components/FormElement/Input";
+import ErrorBanner from "../components/ErrorBanner.jsx";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MAXLENGTH,
@@ -17,6 +18,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Auth = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
 
   const switchModeHandler = () => {
@@ -31,6 +33,11 @@ const Auth = () => {
     let email = event.target.email.value;
     let password = event.target.password.value;
 
+    if (!email || !password || (!isLoginMode && !username)) {
+      setErrorMessage("Please fill out all required fields.");
+      return; // Prevent form submission
+    }
+    
     try {
       if (isLoginMode) {
         // Login Mode
@@ -55,17 +62,16 @@ const Auth = () => {
         },
         { withCredentials: true}
       );
-        navigate("/");
+        navigate("/client/login");
         // Handle post-registration logic (e.g., auto-login, redirect)
       }
     } catch (error) {
-      if (error.response && error.response.data) {
+      if (error.response) {
         // If the server sends a meaningful error message
-        console.log(error);
-        console.log("here")
+        setErrorMessage(error.response.data || 'An unknown error occurred');
       } else {
         // General error
-        console.log(error);
+        setErrorMessage('An error occurred. Please try again.');
       }
       // Display error message to the user
     }
@@ -84,6 +90,8 @@ const Auth = () => {
             {isLoginMode ? "Login into" : "Register"} your account
           </div>
           <form className="form-content" onSubmit={authSubmitHandler}>
+              {/* Display the error message using ErrorBanner */}
+             {errorMessage && <ErrorBanner message={errorMessage} />}
             {!isLoginMode && (
               <React.Fragment>
                 <label htmlFor="username">Name</label>

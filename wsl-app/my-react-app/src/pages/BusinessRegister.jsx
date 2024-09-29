@@ -1,8 +1,9 @@
 // src/pages/BusinessRegister.jsx
 import React, { useState } from "react";
-
+import axios from "axios";
 import workerIcon from "../assets/worker-pic.svg";
 import Input from "../components/FormElement/Input";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./BusinessRegister.css";
 import {
@@ -22,9 +23,36 @@ const BusinessRegister = () => {
   const [location, setLocation] = useState("");
   const [categories, setCategories] = useState("");
   const [services, setServices] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = {
+      businessName: e.target['business-name'].value, //
+      categories: e.target.industry.value,
+      businessEmail: e.target['business-email'].value,
+      phoneNumber: e.target['phone-number'].value,
+      city: e.target.city.value,
+      street: e.target.street.value,
+      openingHours: e.target['operating-hours'].value,
+      description: e.target['business-description'].value,
+      name: e.target['owner-name'].value,
+      email: e.target['owner-email'].value,
+      password: e.target.password.value,
+    };
+
+    try {
+      // Send form data to backend
+      const response = await axios.post('http://localhost:3001/api/auth/registerbusiness', formData);
+      
+      // Handle success 
+      console.log('Business registered:', response.data);
+      navigate("/client/login");
+    } catch (error) {
+      // Handle error
+      console.log(error);
+    }
   };
 
   return (
@@ -41,7 +69,7 @@ const BusinessRegister = () => {
 
       <div className="form-title">Register Your Business</div>
 
-      <form className="register-from">
+      <form className="register-from" onSubmit={handleSubmit}>
         <span className="form-section-title">Business Details</span>
 
         <div className="form-section">
