@@ -1,8 +1,8 @@
 .worker-section {
   display: flex;
   justify-content: space-between;
-  margin: 0px 14%;
-  width: 80%;
+  margin: 0px 10%;
+  width: 85%;
 }
 
 .worker-text {
@@ -10,6 +10,7 @@
   font-weight: bold;
   font-family: "Roboto", sans-serif;
   margin-top: 60px;
+  width: 699px;
 }
 
 .worker-image {
@@ -22,14 +23,14 @@
   font-size: 48px;
   font-weight: bold;
   margin-bottom: 8px;
-  margin-left: 13.5%;
+  margin-left: 7%;
   height: 84px;
 }
 .register-from {
   display: flex;
   flex-direction: column;
   width: 80%;
-  margin-left: 13.5%;
+  margin-left: 7%;
 }
 
 .form-section-title {
@@ -154,11 +155,14 @@
 @media (max-height: 846px) and (min-width:900px){
 
   .worker-section {
+    width: 95%;
     margin: 0 10%;
+    height: 400px;
   }
   .worker-text {
     font-size: 64px;
     margin-right: 4%;
+    width: 500px;
   }
   .worker-image img {
     width: 600px;
