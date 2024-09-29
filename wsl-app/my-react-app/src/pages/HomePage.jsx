@@ -1,18 +1,15 @@
-// src/pages/HomePage.jsx
 import React from "react";
-import { Link } from "react-router-dom";
+import "./HomePage.css";
+import maintenanceIcon from "../assets/maintenance-icon.svg";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="home-page">
       <h1>Welcome to Our Service Platform</h1>
-      <div>
-        <Link to="/business/register">
-          <button>Business Registration</button>
-        </Link>
-        <Link to="/client/login">
-          <button>Client Registration</button>
-        </Link>
+      <div className="body">
+        <h1>Connect with trusted helpers for your home tasks.</h1>
+
+        <img src={maintenanceIcon} alt="maintenance-icon" />
       </div>
     </div>
   );

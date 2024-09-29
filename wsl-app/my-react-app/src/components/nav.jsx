@@ -45,13 +45,17 @@ function Nav() {
         <nav className="nav">
           <ul>
             <li>
-              <a href="/">Home</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="/">Services</a>
+              <Link to="/">Services</Link>
             </li>
             <li>
-              <a href="/">Write a Review</a>
+              {!loggedInUser ? (
+                <Link to="/business/register">Register Your Business</Link>
+              ) : (
+                <Link>Edit Your Business</Link>
+              )}
             </li>
           </ul>
         </nav>

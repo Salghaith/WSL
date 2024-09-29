@@ -1,5 +1,5 @@
 import React from 'react';
-import './ErrorBanner.css'; // Import CSS for styling
+import './ErrorBanner.css';
 
 const ErrorBanner = ({ message }) => {
   if (!message) return null; // Don't render if no message

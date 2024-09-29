@@ -6,7 +6,9 @@
 }
 
 .logo img {
-  width: 240px;
+  width: 200px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .nav ul {
@@ -33,7 +35,7 @@
   text-decoration: none;
   color: black;
   font-weight: 600;
-  font-size: larger;
+  font-size: large;
 }
 
 .navBar .signup {
@@ -43,7 +45,7 @@
   border-radius: 8px;
   padding: 8px 16px;
   cursor: pointer;
-  font-size: larger;
+  font-size: large;
 }
 .navBar .logout{
   background-color: black;

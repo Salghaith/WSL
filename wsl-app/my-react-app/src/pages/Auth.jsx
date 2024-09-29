@@ -15,7 +15,6 @@ import {
 } from "../components/util/validators";
 import { Link, useNavigate } from "react-router-dom";
 
-
 const Auth = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -37,41 +36,45 @@ const Auth = () => {
       setErrorMessage("Please fill out all required fields.");
       return; // Prevent form submission
     }
-    
+
     try {
       if (isLoginMode) {
         // Login Mode
-        const response = await axios.post('http://localhost:3001/api/auth/login', {
-          email,
-          password
-        },
-        { withCredentials: true}
-      );
+        const response = await axios.post(
+          "http://localhost:3001/api/auth/login",
+          {
+            email,
+            password,
+          },
+          { withCredentials: true }
+        );
         localStorage.setItem("currentUser", JSON.stringify(response.data));
         navigate("/");
-        console.log('Login successful:', response.data);
+        console.log("Login successful:", response.data);
         // Save the JWT token or session data
         // localStorage.setItem('token', response.data.token);
         // Redirect user to the dashboard or home page
       } else {
         // Register Mode
-        const res = await axios.post('http://localhost:3001/api/auth/register', {
-          name: username,
-          email,
-          password
-        },
-        { withCredentials: true}
-      );
+        const res = await axios.post(
+          "http://localhost:3001/api/auth/register",
+          {
+            name: username,
+            email,
+            password,
+          },
+          { withCredentials: true }
+        );
         navigate("/");
         // Handle post-registration logic (e.g., auto-login, redirect)
       }
     } catch (error) {
       if (error.response) {
         // If the server sends a meaningful error message
-        setErrorMessage(error.response.data || 'An unknown error occurred');
+        setErrorMessage(error.response.data || "An unknown error occurred");
       } else {
         // General error
-        setErrorMessage('An error occurred. Please try again.');
+        setErrorMessage("An error occurred. Please try again.");
       }
       // Display error message to the user
     }
@@ -90,29 +93,31 @@ const Auth = () => {
             {isLoginMode ? "Login into" : "Register"} your account
           </div>
           <form className="form-content" onSubmit={authSubmitHandler}>
-              {/* Display the error message using ErrorBanner */}
-             {errorMessage && <ErrorBanner message={errorMessage} />}
-            {!isLoginMode && (
-              <React.Fragment>
-                <label htmlFor="username">Name</label>
-                <div className="input-group">
-                  <Input
-                    element="input"
-                    type="text"
-                    id="username"
-                    placeholder="Mohammed"
-                    validators={[
-                      VALIDATOR_MINLENGTH(3),
-                      VALIDATOR_MAXLENGTH(40),
-                    ]}
-                    errorText="Please Enter A Valid Name! (between 3 and 40 chars)"
-                  />
-                  <span className="icon-container">
-                    <img src={userIcon} alt="icon" />
-                  </span>
-                </div>
-              </React.Fragment>
-            )}
+            {/* Display the error message using ErrorBanner */}
+            {errorMessage && <ErrorBanner message={errorMessage} />}
+            <div className="username">
+              {!isLoginMode && (
+                <React.Fragment>
+                  <label htmlFor="username">Name</label>
+                  <div className="input-group">
+                    <Input
+                      element="input"
+                      type="text"
+                      id="username"
+                      placeholder="Mohammed"
+                      validators={[
+                        VALIDATOR_MINLENGTH(3),
+                        VALIDATOR_MAXLENGTH(40),
+                      ]}
+                      errorText="Please Enter A Valid Name! (between 3 and 40 chars)"
+                    />
+                    <span className="icon-container">
+                      <img src={userIcon} alt="icon" />
+                    </span>
+                  </div>
+                </React.Fragment>
+              )}
+            </div>
 
             <label htmlFor="email">Email Address</label>
             <div className="input-group">

@@ -176,13 +176,14 @@
     margin-top: 10%;
   }
   .auth-container .header {
-    margin-bottom: 0%;
+    margin-bottom: 5px;
   }
   .auth-container .form-content {
     padding-top: 0;
   }
-  .form-content label {
-    margin-top: 11px;
+  
+  .auth-container .form-content .username label {
+    margin-top: 0;
   }
 }
 
