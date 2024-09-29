@@ -144,7 +144,7 @@
   border: 1px solid black;
 }
 
-@media (max-width: 965px) {
+@media (max-width: 965px) and (max-height:950px) {
   .auth-container .right-section {
     display: none;
   }
@@ -156,6 +156,7 @@
   }
   .auth-container .form-content {
     padding-left: 35px;
+    padding-top: 30px;
   }
   .auth-container .form-btn {
     width: 100%;
@@ -166,8 +167,11 @@
   .auth-container .divider {
     width: 100%;
   }
+  .auth-container .content {
+    margin-top: 15%;
+  }
 }
-@media (max-height: 846px) {
+@media (max-height: 846px) and (min-width:900px){
   .auth-container .content {
     margin-top: 10%;
   }
@@ -181,3 +185,4 @@
     margin-top: 11px;
   }
 }
+
