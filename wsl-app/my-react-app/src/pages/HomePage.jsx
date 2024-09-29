@@ -10,7 +10,7 @@ const HomePage = () => {
         <Link to="/business/register">
           <button>Business Registration</button>
         </Link>
-        <Link to="/client/register">
+        <Link to="/client/login">
           <button>Client Registration</button>
         </Link>
       </div>

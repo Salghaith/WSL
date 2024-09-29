@@ -30,7 +30,7 @@ input::placeholder {
 
 .errorP {
   height: 12px;
-  width: 100%;
+  width: 120%;
 }
 textarea {
   font-family: "Poppins", sans-serif;

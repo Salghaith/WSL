@@ -14,12 +14,10 @@ import {
 } from "../components/util/validators";
 import { Link, useNavigate } from "react-router-dom";
 
-// import { AuthContext } from "../../shared/context/Auth-context";
 
 const Auth = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const navigate = useNavigate();
-  //   const auth = useContext(AuthContext);
 
   const switchModeHandler = () => {
     setIsLoginMode((prevMode) => !prevMode);
@@ -71,10 +69,6 @@ const Auth = () => {
       }
       // Display error message to the user
     }
-
-
-    //After checking
-    // auth.login(); => Login success!
   };
 
   return (
@@ -92,7 +86,7 @@ const Auth = () => {
           <form className="form-content" onSubmit={authSubmitHandler}>
             {!isLoginMode && (
               <React.Fragment>
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">Name</label>
                 <div className="input-group">
                   <Input
                     element="input"
@@ -101,9 +95,9 @@ const Auth = () => {
                     placeholder="Mohammed"
                     validators={[
                       VALIDATOR_MINLENGTH(3),
-                      VALIDATOR_MAXLENGTH(8),
+                      VALIDATOR_MAXLENGTH(40),
                     ]}
-                    errorText="Please Enter A Valid Username!"
+                    errorText="Please Enter A Valid Name! (between 3 and 40 chars)"
                   />
                   <span className="icon-container">
                     <img src={userIcon} alt="icon" />
@@ -120,7 +114,7 @@ const Auth = () => {
                 id="email"
                 placeholder="alex@gmail.com"
                 validators={[VALIDATOR_EMAIL()]}
-                errorText="Please Enter A Valid Email!"
+                errorText="Please Enter A Valid Email! (e.g: alex@gmail.com)"
               />
               <span className="icon-container">
                 <img src={emailIcon} alt="icon" />
@@ -133,8 +127,8 @@ const Auth = () => {
                 type="password"
                 id="password"
                 placeholder="Enter your password"
-                validators={[VALIDATOR_MINLENGTH(6), VALIDATOR_MAXLENGTH(16)]}
-                errorText="Please Enter A Valid Password!"
+                validators={[VALIDATOR_MINLENGTH(6), VALIDATOR_MAXLENGTH(20)]}
+                errorText="Please Enter A Valid Password! (between 6 and 20 chars)"
               />
               <span className="icon-container">
                 <img src={lockIcon} alt="icon" />
@@ -144,7 +138,7 @@ const Auth = () => {
             {isLoginMode && (
               <React.Fragment>
                 <div className="link-container">
-                  <a href="/">Forgot Password?</a>
+                  <a>Forgot Password?</a>
                 </div>
               </React.Fragment>
             )}
