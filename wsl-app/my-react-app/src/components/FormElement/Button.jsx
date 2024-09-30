@@ -8,7 +8,7 @@ const Button = (props) => {
       onClick={props.onClick}
       disabled={props.disabled}
       className={`button ${props.className} ${
-        props.hoverInverse && "hover--inverse"
+        props.hoverInverse ? "hover--inverse" : ""
       }`}
     >
       {props.children}
