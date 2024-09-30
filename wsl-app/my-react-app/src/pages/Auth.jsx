@@ -15,10 +15,12 @@ import {
 } from "../components/util/validators";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../components/util/context";
+import Button from "../components/FormElement/Button.jsx";
 
-const Auth = () => {
+const Auth = ({ formValidity, onValidityChange }) => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  
   const navigate = useNavigate();
 
   const { login } = useContext(UserContext);
@@ -26,6 +28,7 @@ const Auth = () => {
   const switchModeHandler = () => {
     setIsLoginMode((prevMode) => !prevMode);
   };
+
   const authSubmitHandler = async (event) => {
     event.preventDefault();
     let username = "";
@@ -51,7 +54,7 @@ const Auth = () => {
           },
           { withCredentials: true }
         );
-        
+
         login(response.data);
         navigate("/");
         console.log("Login successful:", response.data);
@@ -86,6 +89,10 @@ const Auth = () => {
     }
   };
 
+  const isFormValid = isLoginMode
+    ? formValidity.email && formValidity.password
+    : formValidity.username && formValidity.email && formValidity.password;
+
   return (
     <div className="auth-container">
       <div className="left-section">
@@ -116,6 +123,7 @@ const Auth = () => {
                         VALIDATOR_MAXLENGTH(40),
                       ]}
                       errorText="Please Enter A Valid Name! (between 3 and 40 chars)"
+                      onValidityChange={onValidityChange}
                     />
                     <span className="icon-container">
                       <img src={userIcon} alt="icon" />
@@ -134,6 +142,7 @@ const Auth = () => {
                 placeholder="alex@gmail.com"
                 validators={[VALIDATOR_EMAIL()]}
                 errorText="Please Enter A Valid Email! (e.g: alex@gmail.com)"
+                onValidityChange={onValidityChange}
               />
               <span className="icon-container">
                 <img src={emailIcon} alt="icon" />
@@ -148,6 +157,7 @@ const Auth = () => {
                 placeholder="Enter your password"
                 validators={[VALIDATOR_MINLENGTH(6), VALIDATOR_MAXLENGTH(20)]}
                 errorText="Please Enter A Valid Password! (between 6 and 20 chars)"
+                onValidityChange={onValidityChange}
               />
               <span className="icon-container">
                 <img src={lockIcon} alt="icon" />
@@ -161,20 +171,23 @@ const Auth = () => {
                 </div>
               </React.Fragment>
             )}
-            <button
+
+            <Button
               type="submit"
               className={`form-btn ${!isLoginMode && "register"}`}
+              disabled={!isFormValid}
             >
               {isLoginMode ? "Login" : "Register"}
-            </button>
+            </Button>
             <div className="divider">OR</div>
-            <button
+            <Button
               type="button"
               onClick={switchModeHandler}
+              hoverInverse={true}
               className="form-btn signup"
             >
               {!isLoginMode ? "Login" : "Signup"}
-            </button>
+            </Button>
           </form>
         </div>
       </div>

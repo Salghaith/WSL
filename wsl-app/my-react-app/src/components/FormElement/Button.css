@@ -1,0 +1,31 @@
+.button {
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+}
+
+.button:hover {
+  transform: translateY(-7px);
+}
+
+.hover--inverse:hover {
+  background: transparent;
+  color: black;
+  border: 1px solid black;
+}
+
+.button:disabled,
+.button:hover:disabled,
+.button:active:disabled {
+  background: #ccc;
+  color: #979797;
+  border-color: #ccc;
+  cursor: not-allowed;
+}

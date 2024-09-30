@@ -83,7 +83,7 @@
 
 .form-group select {
   background-color: #f1f3f6;
-  padding: 15px;
+  padding: 13px;
   font-size: 16px;
   border: none;
   border-radius: 8px;
@@ -103,7 +103,7 @@
 .submit-button {
   margin: 20px 10px;
   width: 20%;
-  background-color: black;
+  /* background-color: black;
   color: white;
   border-radius: 8px;
   border: none;
@@ -112,18 +112,16 @@
   font-weight: 600;
   cursor: pointer;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out; */
 }
 
-.submit-button:hover {
-  transform: translateY(-7px);
-}
 
-@media (max-width: 965px) and (max-height:950px){
+
+@media (max-width: 965px) and (max-height: 950px) {
   .worker-section {
     display: none;
   }
-  .form-group{
+  .form-group {
     flex: 0 1 auto;
     width: 100%;
   }
@@ -136,7 +134,7 @@
     margin: 15px 0 0;
     height: 37px;
   }
-  .form-title{
+  .form-title {
     font-size: 30px;
     margin: 3% 0 0 5%;
     height: 60px;
@@ -144,10 +142,10 @@
   .register-from {
     margin-left: 5%;
   }
-  .passwordInput{
+  .passwordInput {
     width: 100%;
   }
-  .submit-button{
+  .submit-button {
     width: 100%;
   }
   .navBar {
@@ -158,8 +156,7 @@
   }
 }
 
-@media (max-height: 846px) and (min-width:900px){
-
+@media (max-height: 846px) and (min-width: 900px) {
   .worker-section {
     margin: 0 10%;
     height: 400px;

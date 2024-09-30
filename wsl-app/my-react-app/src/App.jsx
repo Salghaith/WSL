@@ -14,6 +14,13 @@ import axios from "axios";
 import { UserProvider } from "./components/util/context";
 
 const App = () => {
+  const [formValidity, setFormValidity] = useState({});
+  const handleValidity = (inputId, isValid) => {
+    setFormValidity((prevValidity) => ({
+      ...prevValidity,
+      [inputId]: isValid,
+    }));
+  };
   return (
     <UserProvider>
       <Router>
@@ -28,13 +35,24 @@ const App = () => {
               </React.Fragment>
             }
           />
-          <Route path="/client/login" element={<Auth />} />
+          <Route
+            path="/client/login"
+            element={
+              <Auth
+                onValidityChange={handleValidity}
+                formValidity={formValidity}
+              />
+            }
+          />
           <Route
             path="/business/register"
             element={
               <React.Fragment>
                 <Nav />
-                <BusinessRegister />
+                <BusinessRegister
+                  onValidityChange={handleValidity}
+                  formValidity={formValidity}
+                />
                 <Footer />
               </React.Fragment>
             }

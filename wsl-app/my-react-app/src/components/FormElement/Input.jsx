@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { validate } from "../util/validators";
 import "./Input.css";
 
 const Input = (props) => {
   const [isTouched, setIsTouched] = useState(false);
   const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    if (props.onValidityChange) {
+      props.onValidityChange(props.id, isValid);
+    }
+  }, [isValid, props.id]);
 
   const changeHandler = (event) => {
     if (props.validators) {

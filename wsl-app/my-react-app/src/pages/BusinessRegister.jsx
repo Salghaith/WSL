@@ -11,8 +11,9 @@ import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../components/util/validators";
+import Button from "../components/FormElement/Button";
 
-const BusinessRegister = () => {
+const BusinessRegister = ({ formValidity, onValidityChange }) => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -53,6 +54,7 @@ const BusinessRegister = () => {
       }
     }
   };
+  const isFormValid = Object.values(formValidity).every((isValid) => isValid);
 
   return (
     <React.Fragment>
@@ -81,6 +83,7 @@ const BusinessRegister = () => {
               placeholder="Enter your business name"
               validators={[VALIDATOR_REQUIRE()]}
               errorText=""
+              onValidityChange={onValidityChange}
             />
           </div>
 
@@ -116,6 +119,7 @@ const BusinessRegister = () => {
               placeholder="Enter your business email"
               validators={[VALIDATOR_EMAIL()]}
               errorText=""
+              onValidityChange={onValidityChange}
             />
           </div>
           <div className="form-group">
@@ -128,6 +132,7 @@ const BusinessRegister = () => {
               placeholder="Enter your phone number"
               validators={[VALIDATOR_REQUIRE()]}
               errorText=""
+              onValidityChange={onValidityChange}
             />
           </div>
 
@@ -142,6 +147,7 @@ const BusinessRegister = () => {
                 placeholder="City"
                 validators={[VALIDATOR_REQUIRE()]}
                 errorText=""
+                onValidityChange={onValidityChange}
               />
               <Input
                 element="input"
@@ -151,6 +157,7 @@ const BusinessRegister = () => {
                 placeholder="Street"
                 validators={[VALIDATOR_REQUIRE()]}
                 errorText=""
+                onValidityChange={onValidityChange}
               />
             </div>
           </div>
@@ -169,6 +176,7 @@ const BusinessRegister = () => {
               placeholder="e.g., Weekdays 9 AM - 6 PM"
               validators={[VALIDATOR_REQUIRE()]}
               errorText=""
+              onValidityChange={onValidityChange}
             />
           </div>
 
@@ -183,6 +191,7 @@ const BusinessRegister = () => {
               placeholder="Briefly describe what your business does"
               validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(220)]}
               errorText=""
+              onValidityChange={onValidityChange}
             />
           </div>
         </div>
@@ -200,6 +209,7 @@ const BusinessRegister = () => {
               placeholder="Enter the name of the business owner"
               validators={[VALIDATOR_REQUIRE()]}
               errorText=""
+              onValidityChange={onValidityChange}
             />
           </div>
           <div className="form-group">
@@ -210,8 +220,9 @@ const BusinessRegister = () => {
               id="owner-email"
               name="owner-email"
               placeholder="Enter the owner's email address"
-              validators={[VALIDATOR_REQUIRE()]}
+              validators={[VALIDATOR_EMAIL()]}
               errorText=""
+              onValidityChange={onValidityChange}
             />
           </div>
         </div>
@@ -228,15 +239,20 @@ const BusinessRegister = () => {
                 placeholder="Enter your password"
                 validators={[VALIDATOR_MINLENGTH(6), VALIDATOR_MAXLENGTH(16)]}
                 errorText=""
+                onValidityChange={onValidityChange}
               />
             </span>
           </div>
         </div>
 
         <div className="submit-wrapper">
-          <button type="submit" className="submit-button">
+          <Button
+            type="submit"
+            className="submit-button"
+            disabled={!isFormValid}
+          >
             Submit
-          </button>
+          </Button>
         </div>
       </form>
     </React.Fragment>
