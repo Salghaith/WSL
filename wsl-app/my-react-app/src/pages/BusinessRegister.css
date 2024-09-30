@@ -150,6 +150,12 @@
   .submit-button{
     width: 100%;
   }
+  .navBar {
+    display: none;
+  }
+  .footer {
+    display: none;
+  }
 }
 
 @media (max-height: 846px) and (min-width:900px){
