@@ -1,16 +1,37 @@
+.business-register-page {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30%;
+  min-height: 100vh;
+}
+
+.business-register-page .left-section {
+  width: 60%;
+}
+
+.business-register-page .disapper {
+  display: none;
+}
+
+.step-button {
+  width: 30%;
+  margin: 20px 10px;
+}
+
 .worker-section {
   display: flex;
   justify-content: space-between;
-  margin: 0px 10%;
+  margin: 0px 10% 10%;
   width: 85%;
 }
 
 .worker-text {
-  font-size: 96px;
+  font-size: 70px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
-  margin-top: 60px;
+  margin-top: 20px;
   width: 699px;
+  display: none;
 }
 
 .worker-image {
@@ -44,14 +65,19 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 116px;
+  gap: 30px;
+  height: 100%;
+}
+.step-one .form-section {
+  justify-content: flex-end;
 }
 .form-group {
-  flex: 1;
+  /* flex: 1; */
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding-left: 10px;
+  width: 100%;
 }
 
 .form-group label {
@@ -114,8 +140,6 @@
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease-in-out; */
 }
-
-
 
 @media (max-width: 965px) and (max-height: 950px) {
   .worker-section {
