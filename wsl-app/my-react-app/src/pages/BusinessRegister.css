@@ -1,12 +1,12 @@
 .business-register-page {
   display: flex;
   flex-direction: column;
-  margin-left: 30%;
+  margin-left: 25%;
   min-height: 100vh;
 }
 
 .business-register-page .left-section {
-  width: 60%;
+  width: 80%;
 }
 
 .business-register-page .disapper {
@@ -129,16 +129,7 @@
 .submit-button {
   margin: 20px 10px;
   width: 20%;
-  /* background-color: black;
-  color: white;
-  border-radius: 8px;
-  border: none;
-  padding: 15px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease-in-out; */
+  
 }
 
 @media (max-width: 965px) and (max-height: 950px) {
@@ -182,8 +173,9 @@
 
 @media (max-height: 846px) and (min-width: 900px) {
   .worker-section {
-    margin: 0 10%;
-    height: 400px;
+    /* margin: 0 10%;
+    height: 400px; */
+    display: none;
   }
   .worker-text {
     font-size: 64px;
@@ -195,4 +187,8 @@
     height: 366px;
     margin-left: 55px;
   }
+  .form-section{
+    margin-top: 20px;
+  }
+  
 }
