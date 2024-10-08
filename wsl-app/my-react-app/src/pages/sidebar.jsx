@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import './Sidebar.css';
-
+import React, { useState } from "react";
+import "./Sidebar.css";
 
 const Sidebar = () => {
   const [checkedItems, setCheckedItems] = useState({

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./SearchForBusinesses.css";
+import Sidebar from "./sidebar";
+import workerIcon from "../assets/worker-pic.svg";
 
 const SearchForBusinesses = ({ title, posts }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +23,7 @@ const SearchForBusinesses = ({ title, posts }) => {
 
   return (
     <div className="content-container">
+      <Sidebar />
       <div className="post-section">
         <div className="post-header">
           <h2>{`Top 10 Best ${title} in Riyadh`}</h2>
@@ -35,7 +38,7 @@ const SearchForBusinesses = ({ title, posts }) => {
         <div className="posts">
           {currentPosts.map((post, index) => (
             <div key={index} className="post">
-              <img src={post.image} alt={post.title} className="post-image" />
+              <img src={workerIcon} alt={post.title} className="post-image" />
               <div className="post-info">
                 <h3 className="post-title">{post.title}</h3>
                 <p className="post-rating">Rating: {post.rating}</p>

@@ -12,10 +12,10 @@ const Footer = () => {
         <nav className="footer-nav">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Terms of Services</Link>
             </li>
             <li>
-              <Link to="/">About</Link>
+              <Link to="/">FAQ</Link>
             </li>
             <li>
               <Link to="/">Services</Link>

@@ -6,14 +6,15 @@
   }
   
   /* Sidebar header styling */
-  .filters-header {
+  .sidebar .filters-header {
     display: flex; /* Align title and button */
     justify-content: space-between; /* Space between title and button */
     align-items: center; /* Center vertically */
+    margin-bottom: 30px;
   }
   
   /* Clear all button styling */
-  .clear-all {
+  .sidebar .clear-all {
     background: none;
     border: none;
     color: #000000;
@@ -22,18 +23,18 @@
   }
   
   /* Filter category styling */
-  .filter-category {
+  .sidebar .filter-category {
     margin-bottom: 20px;
   }
   
   /* Filter category title */
-  .filter-category h4 {
+  .sidebar .filter-category h4 {
     font-size: 18px;
     margin-bottom: 10px;
   }
   
   /* Checkbox label styling */
-  label {
+  .sidebar label {
     display: flex; /* Make label and checkbox in a row */
     align-items: center; /* Vertically align text with checkbox */
     margin: 5px 0;
@@ -46,16 +47,16 @@
   }
   
   /* Add margin between checkbox and text */
-  label input {
+  .sidebar label input {
     margin-right: 10px; /* Adjust the space between checkbox and label text */
   }
   
-  label:hover {
+  .sidebar label:hover {
     color: #000; /* Matching hover style */
   }
   
   /* Horizontal line between categories */
-  hr {
+  .sidebar hr {
     margin: 15px 0;
   }
   
