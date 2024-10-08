@@ -122,4 +122,11 @@
     font-size: 14px;
     margin: 5px 0;
   }
+
+  .content-container {
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+    gap: 0;
+  }
   

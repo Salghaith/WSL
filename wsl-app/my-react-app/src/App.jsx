@@ -12,6 +12,7 @@ import Footer from "./components/footer";
 import Nav from "./components/nav";
 import axios from "axios";
 import { UserProvider } from "./components/util/context";
+import SearchForBusinesses from "./pages/SearchForBusinesses";
 
 const App = () => {
   const [formValidity, setFormValidity] = useState({});
@@ -52,6 +53,19 @@ const App = () => {
                 <BusinessRegister
                   onValidityChange={handleValidity}
                   formValidity={formValidity}
+                />
+                <Footer />
+              </React.Fragment>
+            }
+          />
+          <Route
+            path="/client/editUser"
+            element={
+              <React.Fragment>
+                <Nav />
+                <SearchForBusinesses
+                  title="Saleh"
+                  posts={[{ title: "Moh" }, { title: "Siu" }]}
                 />
                 <Footer />
               </React.Fragment>
