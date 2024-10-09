@@ -1,12 +1,17 @@
 .business-register-page {
   display: flex;
   flex-direction: column;
-  margin-left: 25%;
+  align-items: center;
+  margin: 0 15%;
   min-height: 100vh;
 }
 
-.business-register-page .left-section {
-  width: 80%;
+.business-register-page .body {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  margin-top: 3%;
+  gap: 40px;
 }
 
 .business-register-page .disapper {
@@ -18,40 +23,20 @@
   margin: 20px 10px;
 }
 
-.worker-section {
-  display: flex;
-  justify-content: space-between;
-  margin: 0px 10% 10%;
-  width: 85%;
-}
-
-.worker-text {
-  font-size: 70px;
-  font-weight: bold;
-  font-family: "Roboto", sans-serif;
-  margin-top: 20px;
-  width: 699px;
-  display: none;
-}
-
-.worker-image {
-  width: 766px;
-  height: 473px;
-  margin-top: 35px;
-}
-
 .form-title {
   font-size: 48px;
   font-weight: bold;
   margin-bottom: 8px;
-  margin-left: 7%;
   height: 84px;
+  margin: 0 7%;
 }
 .register-from {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin-left: 7%;
+  margin-left: 2%;
+  height: 600px;
+  width: 700px;
+  
 }
 
 .form-section-title {
@@ -66,13 +51,11 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 30px;
-  height: 100%;
 }
 .step-one .form-section {
   justify-content: flex-end;
 }
 .form-group {
-  /* flex: 1; */
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -123,13 +106,12 @@
 }
 
 .form-group .passwordInput {
-  width: 46%;
+  /* width: 46%; */
 }
 
 .submit-button {
   margin: 20px 10px;
-  width: 20%;
-  
+  width: 30%;
 }
 
 @media (max-width: 965px) and (max-height: 950px) {
@@ -187,8 +169,7 @@
     height: 366px;
     margin-left: 55px;
   }
-  .form-section{
+  .form-section {
     margin-top: 20px;
   }
-  
 }
