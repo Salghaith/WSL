@@ -36,7 +36,6 @@
   margin-left: 2%;
   height: 600px;
   width: 700px;
-  
 }
 
 .form-section-title {
@@ -60,6 +59,14 @@
   flex-direction: column;
   gap: 10px;
   padding-left: 10px;
+  width: 100%;
+}
+
+.operating-hours {
+  display: flex;
+  gap: 50px;
+  padding-left: 10px;
+  margin-top: 2%;
   width: 100%;
 }
 

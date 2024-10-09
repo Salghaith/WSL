@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Stepper, Step, StepLabel, Typography } from "@mui/material";
 import axios from "axios";
+import dayjs from "dayjs";
 import Input from "../components/FormElement/Input";
 import { Link, useNavigate } from "react-router-dom";
 import "./BusinessRegister.css";
@@ -12,7 +13,12 @@ import {
 } from "../components/util/validators";
 import Button from "../components/FormElement/Button";
 
+import TimeSelector from "../components/timeSelector";
+
 const BusinessRegister = ({ formValidity, onValidityChange }) => {
+  const [hoursFrom, setHoursFrom] = React.useState(dayjs("2022-04-17T12:30"));
+  const [hoursTo, setHoursTo] = React.useState(dayjs("2022-04-17T23:30"));
+
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
@@ -69,7 +75,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
       formValidity["phone-number"] &&
       formValidity["city"] &&
       formValidity["street"],
-    formValidity["operating-hours"] && formValidity["business-description"],
+    formValidity["business-description"],
     formValidity["owner-name"] &&
       formValidity["owner-email"] &&
       formValidity.password,
@@ -235,7 +241,19 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                 <div className="form-section">
                   <div className="form-group">
                     <label htmlFor="operating-hours">Operating Hours</label>
-                    <Input
+                    <div className="operating-hours">
+                      <TimeSelector
+                        value={hoursFrom}
+                        setValue={setHoursFrom}
+                        label={"from"}
+                      />
+                      <TimeSelector
+                        value={hoursTo}
+                        setValue={setHoursTo}
+                        label={"to"}
+                      />
+                    </div>
+                    {/* <Input
                       element="input"
                       type="text"
                       id="operating-hours"
@@ -244,7 +262,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                       validators={[VALIDATOR_REQUIRE()]}
                       errorText=""
                       onValidityChange={onValidityChange}
-                    />
+                    /> */}
                   </div>
 
                   <div className="form-group">
