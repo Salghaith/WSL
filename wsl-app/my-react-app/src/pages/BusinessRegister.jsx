@@ -40,7 +40,10 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
       phoneNumber: e.target["phone-number"].value,
       city: e.target.city.value,
       street: e.target.street.value,
-      openingHours: e.target["operating-hours"].value,
+      openingHours: {
+        from: hoursFrom.format('h:mm A'),
+        to: hoursTo.format('h:mm A'),     
+      },
       description: e.target["business-description"].value,
       name: e.target["owner-name"].value,
       email: e.target["owner-email"].value,

@@ -51,7 +51,10 @@ export const registerBusiness = async (req, res, next) => {
       },
       categories,
       description,
-      openingHours,
+      openingHours: {
+        from: openingHours.from, 
+        to: openingHours.to, 
+      },
     });
 
     // 5. Save the business
