@@ -112,9 +112,6 @@
   justify-content: space-between;
 }
 
-.form-group .passwordInput {
-  /* width: 46%; */
-}
 
 .submit-button {
   margin: 20px 10px;
@@ -161,22 +158,5 @@
 }
 
 @media (max-height: 846px) and (min-width: 900px) {
-  .worker-section {
-    /* margin: 0 10%;
-    height: 400px; */
-    display: none;
-  }
-  .worker-text {
-    font-size: 64px;
-    margin-right: 4%;
-    width: 500px;
-  }
-  .worker-image img {
-    width: 600px;
-    height: 366px;
-    margin-left: 55px;
-  }
-  .form-section {
-    margin-top: 20px;
-  }
+  
 }

@@ -92,7 +92,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
 
   return (
     <React.Fragment>
-      <Container sx={{ height: "100vh" }}>
+      <Container >
         <div className="business-register-page">
           <div className="body">
             <div className="form-title">Register Your Business</div>
