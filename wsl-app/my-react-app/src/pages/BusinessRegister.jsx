@@ -32,6 +32,9 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isFormValid) {
+      return alert("DON'T TOUCH THE CODE IN THE INSPECT PLEASE!!");
+    }
 
     const formData = {
       businessName: e.target["business-name"].value, //
@@ -41,8 +44,8 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
       city: e.target.city.value,
       street: e.target.street.value,
       openingHours: {
-        from: hoursFrom.format('h:mm A'),
-        to: hoursTo.format('h:mm A'),     
+        from: hoursFrom.format("h:mm A"),
+        to: hoursTo.format("h:mm A"),
       },
       description: e.target["business-description"].value,
       name: e.target["owner-name"].value,
@@ -92,7 +95,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
 
   return (
     <React.Fragment>
-      <Container >
+      <Container>
         <div className="business-register-page">
           <div className="body">
             <div className="form-title">Register Your Business</div>
