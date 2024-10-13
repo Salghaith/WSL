@@ -35,6 +35,9 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
     if (!isFormValid) {
       return alert("DON'T TOUCH THE CODE IN THE INSPECT PLEASE!!");
     }
+    if (e.target.industry.value === "notSelected") {
+      return alert("Please Select a category in step 1!");
+    }
 
     const formData = {
       businessName: e.target["business-name"].value, //
@@ -142,7 +145,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                   <div className="form-group">
                     <label htmlFor="category">Business Category</label>
                     <select id="industry" name="industry" required>
-                      <option value="" disabled selected hidden>
+                      <option value="notSelected" disabled selected hidden>
                         Select your category
                       </option>
                       <option value="tech-and-gadget-services">
