@@ -18,9 +18,9 @@ import { UserContext } from "../components/util/context";
 import Button from "../components/FormElement/Button.jsx";
 
 const Auth = ({ formValidity, onValidityChange }) => {
-  const [isLoginMode, setIsLoginMode] = useState(true);
+  const [isLoginMode, setIsLoginMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  
+
   const navigate = useNavigate();
 
   const { login } = useContext(UserContext);
@@ -188,6 +188,13 @@ const Auth = ({ formValidity, onValidityChange }) => {
             >
               {!isLoginMode ? "Login" : "Signup"}
             </Button>
+            {!isLoginMode && (
+              <Link to="/business/register">
+                <Button type="button" hoverInverse={true} className="form-btn">
+                  Register your business
+                </Button>
+              </Link>
+            )}
           </form>
         </div>
       </div>

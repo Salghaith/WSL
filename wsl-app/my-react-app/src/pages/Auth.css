@@ -14,11 +14,12 @@
 .auth-container .logo {
   width: 278px;
   height: 84px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 .auth-container .logo img {
   width: 100%;
   height: 100%;
+  margin-left: 0;
 }
 
 .auth-container .content {
@@ -26,7 +27,7 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  margin-top: 120px;
+  margin-top: 20%;
   align-items: center;
 }
 
@@ -40,7 +41,7 @@
   width: 100%;
   height: 100%;
   padding: 35px;
-  padding-left: 20%;
+  padding-left: 15%;
 }
 
 .auth-container .input-group {
@@ -89,13 +90,16 @@
 .auth-container .register {
   margin-top: 30px;
 }
+.auth-container .signup {
+  margin-bottom: 6%;
+}
 
 .auth-container .divider {
   display: flex;
   align-items: center;
   text-align: center;
   width: 85%;
-  margin: 15px 0;
+  margin: 15px 0 2%;
   color: #9d9d9d;
 }
 
@@ -164,5 +168,8 @@
 
   .auth-container .form-content .username label {
     margin-top: 0;
+  }
+  .auth-container .form-content label {
+    margin-top: 4%;
   }
 }
