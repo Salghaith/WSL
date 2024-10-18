@@ -1,7 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./editBusinessInfo.css";
+import "./editCard.css";
+import { UserContext } from "../components/util/context";
+import { useNavigate } from "react-router-dom";
 
 const EditBusinessInfo = () => {
+  const { loggedInUser } = useContext(UserContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    //To prevent unauth users from reaching this page.
+    if (!loggedInUser) {
+      navigate("/");
+    }
+  }, [loggedInUser, navigate]);
+
+  if (!loggedInUser) {
+    return <div>Redirecting</div>;
+  }
+
   const [isEditing, setIsEditing] = useState(false);
   const [businessName, setBusinessName] = useState("Tech Store");
   const [businessCategory, setBusinessCategory] = useState("tech");

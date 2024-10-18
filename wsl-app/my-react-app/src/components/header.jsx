@@ -7,10 +7,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logoWSL.svg";
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../components/util/context";
 
 export default function Header() {
+  const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { loggedInUser, logout } = useContext(UserContext);
   let isBusiness = false;
@@ -115,6 +116,7 @@ export default function Header() {
                   onClick={() => {
                     logout();
                     toggleDropdown();
+                    navigate("/");
                   }}
                   className="dropdown-item"
                 >

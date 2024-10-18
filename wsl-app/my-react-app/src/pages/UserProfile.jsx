@@ -1,7 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./UserProfile.css";
+import "./editCard.css";
 import { UserContext } from "../components/util/context";
 import { useNavigate } from "react-router-dom";
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_MAXLENGTH,
+  VALIDATOR_MINLENGTH,
+} from "../components/util/validators";
 
 const UserProfile = () => {
   const { loggedInUser } = useContext(UserContext);
@@ -14,7 +20,7 @@ const UserProfile = () => {
   }, [loggedInUser, navigate]);
 
   if (!loggedInUser) {
-    return null;
+    return <div>Redirecting...</div>;
   }
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(loggedInUser.name);
