@@ -8,6 +8,7 @@ import {
   VALIDATOR_MAXLENGTH,
   VALIDATOR_MINLENGTH,
 } from "../components/util/validators";
+import axios from "axios";
 
 const UserProfile = () => {
   const { loggedInUser } = useContext(UserContext);
@@ -19,28 +20,40 @@ const UserProfile = () => {
     }
   }, [loggedInUser, navigate]);
 
-  if (!loggedInUser) {
-    return <div>Redirecting...</div>;
-  }
+
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState(loggedInUser.name);
-  const [email, setEmail] = useState(loggedInUser.email);
+  const [name, setName] = useState(loggedInUser ? loggedInUser.name : "");
+  const [email, setEmail] = useState(loggedInUser ? loggedInUser.email : "");
   const [password, setPassword] = useState("password");
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
 
+  if (!loggedInUser) {
+    return <div>Redirecting...</div>;
+  }
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
     const newErrors = validateInputs();
     if (Object.keys(newErrors).length === 0) {
+      try{
+        const response = await axios.put('http://localhost:3001/api/user/update', {
+          name,
+          email,
+          password
+        }, { withCredentials: true });
+
+      localStorage.setItem('currentUser', JSON.stringify(response.data));
       setIsEditing(false);
       setErrors({}); // Clear errors on successful submission
 
       setSuccessMessage("Profile updated successfully!");
       setTimeout(() => setSuccessMessage(""), 5000); // Message disappears after 5 seconds
+      }catch(error){
+        setErrors({ general: 'Failed to update profile' });
+      }
     } else {
       setErrors(newErrors);
     }

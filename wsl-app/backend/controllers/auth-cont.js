@@ -129,6 +129,24 @@ export const login = async (req, res, next) => {
     );
 
     const { password, ...info } = user._doc;
+
+    if (user.isBusiness) {
+      const business = await Business.findOne({ owner: user._id });
+
+      if (business) {
+        info.business = {
+          businessName: business.businessName,
+          email: business.email,
+          phoneNumber: business.phoneNumber,
+          categories: business.categories,
+          location: business.location,
+          openingHours: business.openingHours,
+          description: business.description,
+        };
+      } else {
+        info.business = null; // If no business is found
+      }
+    }
     res.cookie("accessToken", token, { httpOnly: true }).status(200).send(info);
   } catch (error) {
     next(error);

@@ -3,7 +3,9 @@ import "./editBusinessInfo.css";
 import "./editCard.css";
 import { UserContext } from "../components/util/context";
 import { useNavigate } from "react-router-dom";
-
+import TimeSelector from "../components/timeSelector"; // Ensure you're importing this component
+import dayjs from 'dayjs';
+import axios from "axios";
 const EditBusinessInfo = () => {
   const { loggedInUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -14,42 +16,65 @@ const EditBusinessInfo = () => {
     }
   }, [loggedInUser, navigate]);
 
-  if (!loggedInUser) {
-    return <div>Redirecting</div>;
-  }
+ 
 
   const [isEditing, setIsEditing] = useState(false);
-  const [businessName, setBusinessName] = useState("Tech Store");
-  const [businessCategory, setBusinessCategory] = useState("tech");
-  const [businessEmail, setBusinessEmail] = useState("info@techstore.com");
-  const [businessPhone, setBusinessPhone] = useState("1234567890");
+  const [businessName, setBusinessName] = useState(loggedInUser?.business?.businessName || "");
+  const [businessCategory, setBusinessCategory] = useState(loggedInUser?.business?.categories?.[0] || "");
+  const [businessEmail, setBusinessEmail] = useState(loggedInUser?.business?.email || "");
+  const [businessPhone, setBusinessPhone] = useState(loggedInUser?.business?.phoneNumber || "");
   const [businessAddress, setBusinessAddress] = useState({
-    city: "New York",
-    street: "5th Avenue",
+    city: loggedInUser?.business?.location?.city || "",
+    street: loggedInUser?.business?.location?.street || "",
   });
-  const [operatingHours, setOperatingHours] = useState("9 AM - 5 PM");
-  const [description, setDescription] = useState(
-    "Your one-stop shop for tech gadgets."
-  );
-  const [ownerName, setOwnerName] = useState("John Doe");
-  const [ownerEmail, setOwnerEmail] = useState("john.doe@example.com");
+  const [hoursFrom, setHoursFrom] = useState((loggedInUser?.business?.openingHours?.from || "2022-04-17T12:30"));
+  const [hoursTo, setHoursTo] = useState(loggedInUser?.business?.openingHours?.to || "2022-04-17T23:30");
+  const [description, setDescription] = useState(loggedInUser?.business?.description || "");
+  const [ownerName, setOwnerName] = useState(loggedInUser?.name || "");
+  const [ownerEmail, setOwnerEmail] = useState(loggedInUser?.email || "");
   const [password, setPassword] = useState("password");
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
 
+  if (!loggedInUser) {
+    return <div>Redirecting</div>;
+  }
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async ()  => {
     const newErrors = validateInputs();
     if (Object.keys(newErrors).length === 0) {
+      try {
+        const response = await axios.put("http://localhost:3001/api/business/update", {
+          businessName,
+          businessCategory,
+          businessEmail,
+          businessPhone,
+          businessAddress,
+          openingHours: {
+            from: hoursFrom.format("h:mm A"),
+            to: hoursTo.format("h:mm A"),
+          },
+          description,
+          ownerName,
+          ownerEmail,
+          password,
+        }, { withCredentials: true });
+
+      localStorage.setItem("currentUser", JSON.stringify(response.data.user));
       setIsEditing(false);
       setErrors({});
       setSuccessMessage("Business info updated successfully!");
       setTimeout(() => setSuccessMessage(""), 5000); // Message disappears after 5 seconds
+    } catch (error) {
+      setErrors({ general: 'Failed to update business info' });
+      console.log(error);
+      }
     } else {
       setErrors(newErrors);
+      console.log("error");
     }
   };
 
@@ -168,16 +193,25 @@ const EditBusinessInfo = () => {
         {/* Business Operation Details Section */}
         <h3 className="section-title">Business Operation Details</h3>
         <div className="profile-field">
-          <label htmlFor="operatingHours">Operating Hours</label>
-          <input
-            type="text"
-            id="operatingHours"
-            value={operatingHours}
-            onChange={(e) => setOperatingHours(e.target.value)}
-            disabled={!isEditing}
-            className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
-          />
+        <div className="operating-hours">
+        <label htmlFor="operatingHours">Operating Hours</label>
+        {isEditing ? (
+          <div className="operating-hours">
+            <TimeSelector
+              value={hoursFrom}
+              setValue={setHoursFrom}
+              label={"From"}
+            />
+            <TimeSelector
+              value={hoursTo}
+              setValue={setHoursTo}
+              label={"To"}
+            />
+          </div>
+        ) : (
+          <p>{`From ${hoursFrom.format("h:mm A")} to ${hoursTo.format("h:mm A")}`}</p>
+        )}
+      </div>
         </div>
         <div className="profile-field">
           <label htmlFor="description">Description of Business</label>

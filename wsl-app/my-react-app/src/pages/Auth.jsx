@@ -188,6 +188,7 @@ const Auth = ({ formValidity, onValidityChange }) => {
             >
               {!isLoginMode ? "Login" : "Signup"}
             </Button>
+            <div className="divider">Are you a business?</div>
             {!isLoginMode && (
               <Link to="/business/register">
                 <Button type="button" hoverInverse={true} className="form-btn">

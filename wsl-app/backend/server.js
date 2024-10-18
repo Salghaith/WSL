@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";  
 import userRoute from "./routes/user-route.js";
 import authRoute from "./routes/auth-route.js";
+import businessRoute from "./routes/business-route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -17,6 +18,7 @@ app.use(cookieParser());
 // Routes
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/business", businessRoute);
 
 app.use((err,req,res,next) => {
   const errorStatus = err.status || 500;
