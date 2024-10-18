@@ -5,7 +5,7 @@ import "../Shared/editCard.css";
 import { UserContext } from "../../components/util/context";
 import { useNavigate } from "react-router-dom";
 
-import TimeSelector from "../components/timeSelector"; // Ensure you're importing this component
+import TimeSelector from "../../components/timeSelector"; // Ensure you're importing this component
 import dayjs from 'dayjs';
 import axios from "axios";
 import ErrorBanner from "../../components/ErrorBanner";
@@ -214,7 +214,7 @@ const EditBusinessInfo = () => {
             />
           </div>
         ) : (
-          <p>{`From ${hoursFrom.format("h:mm A")} to ${hoursTo.format("h:mm A")}`}</p>
+          <p>{`From ${hoursFrom} to ${hoursTo}`}</p>
         )}
       </div>
         </div>
