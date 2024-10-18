@@ -1,21 +1,21 @@
 import React, { useContext, useState } from "react";
 import "./Auth.css";
 import axios from "axios";
-import logo from "../assets/logoWSL.svg";
-import userIcon from "../assets/username-icon.svg";
-import emailIcon from "../assets/email-icon.svg";
-import lockIcon from "../assets/lock-icon.svg";
-import homePic from "../assets/home-picture2.svg";
-import Input from "../components/FormElement/Input";
-import ErrorBanner from "../components/ErrorBanner.jsx";
+import logo from "../../assets/logoWSL.svg";
+import userIcon from "../../assets/username-icon.svg";
+import emailIcon from "../../assets/email-icon.svg";
+import lockIcon from "../../assets/lock-icon.svg";
+import homePic from "../../assets/home-picture2.svg";
+import Input from "../../components/FormElement/Input.jsx";
+import ErrorBanner from "../../components/ErrorBanner.jsx";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MAXLENGTH,
   VALIDATOR_MINLENGTH,
-} from "../components/util/validators";
+} from "../../components/util/validators.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../components/util/context";
-import Button from "../components/FormElement/Button.jsx";
+import { UserContext } from "../../components/util/context.js";
+import Button from "../../components/FormElement/Button.jsx";
 
 const Auth = ({ formValidity, onValidityChange }) => {
   const [isLoginMode, setIsLoginMode] = useState(false);
@@ -107,7 +107,7 @@ const Auth = ({ formValidity, onValidityChange }) => {
           </div>
           <form className="form-content" onSubmit={authSubmitHandler}>
             {/* Display the error message using ErrorBanner */}
-            {errorMessage && <ErrorBanner message={errorMessage} />}
+            {errorMessage && <ErrorBanner message={errorMessage} type="error"/>}
             <div className="username">
               {!isLoginMode && (
                 <React.Fragment>

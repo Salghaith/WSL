@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SearchForBusinesses.css";
-import Sidebar from "./sidebar";
-import workerIcon from "../assets/worker-pic.svg";
+import Sidebar from "../../components/sidebar";
+import workerIcon from "../../assets/worker-pic.svg";
 
 const SearchForBusinesses = ({ title, posts }) => {
   const [currentPage, setCurrentPage] = useState(1);

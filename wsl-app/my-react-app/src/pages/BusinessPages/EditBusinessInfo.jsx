@@ -1,20 +1,25 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./editBusinessInfo.css";
-import "./editCard.css";
-import { UserContext } from "../components/util/context";
+import "../Shared/editCard.css";
+
+import { UserContext } from "../../components/util/context";
 import { useNavigate } from "react-router-dom";
+
 import TimeSelector from "../components/timeSelector"; // Ensure you're importing this component
 import dayjs from 'dayjs';
 import axios from "axios";
+import ErrorBanner from "../../components/ErrorBanner";
+
 const EditBusinessInfo = () => {
   const { loggedInUser } = useContext(UserContext);
   const navigate = useNavigate();
+
   useEffect(() => {
-    //To prevent unauth users from reaching this page.
     if (!loggedInUser) {
       navigate("/");
     }
   }, [loggedInUser, navigate]);
+
 
  
 
@@ -36,9 +41,9 @@ const EditBusinessInfo = () => {
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
 
-  if (!loggedInUser) {
-    return <div>Redirecting</div>;
-  }
+
+
+
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -280,7 +285,8 @@ const EditBusinessInfo = () => {
 
         {/* Success Message */}
         {successMessage && (
-          <div className="success-message">{successMessage}</div>
+          // <div className="success-message">{successMessage}</div>
+          <ErrorBanner message={successMessage} type="success" />
         )}
       </div>
     </div>

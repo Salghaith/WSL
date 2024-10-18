@@ -1,59 +1,52 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./UserProfile.css";
-import "./editCard.css";
-import { UserContext } from "../components/util/context";
+import "../Shared/editCard.css";
+import { UserContext } from "../../components/util/context";
 import { useNavigate } from "react-router-dom";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MAXLENGTH,
   VALIDATOR_MINLENGTH,
-} from "../components/util/validators";
-import axios from "axios";
+} from "../../components/util/validators";
+import ErrorBanner from "../../components/ErrorBanner";
 
 const UserProfile = () => {
-  const { loggedInUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const { loggedInUser } = useContext(UserContext);
+
   useEffect(() => {
-    //To prevent unauth users from reaching this page.
     if (!loggedInUser) {
       navigate("/");
     }
   }, [loggedInUser, navigate]);
 
-
-  const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState(loggedInUser ? loggedInUser.name : "");
-  const [email, setEmail] = useState(loggedInUser ? loggedInUser.email : "");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("password");
+
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
 
-  if (!loggedInUser) {
-    return <div>Redirecting...</div>;
-  }
+  useEffect(() => {
+    if (loggedInUser) {
+      setEmail(loggedInUser.email);
+      setName(loggedInUser.name);
+    }
+  }, [loggedInUser]);
+
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
-  const handleSaveClick = async () => {
+  const handleSaveClick = () => {
     const newErrors = validateInputs();
     if (Object.keys(newErrors).length === 0) {
-      try{
-        const response = await axios.put('http://localhost:3001/api/user/update', {
-          name,
-          email,
-          password
-        }, { withCredentials: true });
-
-      localStorage.setItem('currentUser', JSON.stringify(response.data));
       setIsEditing(false);
       setErrors({}); // Clear errors on successful submission
 
       setSuccessMessage("Profile updated successfully!");
       setTimeout(() => setSuccessMessage(""), 5000); // Message disappears after 5 seconds
-      }catch(error){
-        setErrors({ general: 'Failed to update profile' });
-      }
     } else {
       setErrors(newErrors);
     }
@@ -123,7 +116,7 @@ const UserProfile = () => {
 
         {/* Success Message */}
         {successMessage && (
-          <div className="success-message">{successMessage}</div>
+          <ErrorBanner message={successMessage} type="success" />
         )}
       </div>
     </div>

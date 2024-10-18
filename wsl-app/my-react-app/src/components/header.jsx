@@ -114,9 +114,9 @@ export default function Header() {
                 {/* Added link */}
                 <Link
                   onClick={() => {
+                    navigate("/");
                     logout();
                     toggleDropdown();
-                    navigate("/");
                   }}
                   className="dropdown-item"
                 >
