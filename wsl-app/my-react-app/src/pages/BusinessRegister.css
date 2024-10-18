@@ -163,4 +163,10 @@
 }
 
 @media (max-height: 846px) and (min-width: 900px) {
+  .business-register-page .form-title {
+    margin: 0;
+  }
+  .business-register-page .body {
+    width: 65%;
+  }
 }

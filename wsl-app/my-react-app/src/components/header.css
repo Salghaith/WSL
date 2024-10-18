@@ -1,169 +1,186 @@
 /* Header Styles */
 .h .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: white;
-    padding: 10px;
-    height: 120px;
-    width: 100vw; /* Full width on all screens */
-    box-sizing: border-box;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow box */
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 10px;
+  height: 120px;
+  width: 100vw; /* Full width on all screens */
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow box */
+  position: relative;
 }
 
 /* Black horizontal rule separating header and body */
 .h .header-divider {
-    border: 0;
-    height: 2px;
-    background-color: black;
-    margin: 0;
+  border: 0;
+  height: 2px;
+  background-color: black;
+  margin: 0;
 }
 
 /* Logo Section */
 .h .logo {
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
 }
 
 .h .logo img {
-    height: 75px;
+  height: 75px;
 }
 
 /* Search Section */
 .h .search-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-    max-width: 800px; 
-    margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  max-width: 800px;
+  margin: 0 20px;
 }
 
 .h .search-input {
-    display: flex;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .h .search-bar {
-    width: 90%; /* Adjusted width */
-    padding: 10px 20px;
-    border-radius: 20px;
-    height: 50px;
-    border: none;
-    background-color: #f1f1f1;
-    font-size: 16px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    margin-right: 10px;
+  width: 90%; /* Adjusted width */
+  padding: 10px 20px;
+  border-radius: 20px;
+  height: 50px;
+  border: none;
+  background-color: #f1f1f1;
+  font-size: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  margin-right: 10px;
 }
 
 .h .nav-item {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .h .search-button {
-    padding: 10px 20px;
-    background-color: black;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    color: white;
-    height: 50px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  background-color: black;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: white;
+  height: 50px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .h .search-button:hover {
-    background-color: #5a5a5a;
+  background-color: #5a5a5a;
 }
 
 /* Navigation Links */
 .h .nav-links {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    margin-right: 60px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-right: 60px;
 }
 
 .h .nav-item {
-    margin-left: 60px;
-    font-size: 18px;
-    font-weight: bold;
-    color: rgb(0, 0, 0);
-    cursor: pointer;
+  margin-left: 60px;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
 }
 
 .h .nav-item:hover {
-    color: #8a8a8a;
+  color: #8a8a8a;
 }
 
 /* Profile + Three-line Icons */
 .h .profile-icon {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 /* Dropdown Menu Styles */
 .h .dropdown-menu {
-    position: absolute;
-    top: 90px;
-    right: 80px;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    z-index: 1000;
+  position: absolute;
+  top: 90px;
+  right: 80px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1000;
 }
 
 .h .dropdown-item {
-    display: block;
-    padding: 10px 15px;
-    color: black;
-    text-decoration: none;
+  display: block;
+  padding: 10px 15px;
+  color: black;
+  text-decoration: none;
 }
 
 .h .dropdown-item:hover {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 
 /* Responsive Design */
 @media (max-width: 900px) {
-    .h .header {
-        flex-direction: column;
-        height: auto;
-        justify-content: center;
-    }
+  .h .header {
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+  }
 
-    .h .search-container {
-        max-width: 100%;
-        margin-top: 15px;
-    }
+  .h .search-container {
+    max-width: 100%;
+    margin-top: 15px;
+  }
 
-    .h .nav-links {
-        flex-direction: column;
-        margin-top: 10px;
-    }
+  .h .nav-links {
+    flex-direction: column;
+    margin-top: 10px;
+  }
 
-    .h .logo img {
-        height: 50px;
-    }
+  .h .logo img {
+    height: 50px;
+  }
 
-    .h .search-bar {
-        width: 100%;
-    }
+  .h .search-bar {
+    width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
-    .h .search-input {
-        width: 100%;
-    }
-
-    .h .search-bar, .h .search-button {
-        width: 100%;
-        margin-right: 0;
-    }
+  .h .search-input {
+    width: 100%;
+  }
+  .h .search-container {
+    width: 100%;
+    display: none;
+  }
+  .h .search-bar,
+  .h .search-button {
+    width: 100%;
+  }
+  .h .nav-item {
+    margin: 0;
+  }
+  .h .nav-links {
+    margin: 0;
+    width: 100%;
+  }
+  .h .authentication-links {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 10%;
+    margin: 7% 0;
+  }
 }

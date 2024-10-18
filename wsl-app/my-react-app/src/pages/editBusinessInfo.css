@@ -115,29 +115,37 @@
 }
 
 /* Additional styles for the Business Category and Description fields */
-.business-category-container {
+.business-edit-page .business-category-container {
   display: flex;
   flex-direction: column;
   width: 95%;
 }
 
-.business-category-container label {
+.business-edit-page .business-category-container label {
   margin-bottom: 8px;
 }
 
-.description-container {
+.business-edit-page .description-container {
   display: flex;
   flex-direction: column;
   width: 95%;
 }
 
-.description-container label {
+.business-edit-page .description-container label {
   margin-bottom: 8px;
 }
-.section-title {
+.business-edit-page .section-title {
   margin-top: 44px; /* Add space above the title */
   margin-bottom: 10px; /* Add space below the title */
   font-size: 1.4em; /* Adjust the font size */
   font-weight: bolder; /* Make it bold */
   color: #000000; /* Change the color if needed */
+}
+
+@media (max-width: 965px) and (max-height: 950px) {
+  .business-edit-page .profile-container {
+    background-color: white;
+    border: none;
+    box-shadow: none;
+  }
 }

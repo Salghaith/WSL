@@ -47,7 +47,7 @@ export default function Header() {
 
             <div className="nav-links">
               {!loggedInUser && (
-                <div>
+                <div className="authentication-links">
                   <Link className="nav-item" to="/business/register">
                     Register Business
                   </Link>

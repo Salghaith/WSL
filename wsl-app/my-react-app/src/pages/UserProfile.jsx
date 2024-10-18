@@ -1,9 +1,21 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./UserProfile.css";
 import { UserContext } from "../components/util/context";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const { loggedInUser } = useContext(UserContext);
+  const navigate = useNavigate();
+  useEffect(() => {
+    //To prevent unauth users from reaching this page.
+    if (!loggedInUser) {
+      navigate("/");
+    }
+  }, [loggedInUser, navigate]);
+
+  if (!loggedInUser) {
+    return null;
+  }
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(loggedInUser.name);
   const [email, setEmail] = useState(loggedInUser.email);
@@ -20,7 +32,7 @@ const UserProfile = () => {
     if (Object.keys(newErrors).length === 0) {
       setIsEditing(false);
       setErrors({}); // Clear errors on successful submission
-      
+
       setSuccessMessage("Profile updated successfully!");
       setTimeout(() => setSuccessMessage(""), 5000); // Message disappears after 5 seconds
     } else {
