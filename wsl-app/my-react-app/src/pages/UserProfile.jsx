@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./UserProfile.css";
+import { UserContext } from "../components/util/context";
 
 const UserProfile = () => {
+  const { loggedInUser } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState("John Doe");
-  const [email, setEmail] = useState("john.doe@example.com");
+  const [name, setName] = useState(loggedInUser.name);
+  const [email, setEmail] = useState(loggedInUser.email);
   const [password, setPassword] = useState("password");
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
@@ -18,6 +20,7 @@ const UserProfile = () => {
     if (Object.keys(newErrors).length === 0) {
       setIsEditing(false);
       setErrors({}); // Clear errors on successful submission
+      
       setSuccessMessage("Profile updated successfully!");
       setTimeout(() => setSuccessMessage(""), 5000); // Message disappears after 5 seconds
     } else {

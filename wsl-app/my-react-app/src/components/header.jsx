@@ -1,6 +1,10 @@
 import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle, faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserCircle,
+  faBars,
+  faStore,
+} from "@fortawesome/free-solid-svg-icons";
 import logo from "../assets/logoWSL.svg";
 import "./header.css";
 import { Link } from "react-router-dom";
@@ -9,6 +13,10 @@ import { UserContext } from "../components/util/context";
 export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { loggedInUser, logout } = useContext(UserContext);
+  let isBusiness = false;
+  if (loggedInUser) {
+    isBusiness = loggedInUser.isBusiness ? true : false;
+  }
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -37,7 +45,6 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Navigation Links */}
             <div className="nav-links">
               {!loggedInUser && (
                 <div>
@@ -53,7 +60,7 @@ export default function Header() {
               {loggedInUser && (
                 <div className="profile-icon" onClick={toggleDropdown}>
                   <FontAwesomeIcon
-                    icon={faUserCircle}
+                    icon={isBusiness ? faStore : faUserCircle}
                     size="2x"
                     style={{ color: "black", cursor: "pointer" }}
                   />
@@ -70,26 +77,39 @@ export default function Header() {
               )}
             </div>
 
-            {/* Dropdown Menu */}
             {dropdownOpen && (
               <div className="dropdown-menu">
-                <Link
-                  to="/client/profile"
-                  onClick={toggleDropdown}
-                  className="dropdown-item"
-                >
-                  Profile
-                </Link>
-                <Link onClick={toggleDropdown} className="dropdown-item">
-                  User Reviews
-                </Link>
-                <Link
-                  to="/business/profile"
-                  onClick={toggleDropdown}
-                  className="dropdown-item"
-                >
-                  Edit Business Info
-                </Link>{" "}
+                {!isBusiness ? (
+                  <>
+                    <Link
+                      to="/client/profile"
+                      onClick={toggleDropdown}
+                      className="dropdown-item"
+                    >
+                      Profile
+                    </Link>
+                    <Link onClick={toggleDropdown} className="dropdown-item">
+                      My Reviews
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/business/profile"
+                      onClick={toggleDropdown}
+                      className="dropdown-item"
+                    >
+                      Edit Business Info
+                    </Link>
+                    <Link
+                      to="/"
+                      onClick={toggleDropdown}
+                      className="dropdown-item"
+                    >
+                      Business Reviews
+                    </Link>
+                  </>
+                )}{" "}
                 {/* Added link */}
                 <Link
                   onClick={() => {
