@@ -1,15 +1,26 @@
 .error-banner {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #f5c6cb;
-    width: 85%;
-  }
-  
-  .error-banner p {
-    margin: 0;
-    font-size: 14px;
-    font-weight: bold;
-  }
-  
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #f5c6cb;
+  width: 85%;
+}
+
+.error-banner p,
+.success-banner p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+.success-banner {
+  margin-top: 30px;
+  padding: 10px;
+  font-size: 16px;
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  text-align: center;
+  animation: fadein 0.5s;
+}

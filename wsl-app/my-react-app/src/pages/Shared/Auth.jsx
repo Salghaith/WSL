@@ -107,7 +107,7 @@ const Auth = ({ formValidity, onValidityChange }) => {
           </div>
           <form className="form-content" onSubmit={authSubmitHandler}>
             {/* Display the error message using ErrorBanner */}
-            {errorMessage && <ErrorBanner message={errorMessage} />}
+            {errorMessage && <ErrorBanner message={errorMessage} type="error"/>}
             <div className="username">
               {!isLoginMode && (
                 <React.Fragment>

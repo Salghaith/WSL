@@ -4,22 +4,18 @@ import "../Shared/editCard.css";
 
 import { UserContext } from "../../components/util/context";
 import { useNavigate } from "react-router-dom";
+import ErrorBanner from "../../components/ErrorBanner";
 
 const EditBusinessInfo = () => {
   const { loggedInUser } = useContext(UserContext);
   const navigate = useNavigate();
+
   useEffect(() => {
-    //To prevent unauth users from reaching this page.
     if (!loggedInUser) {
       navigate("/");
     }
   }, [loggedInUser, navigate]);
 
-  if (!loggedInUser) {
-    return <div>Redirecting</div>;
-  }
-
-  const [isEditing, setIsEditing] = useState(false);
   const [businessName, setBusinessName] = useState("Tech Store");
   const [businessCategory, setBusinessCategory] = useState("tech");
   const [businessEmail, setBusinessEmail] = useState("info@techstore.com");
@@ -32,11 +28,20 @@ const EditBusinessInfo = () => {
   const [description, setDescription] = useState(
     "Your one-stop shop for tech gadgets."
   );
-  const [ownerName, setOwnerName] = useState("John Doe");
-  const [ownerEmail, setOwnerEmail] = useState("john.doe@example.com");
+  const [ownerName, setOwnerName] = useState("");
+  const [ownerEmail, setOwnerEmail] = useState("");
   const [password, setPassword] = useState("password");
+
+  const [isEditing, setIsEditing] = useState(false);
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    if (loggedInUser) {
+      setOwnerEmail(loggedInUser.email);
+      setOwnerName(loggedInUser.name);
+    }
+  }, [loggedInUser]);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -247,7 +252,8 @@ const EditBusinessInfo = () => {
 
         {/* Success Message */}
         {successMessage && (
-          <div className="success-message">{successMessage}</div>
+          // <div className="success-message">{successMessage}</div>
+          <ErrorBanner message={successMessage} type="success" />
         )}
       </div>
     </div>

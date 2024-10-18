@@ -8,26 +8,32 @@ import {
   VALIDATOR_MAXLENGTH,
   VALIDATOR_MINLENGTH,
 } from "../../components/util/validators";
+import ErrorBanner from "../../components/ErrorBanner";
 
 const UserProfile = () => {
-  const { loggedInUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const { loggedInUser } = useContext(UserContext);
+
   useEffect(() => {
-    //To prevent unauth users from reaching this page.
     if (!loggedInUser) {
       navigate("/");
     }
   }, [loggedInUser, navigate]);
 
-  if (!loggedInUser) {
-    return <div>Redirecting...</div>;
-  }
-  const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState(loggedInUser.name);
-  const [email, setEmail] = useState(loggedInUser.email);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("password");
+
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    if (loggedInUser) {
+      setEmail(loggedInUser.email);
+      setName(loggedInUser.name);
+    }
+  }, [loggedInUser]);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -110,7 +116,7 @@ const UserProfile = () => {
 
         {/* Success Message */}
         {successMessage && (
-          <div className="success-message">{successMessage}</div>
+          <ErrorBanner message={successMessage} type="success" />
         )}
       </div>
     </div>
