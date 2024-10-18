@@ -128,7 +128,7 @@
   object-fit: cover;
 }
 
-@media (max-width: 965px) and (max-height: 950px) {
+@media (max-width: 965px) and (max-height: 950px) { /* Mobile */
   .auth-container .right-section {
     display: none;
   }
