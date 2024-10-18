@@ -1,0 +1,164 @@
+/* Header Styles */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px;
+    height: 120px;
+    width: 100vw; /* Full width on all screens */
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow box */
+    position: relative;
+}
+
+/* Black horizontal rule separating header and body */
+.header-divider {
+    border: 0;
+    height: 2px;
+    background-color: black;
+    margin: 0;
+}
+
+/* Logo Section */
+.logo {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.logo img {
+    height: 75px;
+}
+
+/* Search Section */
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 800px; /* Increased width */
+    margin: 0 20px;
+}
+
+.search-input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-bar {
+    width: 90%; /* Adjusted width */
+    padding: 10px 20px;
+    border-radius: 20px;
+    height: 40px;
+    border: none;
+    background-color: #f1f1f1;
+    font-size: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-right: 10px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: black;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    color: white;
+    height: 58px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #5a5a5a;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-right: 60px;
+}
+
+.nav-item {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    color: #8a8a8a;
+}
+
+/* Profile + Three-line Icons */
+.profile-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Dropdown Menu Styles */
+.dropdown-menu {
+    position: absolute;
+    top: 90px;
+    right: 80px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px 15px;
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        justify-content: center;
+    }
+
+    .search-container {
+        max-width: 100%;
+        margin-top: 15px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .search-input {
+        width: 100%;
+    }
+
+    .search-bar, .search-button {
+        width: 100%;
+        margin-right: 0;
+    }
+}
