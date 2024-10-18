@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./UserProfile.css";
-import "./editCard.css";
-import { UserContext } from "../components/util/context";
+import "../Shared/editCard.css";
+import { UserContext } from "../../components/util/context";
 import { useNavigate } from "react-router-dom";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MAXLENGTH,
   VALIDATOR_MINLENGTH,
-} from "../components/util/validators";
+} from "../../components/util/validators";
 
 const UserProfile = () => {
   const { loggedInUser } = useContext(UserContext);

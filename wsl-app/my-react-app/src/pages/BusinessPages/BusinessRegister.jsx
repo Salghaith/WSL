@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Container, Stepper, Step, StepLabel, Typography } from "@mui/material";
+import { Stepper, Step, StepLabel, Typography } from "@mui/material";
 import axios from "axios";
 import dayjs from "dayjs";
-import Input from "../components/FormElement/Input";
+import Input from "../../components/FormElement/Input";
 import { Link, useNavigate } from "react-router-dom";
 import "./BusinessRegister.css";
 import {
@@ -10,10 +10,10 @@ import {
   VALIDATOR_MAXLENGTH,
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
-} from "../components/util/validators";
-import Button from "../components/FormElement/Button";
+} from "../../components/util/validators";
+import Button from "../../components/FormElement/Button";
 
-import TimeSelector from "../components/timeSelector";
+import TimeSelector from "../../components/timeSelector";
 
 const BusinessRegister = ({ formValidity, onValidityChange }) => {
   const [hoursFrom, setHoursFrom] = React.useState(dayjs("2022-04-17T12:30"));

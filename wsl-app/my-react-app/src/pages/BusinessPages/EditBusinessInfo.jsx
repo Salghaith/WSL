@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./editBusinessInfo.css";
-import "./editCard.css";
-import { UserContext } from "../components/util/context";
+import "../Shared/editCard.css";
+
+import { UserContext } from "../../components/util/context";
 import { useNavigate } from "react-router-dom";
 
 const EditBusinessInfo = () => {

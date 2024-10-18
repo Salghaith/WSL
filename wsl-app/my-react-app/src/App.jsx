@@ -6,17 +6,15 @@ import {
   Route,
   useNavigate,
 } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import BusinessRegister from "./pages/BusinessRegister";
-import Auth from "./pages/Auth";
+import HomePage from "./pages/Shared/HomePage";
+import BusinessRegister from "./pages/BusinessPages/BusinessRegister";
+import Auth from "./pages/Shared/Auth";
 import Footer from "./components/footer";
-import Nav from "./components/nav";
-import axios from "axios";
 import { UserProvider } from "./components/util/context";
-import SearchForBusinesses from "./pages/SearchForBusinesses";
+import SearchForBusinesses from "./pages/BusinessPages/SearchForBusinesses";
 import Header from "./components/header";
-import UserProfile from "./pages/UserProfile";
-import EditBusinessInfo from "./pages/EditBusinessInfo";
+import UserProfile from "./pages/UserPages/UserProfile";
+import EditBusinessInfo from "./pages/BusinessPages/EditBusinessInfo";
 
 const App = () => {
   const [formValidity, setFormValidity] = useState({});
@@ -97,7 +95,6 @@ const App = () => {
                 </React.Fragment>
               }
             />
-            
           </Routes>
         </Router>
       </div>
