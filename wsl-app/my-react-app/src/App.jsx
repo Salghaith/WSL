@@ -80,7 +80,10 @@ const App = () => {
               element={
                 <React.Fragment>
                   <Header />
-                  <EditBusinessInfo />
+                  <EditBusinessInfo
+                    onValidityChange={handleValidity}
+                    formValidity={formValidity}
+                  />
                   <Footer />
                 </React.Fragment>
               }
