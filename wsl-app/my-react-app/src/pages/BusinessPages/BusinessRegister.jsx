@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Stepper, Step, StepLabel, Typography } from "@mui/material";
 import axios from "axios";
 import dayjs from "dayjs";
@@ -77,7 +77,12 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
       }
     }
   };
-  const isFormValid = Object.values(formValidity).every((isValid) => isValid);
+  // const isFormValid = Object.values(formValidity).every((isValid) => isValid);
+  const [isFormValid, setIsFormValid] = useState(false);
+  useEffect(() => {
+    setIsFormValid(Object.values(formValidity).every((isValid) => isValid));
+  }, [formValidity]);
+
   const stepsValidity = [
     formValidity["business-name"],
     formValidity["business-email"] &&
