@@ -101,7 +101,7 @@ const Auth = ({ formValidity, onValidityChange }) => {
             <img src={logo} alt="WSL Logo" />
           </Link>
         </div>
-        <div className="content">
+        <div className={`content ${isLoginMode? "login-form" : "register-form"}`}>
           <div className="header">
             {isLoginMode ? "Login into" : "Register"} your account
           </div>
@@ -188,7 +188,7 @@ const Auth = ({ formValidity, onValidityChange }) => {
             >
               {!isLoginMode ? "Login" : "Signup"}
             </Button>
-            <div className="divider">Are you a business?</div>
+            <div className={`divider ${isLoginMode && "hide"}`}>Are you a business?</div>
             {!isLoginMode && (
               <Link to="/business/register">
                 <Button type="button" hoverInverse={true} className="form-btn">
