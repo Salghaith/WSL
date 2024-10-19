@@ -89,7 +89,11 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
       );
 
       // localStorage.setItem("currentUser", JSON.stringify(response.data.user));
-      login(response.data.user);
+      const updatedUserData = {
+        ...response.data.user,
+        business: response.data.business // Add business data to the user
+      };
+      login(updatedUserData);
       setIsEditing(false);
       setErrors({});
       setSuccessMessage("Business info updated successfully!");
@@ -137,11 +141,18 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
           >
-            <option value="tech">Tech and Gadget Services</option>
-            <option value="home">Home Services</option>
-            <option value="improvement">Home Improvement Services</option>
-            <option value="auto">Auto Services</option>
-            <option value="others">Others</option>
+             <option value="auto-repair">Auto Repair</option>
+             <option value="car-wash">Car Wash</option>
+             <option value="contractors">Contractors</option>
+             <option value="dry-cleaning">Dry Cleaning</option>
+             <option value="electricians">Electricians</option>
+             <option value="home-cleaners">Home Cleaners</option>
+             <option value="hvac">HVAC</option>
+             <option value="landscaping">Landscaping</option>
+             <option value="movers">Movers</option>
+             <option value="oil-change">Oil Change</option>
+             <option value="phone-repair">Phone Repair</option>
+             <option value="plumbers">Plumbers</option>
           </select>
         </div>
 

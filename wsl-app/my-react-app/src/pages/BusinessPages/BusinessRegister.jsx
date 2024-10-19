@@ -159,15 +159,22 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                     <option value="notSelected" disabled selected hidden>
                       Select your category
                     </option>
-                    <option value="tech-and-gadget-services">
-                      Tech and Gadget Services
+                    <option value="auto-repair">
+                      Auto Repair
                     </option>
-                    <option value="home-services">Home Services</option>
-                    <option value="home-improvement-services">
-                      Home Improvement
+                    <option value="car-wash">Car Wash</option>
+                    <option value="contractors">
+                      Contractors
                     </option>
-                    <option value="auto-services">Automotive Services</option>
-                    <option value="Others">Others</option>
+                    <option value="dry-cleaning">Dry Cleaning</option>
+                    <option value="electricians">Electricians</option>
+                    <option value="home-cleaners">Home Cleaners</option>
+                    <option value="hvac">HVAC</option>
+                    <option value="landscaping">Landscaping</option>
+                    <option value="movers">Movers</option>
+                    <option value="oil-change">Oil Change</option>
+                    <option value="phone-repair">Phone Repair</option>
+                    <option value="plumbers">Plumbers</option>
                   </select>
                 </div>
                 <Button

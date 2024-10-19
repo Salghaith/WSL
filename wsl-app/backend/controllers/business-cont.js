@@ -81,4 +81,8 @@ export const editBusiness = async (req, res, next) => {
       }
 };
 
+export const searchBusinesses = async (req, res, next) => {
+
+}
+
 export default editBusiness;
