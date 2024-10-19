@@ -1,4 +1,3 @@
-
 import React, { useState, useContext, useEffect } from "react";
 import "./UserProfile.css";
 import "../Shared/editCard.css";
@@ -6,19 +5,22 @@ import { UserContext } from "../../components/util/context";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ErrorBanner from "../../components/ErrorBanner";
+import Input from "../../components/FormElement/Input";
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_MAXLENGTH,
+  VALIDATOR_MINLENGTH,
+} from "../../components/util/validators.jsx";
 
-
-const UserProfile = () => {
+const UserProfile = ({ formValidity, onValidityChange }) => {
   const navigate = useNavigate();
-  const { loggedInUser } = useContext(UserContext);
+  const { loggedInUser, login } = useContext(UserContext);
 
   useEffect(() => {
     if (!loggedInUser) {
       navigate("/");
     }
   }, [loggedInUser, navigate]);
-
-
 
   const [name, setName] = useState(loggedInUser ? loggedInUser.name : "");
   const [email, setEmail] = useState(loggedInUser ? loggedInUser.email : "");
@@ -44,37 +46,33 @@ const UserProfile = () => {
   };
 
   const handleSaveClick = async () => {
-    const newErrors = validateInputs();
-    if (Object.keys(newErrors).length === 0) {
-      try{
-        const response = await axios.put('http://localhost:3001/api/user/update', {
+    if (!isFormValid) {
+      return alert("DON'T TOUCH THE CODE IN THE INSPECT PLEASE!!");
+    }
+    try {
+      const response = await axios.put(
+        "http://localhost:3001/api/user/update",
+        {
           name,
           email,
-          password
-        }, { withCredentials: true });
+          // password,
+        },
+        { withCredentials: true }
+      );
 
-      localStorage.setItem('currentUser', JSON.stringify(response.data));
+      // localStorage.setItem("currentUser", JSON.stringify(response.data));
+      login(response.data);
+
       setIsEditing(false);
       setErrors({}); // Clear errors on successful submission
 
       setSuccessMessage("Profile updated successfully!");
       setTimeout(() => setSuccessMessage(""), 5000); // Message disappears after 5 seconds
-      }catch(error){
-        setErrors({ general: 'Failed to update profile' });
-      }
-    } else {
-      setErrors(newErrors);
+    } catch (error) {
+      setErrors({ general: "Failed to update profile" });
     }
   };
-
-  const validateInputs = () => {
-    const newErrors = {};
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) newErrors.email = "Invalid email format.";
-
-    return newErrors;
-  };
+  const isFormValid = formValidity.name && formValidity.email;
 
   return (
     <div className="profile-page">
@@ -82,39 +80,47 @@ const UserProfile = () => {
         <h2 className="profile-title">User Profile</h2>
         <div className="profile-field">
           <label htmlFor="name">Name</label>
-          <input
+          <Input
+            element="input"
             type="text"
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }} // Dynamic placeholder color
+            validators={[VALIDATOR_MINLENGTH(3), VALIDATOR_MAXLENGTH(40)]}
+            errorText="Please Enter A Valid Name! (between 3 and 40 chars)"
+            onValidityChange={onValidityChange}
+            initiallyValid={true}
           />
         </div>
         <div className="profile-field">
           <label htmlFor="email">Email</label>
-          <input
+          <Input
+            element="input"
             type="text"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
+            validators={[VALIDATOR_EMAIL()]}
+            errorText="Please Enter A Valid Email! (e.g: alex@gmail.com)"
+            onValidityChange={onValidityChange}
+            initiallyValid={true}
           />
-          {errors.email && <span className="error">{errors.email}</span>}
         </div>
         <div className="profile-field">
           <label htmlFor="password">Password</label>
-          <input
+          <Input
+            element="input"
             type="password"
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            disabled={!isEditing}
-            className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
+            disabled={true}
+            // className={isEditing ? "editable" : ""}
+            //No Validators yet, because it's not implemented.
           />
         </div>
 
@@ -123,7 +129,11 @@ const UserProfile = () => {
             Edit
           </button>
           {isEditing && (
-            <button className="save-btn" onClick={handleSaveClick}>
+            <button
+              className="save-btn"
+              onClick={handleSaveClick}
+              disabled={!isFormValid}
+            >
               Submit
             </button>
           )}

@@ -54,7 +54,10 @@ const App = () => {
               element={
                 <React.Fragment>
                   <Header />
-                  <UserProfile />
+                  <UserProfile
+                    onValidityChange={handleValidity}
+                    formValidity={formValidity}
+                  />
                   <Footer />
                 </React.Fragment>
               }

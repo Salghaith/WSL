@@ -3,8 +3,12 @@ import { validate } from "../util/validators";
 import "./Input.css";
 
 const Input = (props) => {
+  let initiallyValid = false;
+  if(props.initiallyValid){
+    initiallyValid = true;
+  }
   const [isTouched, setIsTouched] = useState(false);
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(initiallyValid);
 
   useEffect(() => {
     if (props.onValidityChange) {
@@ -18,6 +22,9 @@ const Input = (props) => {
     } else {
       setIsValid(true);
     }
+    if(props.onChange){
+      props.onChange(event);
+    }
   };
   const touchHandler = () => {
     setIsTouched(true);
@@ -27,11 +34,13 @@ const Input = (props) => {
     props.element === "input" ? (
       <input
         id={props.id}
+        className={props.className}
         type={props.type}
         placeholder={props.placeholder}
         onChange={changeHandler}
         onBlur={touchHandler}
         value={props.value}
+        disabled={props.disabled}
       />
     ) : (
       <textarea
@@ -48,11 +57,11 @@ const Input = (props) => {
   return (
     <div
       className={`form-control ${
-        !isValid && isTouched && "form-control--invalid"
+        !isValid && (isTouched || initiallyValid) && "form-control--invalid"
       }`}
     >
       {element}
-      <p className="errorP">{!isValid && isTouched && props.errorText}</p>
+      <p className="errorP">{!isValid && (isTouched || initiallyValid) && props.errorText}</p>
     </div>
   );
 };

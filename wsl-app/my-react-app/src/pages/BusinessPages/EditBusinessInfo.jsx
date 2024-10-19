@@ -65,7 +65,7 @@ const EditBusinessInfo = () => {
           description,
           ownerName,
           ownerEmail,
-          password,
+          // password,
         }, { withCredentials: true });
 
       localStorage.setItem("currentUser", JSON.stringify(response.data.user));
@@ -114,7 +114,6 @@ const EditBusinessInfo = () => {
             onChange={(e) => setBusinessName(e.target.value)}
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
           />
         </div>
         <div className="profile-field">
@@ -145,7 +144,6 @@ const EditBusinessInfo = () => {
             onChange={(e) => setBusinessEmail(e.target.value)}
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
           />
           {errors.businessEmail && (
             <span className="error">{errors.businessEmail}</span>
@@ -160,7 +158,6 @@ const EditBusinessInfo = () => {
             onChange={(e) => setBusinessPhone(e.target.value)}
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
           />
           {errors.businessPhone && (
             <span className="error">{errors.businessPhone}</span>
@@ -177,7 +174,6 @@ const EditBusinessInfo = () => {
             }
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
           />
         </div>
         <div className="profile-field">
@@ -191,7 +187,6 @@ const EditBusinessInfo = () => {
             }
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
           />
         </div>
 
@@ -226,7 +221,6 @@ const EditBusinessInfo = () => {
             onChange={(e) => setDescription(e.target.value)}
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
           />
         </div>
 
@@ -241,7 +235,6 @@ const EditBusinessInfo = () => {
             onChange={(e) => setOwnerName(e.target.value)}
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
           />
         </div>
         <div className="profile-field">
@@ -253,7 +246,6 @@ const EditBusinessInfo = () => {
             onChange={(e) => setOwnerEmail(e.target.value)}
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
           />
           {errors.ownerEmail && (
             <span className="error">{errors.ownerEmail}</span>
@@ -266,9 +258,8 @@ const EditBusinessInfo = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            disabled={!isEditing}
-            className={isEditing ? "editable" : ""}
-            style={{ color: isEditing ? "black" : "grey" }}
+            disabled={true}
+            // className={isEditing ? "editable" : ""}
           />
         </div>
 
