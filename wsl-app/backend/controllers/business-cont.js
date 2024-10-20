@@ -87,10 +87,8 @@ export const searchBusinesses = async (req, res, next) => {
 
     // Search by Category
     if (category) {
-      const businesses = await Business.find({ categories: category });
-      if (!businesses.length) {
-        return res.status(404).json({ message: "No businesses found for this category" });
-      }
+      const businesses = await Business.find({ categories: new RegExp(category, "i") });
+
       
       // Sorting (if a query parameter for sorting is passed)
       if (req.query.sort) {
@@ -113,7 +111,7 @@ export const searchBusinesses = async (req, res, next) => {
     // Search by Business Name (Dynamic Suggestions)
     if (name) {
       const regex = new RegExp(name, "i"); // Case insensitive search
-      const businesses = await Business.find({ businessName: regex }).limit(2); // Return max 2 results
+      const businesses = await Business.find({ businessName: regex }).limit(4); // Return max 2 results
       if (!businesses.length) {
         return res.status(404).json({ message: "No businesses found with this name" });
       }
@@ -126,6 +124,6 @@ export const searchBusinesses = async (req, res, next) => {
   } catch (error) {
     next(error);
   };
-}
+};
 
 export default editBusiness;

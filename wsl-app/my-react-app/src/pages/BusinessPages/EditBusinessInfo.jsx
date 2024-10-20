@@ -141,17 +141,17 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
           >
-             <option value="auto-repair">Auto Repair</option>
-             <option value="car-wash">Car Wash</option>
+             <option value="auto repair">Auto Repair</option>
+             <option value="car wash">Car Wash</option>
              <option value="contractors">Contractors</option>
-             <option value="dry-cleaning">Dry Cleaning</option>
+             <option value="dry cleaning">Dry Cleaning</option>
              <option value="electricians">Electricians</option>
-             <option value="home-cleaners">Home Cleaners</option>
+             <option value="home cleaners">Home Cleaners</option>
              <option value="hvac">HVAC</option>
              <option value="landscaping">Landscaping</option>
              <option value="movers">Movers</option>
-             <option value="oil-change">Oil Change</option>
-             <option value="phone-repair">Phone Repair</option>
+             <option value="oil change">Oil Change</option>
+             <option value="phone repair">Phone Repair</option>
              <option value="plumbers">Plumbers</option>
           </select>
         </div>

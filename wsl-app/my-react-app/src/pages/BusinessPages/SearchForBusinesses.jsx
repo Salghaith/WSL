@@ -1,12 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SearchForBusinesses.css";
 import Sidebar from "../../components/sidebar";
 import workerIcon from "../../assets/worker-pic.svg";
 import BusinessCard from "../../components/BusinessCard";
+import { useLocation } from 'react-router-dom';
+import axios from "axios";
 
 const SearchForBusinesses = ({ title, posts }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 10; // Number of posts to display per page
+  const location = useLocation();
+  
+  
+  const searchParams = new URLSearchParams(location.search);
+  const category = searchParams.get("category");
+
+  const [businesses, setBusinesses] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
+  console.log("Category from URL:", category);
+
+  useEffect(() => {
+    const fetchBusinesses = async () => {
+      try {
+        setLoading(true); // Start loading
+        setErrorMessage(""); // Reset error message
+
+        const response = await axios.get(
+          `http://localhost:3001/api/business/search?category=${category}`
+        );
+
+        if (response.data.length === 0) {
+          setErrorMessage("No businesses found for this category");
+        } else {
+          setBusinesses(response.data); // Assuming API returns a list of businesses
+        }
+
+      } catch (error) {
+        console.log(error);
+        setErrorMessage("Error fetching businesses");
+      } finally {
+        setLoading(false); // Stop loading after fetch is complete
+      }
+    };
+
+    if (category) {
+      setBusinesses([]); // Clear previous businesses
+      fetchBusinesses();
+    }
+  }, [category]);
+
+  //if (loading) return <p>Loading...</p>;
 
   // Calculate total number of pages
   const totalPages = Math.ceil(posts.length / postsPerPage);
@@ -38,28 +83,18 @@ const SearchForBusinesses = ({ title, posts }) => {
           </div>
 
           <div className="posts">
-            {currentPosts.map((post, index) => (
-              <div key={index} className="post">
-                <img src={workerIcon} alt={post.title} className="post-image" />
-                <div className="post-info">
-                  <h3 className="post-title">{post.title}</h3>
-                  <p className="post-rating">Rating: {post.rating}</p>
-                  <p className="post-description">{post.description}</p>
-                  <p className="post-hours">
-                    Opening Hours: {post.openingHours}
-                  </p>
-                </div>
-              </div>
+          {businesses.map((business, index) => (
+              <BusinessCard
+                key={index}
+                index={index + 1}
+                image={workerIcon} // Assuming you have a default image
+                title={business.businessName}
+                rating={business.ratings || 0}
+                description={business.description}
+                openFrom={business.openingHours.from}
+                openTo={business.openingHours.to}
+              />
             ))}
-            <BusinessCard
-              index={1}
-              image={workerIcon}
-              title="Alghaith for designing websites"
-              rating={5}
-              description="We are not the only, but we are the BEST!"
-              openFrom="1:00 PM"
-              openTo="11:30 PM"
-            />
           </div>
 
           {/* Pagination Controls */}

@@ -26,12 +26,16 @@ import logo from "../assets/logoWSL.svg";
 import "./header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../components/util/context";
+import axios from "axios";
 
 export default function Header(props) {
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { loggedInUser, logout } = useContext(UserContext);
   const [test, setTest] = useState("");
+
+  const [suggestions, setSuggestions] = useState([]); // store the search results
+  const [loading, setLoading] = useState(false); // loading state for suggestions
 
   let isBusiness = false;
   if (loggedInUser) {
@@ -47,7 +51,7 @@ export default function Header(props) {
   const toggleSearchMenu = (val) => {
     setTest(val);
     setOpenList(false);
-    navigate("/business/search");
+    navigate(`/business/search?category=${val}`);
   };
   const [openList, setOpenList] = useState(false);
   const openSearchList = () => {
@@ -58,10 +62,40 @@ export default function Header(props) {
   };
   const [selectedCategory, setSelectedCategory] = useState("");
   const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-    toggleSearchMenu(event.target.value);
+    const selected = event.target.value;
+    setSelectedCategory(selected);
+    toggleSearchMenu(selected);
+    //navigate(`/business/search?category=${selected}`);
+  };
+const fetchSuggestions = async (query) => {
+    if (!query) {
+      setSuggestions([]); // Clear suggestions
+      return;
+    }
+    try {
+      setLoading(true); 
+      const response = await axios.get(
+        `http://localhost:3001/api/business/search?name=${query}`
+      );
+      setSuggestions(response.data); 
+    } catch (error) {
+      console.error("Error fetching business suggestions:", error);
+    } finally {
+      setLoading(false); 
+    }
   };
 
+  const handleInputChange = (e) => {
+    const query = e.target.value;
+    setTest(query);
+    fetchSuggestions(query); 
+  };
+
+  const handleSuggestionClick = (business) => {
+    setTest(business.businessName); 
+    setOpenList(false); 
+    navigate(`/`); // Navigate to the business details page
+  };
   return (
     <>
       <React.Fragment>
@@ -81,9 +115,7 @@ export default function Header(props) {
                   className="search-bar"
                   onFocus={openSearchList}
                   value={test}
-                  onChange={(e) => {
-                    setTest(e.target.value);
-                  }}
+                  onChange={handleInputChange}
                 />
                 <button className="search-button">Search</button>
               </div>
@@ -93,16 +125,19 @@ export default function Header(props) {
                 onClickAway={closeSearchList}
               >
                 <div className={`search-list ${!openList && "hideList"}`}>
-                  <ul className="search-menu">
-                    <li
-                      onClick={() => {
-                        toggleSearchMenu("Movers");
-                      }}
-                      className="dropdown-item"
-                    >
-                      Movers
-                    </li>
-                  </ul>
+                {openList && suggestions.length > 0 && (
+              <ul className="search-menu">
+                {loading ? (
+                <li>Loading...</li>
+                  ) : (
+                  suggestions.map((business, index) => (
+                <li key={index} onClick={() => handleSuggestionClick(business)} className="dropdown-item">
+                {business.businessName}
+                </li>
+            ))
+          )}
+        </ul>
+      )}
                 </div>
               </ClickAwayListener>
             </div>
@@ -120,11 +155,7 @@ export default function Header(props) {
               )}
 
               {loggedInUser && (
-                <ClickAwayListener
-                  mouseEvent="onMouseDown"
-                  touchEvent="onTouchStart"
-                  onClickAway={closeDropDown}
-                >
+            
                   <div className="profile-icon" onClick={toggleDropdown}>
                     <FontAwesomeIcon
                       icon={isBusiness ? faStore : faUserCircle}
@@ -141,7 +172,7 @@ export default function Header(props) {
                       }}
                     />
                   </div>
-                </ClickAwayListener>
+             
               )}
             </div>
 
