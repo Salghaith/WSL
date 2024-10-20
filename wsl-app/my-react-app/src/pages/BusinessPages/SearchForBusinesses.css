@@ -34,36 +34,7 @@
     gap: 20px;
   }
   
-  .post {
-    display: flex;
-    background-color: whitesmoke;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    gap: 20px;
-  }
   
-  .post-image {
-    width: 190px;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .post-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .post-title {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .post-rating, .post-description, .post-hours {
-    font-size: 14px;
-    margin: 5px 0;
-  }
   
   .pagination {
     display: flex;
@@ -89,40 +60,7 @@
   .page-button.active {
     background-color: black;
   }
-  
-  
-  /* Post Styles */
-  .post {
-    display: flex;
-    background-color: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    gap: 20px;
-  }
-  
-  .post-image {
-    width: 190px;
-    height: auto;
-    border-radius: 8px;
-    /* margin-top: 21px; */
-  }
-  
-  .post-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .post-title {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .post-rating, .post-description, .post-hours {
-    font-size: 14px;
-    margin: 5px 0;
-  }
+    
 
   .content-container {
     display: flex;

@@ -18,6 +18,7 @@ import TimeSelector from "../../components/timeSelector";
 const BusinessRegister = ({ formValidity, onValidityChange }) => {
   const [hoursFrom, setHoursFrom] = React.useState(dayjs("2022-04-17T12:30"));
   const [hoursTo, setHoursTo] = React.useState(dayjs("2022-04-17T23:30"));
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const navigate = useNavigate();
 
@@ -77,11 +78,10 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
       }
     }
   };
-  // const isFormValid = Object.values(formValidity).every((isValid) => isValid);
-  const [isFormValid, setIsFormValid] = useState(false);
+
   useEffect(() => {
     setIsFormValid(Object.values(formValidity).every((isValid) => isValid));
-  }, [formValidity]);
+  }, [formValidity, onValidityChange]);
 
   const stepsValidity = [
     formValidity["business-name"],
@@ -148,7 +148,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                     name="business-name"
                     placeholder="Enter your business name"
                     validators={[VALIDATOR_REQUIRE()]}
-                    errorText=""
+                    errorText="This Field Is Required"
                     onValidityChange={onValidityChange}
                   />
                 </div>
@@ -159,13 +159,9 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                     <option value="notSelected" disabled selected hidden>
                       Select your category
                     </option>
-                    <option value="auto-repair">
-                      Auto Repair
-                    </option>
+                    <option value="auto-repair">Auto Repair</option>
                     <option value="car-wash">Car Wash</option>
-                    <option value="contractors">
-                      Contractors
-                    </option>
+                    <option value="contractors">Contractors</option>
                     <option value="dry-cleaning">Dry Cleaning</option>
                     <option value="electricians">Electricians</option>
                     <option value="home-cleaners">Home Cleaners</option>
@@ -199,7 +195,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                     name="business-email"
                     placeholder="Enter your business email"
                     validators={[VALIDATOR_EMAIL()]}
-                    errorText=""
+                    errorText="Please Enter A Valid Email (Alex@mail.com)"
                     onValidityChange={onValidityChange}
                   />
                 </div>
@@ -213,7 +209,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                     name="phone-number"
                     placeholder="Enter your phone number"
                     validators={[VALIDATOR_REQUIRE()]}
-                    errorText=""
+                    errorText="This Field Is Required"
                     onValidityChange={onValidityChange}
                   />
                 </div>
@@ -228,7 +224,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                       name="city"
                       placeholder="City"
                       validators={[VALIDATOR_REQUIRE()]}
-                      errorText=""
+                      errorText="This Field Is Required"
                       onValidityChange={onValidityChange}
                     />
                     <Input
@@ -238,7 +234,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                       name="street"
                       placeholder="Street"
                       validators={[VALIDATOR_REQUIRE()]}
-                      errorText=""
+                      errorText="This Field Is Required"
                       onValidityChange={onValidityChange}
                     />
                   </div>
@@ -280,16 +276,6 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                       label={"to"}
                     />
                   </div>
-                  {/* <Input
-                      element="input"
-                      type="text"
-                      id="operating-hours"
-                      name="operating-hours"
-                      placeholder="e.g., Weekdays 9 AM - 6 PM"
-                      validators={[VALIDATOR_REQUIRE()]}
-                      errorText=""
-                      onValidityChange={onValidityChange}
-                    /> */}
                 </div>
 
                 <div className="form-group">
@@ -302,7 +288,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                     rows="5"
                     placeholder="Briefly describe what your business does"
                     validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(220)]}
-                    errorText=""
+                    errorText="This Field Is Required, and The Length less than 220chars"
                     onValidityChange={onValidityChange}
                   />
                 </div>
@@ -338,7 +324,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                     name="owner-name"
                     placeholder="Enter the name of the business owner"
                     validators={[VALIDATOR_REQUIRE()]}
-                    errorText=""
+                    errorText="This Field Is Required"
                     onValidityChange={onValidityChange}
                   />
                 </div>
@@ -351,7 +337,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                     name="owner-email"
                     placeholder="Enter the owner's email address"
                     validators={[VALIDATOR_EMAIL()]}
-                    errorText=""
+                    errorText="Please Enter A Valid Email (Alex@mail.com)"
                     onValidityChange={onValidityChange}
                   />
                 </div>
@@ -368,7 +354,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                         VALIDATOR_MINLENGTH(6),
                         VALIDATOR_MAXLENGTH(16),
                       ]}
-                      errorText=""
+                      errorText="Please Enter A Valid Password! (between 6 and 20 chars)"
                       onValidityChange={onValidityChange}
                     />
                   </span>
