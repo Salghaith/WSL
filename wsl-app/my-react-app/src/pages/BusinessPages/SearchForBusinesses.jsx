@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./SearchForBusinesses.css";
 import Sidebar from "../../components/sidebar";
 import workerIcon from "../../assets/worker-pic.svg";
+import BusinessCard from "../../components/BusinessCard";
 
 const SearchForBusinesses = ({ title, posts }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -50,6 +51,15 @@ const SearchForBusinesses = ({ title, posts }) => {
                 </div>
               </div>
             ))}
+            <BusinessCard
+              index={1}
+              image={workerIcon}
+              title="Alghaith for designing websites"
+              rating={5}
+              description="We are not the only, but we are the BEST!"
+              openFrom="1:00 PM"
+              openTo="11:30 PM"
+            />
           </div>
 
           {/* Pagination Controls */}
