@@ -1,5 +1,4 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
-import CarRepairOutlinedIcon from "@mui/icons-material/CarRepairOutlined";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserCircle,
