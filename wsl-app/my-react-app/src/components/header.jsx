@@ -1,3 +1,4 @@
+import { ClickAwayListener } from "@mui/base/ClickAwayListener";
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -32,24 +33,6 @@ export default function Header(props) {
   const { loggedInUser, logout } = useContext(UserContext);
   const [test, setTest] = useState("");
 
-  const dropdownRef = useRef(null);
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      // Check if the click is outside the dropdown
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setOpenList(false); // Close the dropdown
-      }
-    };
-
-    // Add event listener when the component mounts
-    document.addEventListener("mousedown", handleClickOutside);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [dropdownRef]);
-
   let isBusiness = false;
   if (loggedInUser) {
     isBusiness = loggedInUser.isBusiness ? true : false;
@@ -58,9 +41,11 @@ export default function Header(props) {
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+  const closeDropDown = () => {
+    setDropdownOpen(false);
+  };
   const toggleSearchMenu = (val) => {
     setTest(val);
-    console.log(test);
     setOpenList(false);
     navigate("/business/search");
   };
@@ -102,22 +87,24 @@ export default function Header(props) {
                 />
                 <button className="search-button">Search</button>
               </div>
-
-              <div
-                className={`search-list ${!openList && "hideList"}`}
-                ref={dropdownRef}
+              <ClickAwayListener
+                mouseEvent="onMouseDown"
+                touchEvent="onTouchStart"
+                onClickAway={closeSearchList}
               >
-                <ul className="search-menu">
-                  <li
-                    onClick={() => {
-                      toggleSearchMenu("Movers");
-                    }}
-                    className="dropdown-item"
-                  >
-                    Movers
-                  </li>
-                </ul>
-              </div>
+                <div className={`search-list ${!openList && "hideList"}`}>
+                  <ul className="search-menu">
+                    <li
+                      onClick={() => {
+                        toggleSearchMenu("Movers");
+                      }}
+                      className="dropdown-item"
+                    >
+                      Movers
+                    </li>
+                  </ul>
+                </div>
+              </ClickAwayListener>
             </div>
 
             <div className="nav-links">
@@ -133,22 +120,28 @@ export default function Header(props) {
               )}
 
               {loggedInUser && (
-                <div className="profile-icon" onClick={toggleDropdown}>
-                  <FontAwesomeIcon
-                    icon={isBusiness ? faStore : faUserCircle}
-                    size="2x"
-                    style={{ color: "black", cursor: "pointer" }}
-                  />
-                  <FontAwesomeIcon
-                    icon={faBars}
-                    size="2x"
-                    style={{
-                      color: "black",
-                      cursor: "pointer",
-                      marginLeft: "10px",
-                    }}
-                  />
-                </div>
+                <ClickAwayListener
+                  mouseEvent="onMouseDown"
+                  touchEvent="onTouchStart"
+                  onClickAway={closeDropDown}
+                >
+                  <div className="profile-icon" onClick={toggleDropdown}>
+                    <FontAwesomeIcon
+                      icon={isBusiness ? faStore : faUserCircle}
+                      size="2x"
+                      style={{ color: "black", cursor: "pointer" }}
+                    />
+                    <FontAwesomeIcon
+                      icon={faBars}
+                      size="2x"
+                      style={{
+                        color: "black",
+                        cursor: "pointer",
+                        marginLeft: "10px",
+                      }}
+                    />
+                  </div>
+                </ClickAwayListener>
               )}
             </div>
 
