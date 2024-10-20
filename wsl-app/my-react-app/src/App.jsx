@@ -53,7 +53,7 @@ const App = () => {
               path="/client/profile"
               element={
                 <React.Fragment>
-                  <Header />
+                  <Header withoutSearch/>
                   <UserProfile
                     onValidityChange={handleValidity}
                     formValidity={formValidity}
@@ -66,7 +66,7 @@ const App = () => {
               path="/business/register"
               element={
                 <React.Fragment>
-                  <Header />
+                  <Header withoutSearch/>
                   <BusinessRegister
                     onValidityChange={handleValidity}
                     formValidity={formValidity}
@@ -79,7 +79,7 @@ const App = () => {
               path="/business/profile"
               element={
                 <React.Fragment>
-                  <Header />
+                  <Header withoutSearch/>
                   <EditBusinessInfo
                     onValidityChange={handleValidity}
                     formValidity={formValidity}

@@ -12,13 +12,11 @@
   position: relative;
 }
 
-/* Black horizontal rule separating header and body */
-.h .header-divider {
-  border: 0;
-  height: 2px;
-  background-color: black;
-  margin: 0;
+.h .hideList {
+  display: none;
 }
+
+/* Black horizontal rule separating header and body */
 
 /* Logo Section */
 .h .logo {
@@ -39,6 +37,7 @@
   flex-grow: 1;
   max-width: 800px;
   margin: 0 20px;
+  position: relative;
 }
 
 .h .search-input {
@@ -50,12 +49,13 @@
 .h .search-bar {
   width: 90%; /* Adjusted width */
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 20px 20px 20px 20px;
   height: 50px;
   border: none;
+  outline: none;
   background-color: #f1f1f1;
   font-size: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); */
   margin-right: 10px;
 }
 
@@ -112,6 +112,19 @@
   position: absolute;
   top: 90px;
   right: 80px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.h .search-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  width: 88%;
+
   background-color: rgb(255, 255, 255);
   border: 1px solid #ccc;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -183,4 +196,49 @@
     padding: 0 10%;
     margin: 7% 0;
   }
+}
+
+.h .services-icons {
+  display: flex;
+  justify-content: center;
+  /* gap: 3%; */
+  padding: 30px 100px 0;
+  height: 85px;
+}
+
+.h .service-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.h .service-icon:hover p {
+  color: black;
+  font-weight: bold;
+  padding-bottom: 3%;
+  border-bottom: 2px solid #000;
+}
+
+.h .service-icon p {
+  margin-top: 5px;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+}
+
+.h .hideSearch {
+  display: none;
+}
+
+.services-icons input[type="radio"] {
+  display: none;
+}
+
+.clicked p{
+  color: black;
+  font-weight: bold;
+  padding-bottom: 3%;
+  border-bottom: 2px solid #000;
 }

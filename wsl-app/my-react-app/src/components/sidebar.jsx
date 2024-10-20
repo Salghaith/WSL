@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = (props) => {
   const [checkedItems, setCheckedItems] = useState({
     suggested: Array(5).fill(false),
     distance: Array(5).fill(false),
@@ -23,6 +23,9 @@ const Sidebar = () => {
       category2: Array(5).fill(false),
     });
   };
+  if (props.empty) {
+    return <div className="sidebar"></div>;
+  }
 
   return (
     <div className="sidebar">

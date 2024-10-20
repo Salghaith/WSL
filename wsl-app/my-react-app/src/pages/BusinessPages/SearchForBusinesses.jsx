@@ -22,47 +22,52 @@ const SearchForBusinesses = ({ title, posts }) => {
   };
 
   return (
-    <div className="content-container">
-      <Sidebar />
-      <div className="post-section">
-        <div className="post-header">
-          <h2>{`Top 10 Best ${title} in Riyadh`}</h2>
-          <select className="sort-dropdown">
-            <option>Sort by</option>
-            <option>Rating</option>
-            <option>Most Popular</option>
-            <option>Newest</option>
-          </select>
-        </div>
+    <div className="search-page">
+      <div className="content-container">
+        <Sidebar />
+        <div className="post-section">
+          <div className="post-header">
+            <h2>{`Top 10 Best ${title} in Riyadh`}</h2>
+            <select className="sort-dropdown">
+              <option>Sort by</option>
+              <option>Rating</option>
+              <option>Most Popular</option>
+              <option>Newest</option>
+            </select>
+          </div>
 
-        <div className="posts">
-          {currentPosts.map((post, index) => (
-            <div key={index} className="post">
-              <img src={workerIcon} alt={post.title} className="post-image" />
-              <div className="post-info">
-                <h3 className="post-title">{post.title}</h3>
-                <p className="post-rating">Rating: {post.rating}</p>
-                <p className="post-description">{post.description}</p>
-                <p className="post-hours">Opening Hours: {post.openingHours}</p>
+          <div className="posts">
+            {currentPosts.map((post, index) => (
+              <div key={index} className="post">
+                <img src={workerIcon} alt={post.title} className="post-image" />
+                <div className="post-info">
+                  <h3 className="post-title">{post.title}</h3>
+                  <p className="post-rating">Rating: {post.rating}</p>
+                  <p className="post-description">{post.description}</p>
+                  <p className="post-hours">
+                    Opening Hours: {post.openingHours}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Pagination Controls */}
-        <div className="pagination">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index + 1}
-              className={`page-button ${
-                currentPage === index + 1 ? "active" : ""
-              }`}
-              onClick={() => handlePageChange(index + 1)}
-            >
-              {index + 1}
-            </button>
-          ))}
+          {/* Pagination Controls */}
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                className={`page-button ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+          </div>
         </div>
+        <Sidebar empty />
       </div>
     </div>
   );
