@@ -39,12 +39,12 @@ const HomePage = () => {
             <p>From plumbing to electrical work, find reliable services for your home.</p>
           </div>
           <div className="category-card">
-            <h3>Moving & Packing</h3>
-            <p>Expert help for moving, packing, and relocation services.</p>
+            <h3>Vehicle Services</h3>
+            <p>Find reliable mechanics and services for vehicle maintenance and repairs.</p>
           </div>
           <div className="category-card">
-            <h3>Personal Services</h3>
-            <p>Beauty, wellness, and more delivered to your doorstep.</p>
+            <h3>Device Repair</h3>
+            <p>Fast and reliable repair services for phones, tablets, and other electronic devices.</p>
           </div>
         </div>
       </section>
@@ -55,15 +55,15 @@ const HomePage = () => {
         <div className="steps">
           <div className="step">
             <div className="step-number">1</div>
-            <p>Explore and choose from various services.</p>
+            <p>Browse through a wide range of local services.</p>
           </div>
           <div className="step">
             <div className="step-number">2</div>
-            <p>Connect with top-rated professionals in your area.</p>
+            <p>Read reviews and connect with top-rated professionals in your area.</p>
           </div>
           <div className="step">
             <div className="step-number">3</div>
-            <p>Book, pay, and enjoy the service experience.</p>
+            <p>Leave reviews and rate your service experiences to help others.</p>
           </div>
         </div>
       </section>
@@ -72,18 +72,18 @@ const HomePage = () => {
       <section className="get-help-today-section">
         <h2 className="section-heading">Get Started Today</h2>
         <div className="help-tags">
-          <span>Cleaning</span>
-          <span>Handyman</span>
-          <span>Furniture Assembly</span>
-          <span>Plumbing</span>
-          <span>Yardwork</span>
-          <span>Mounting</span>
-          <span>7</span>
-          <span>8</span>
-          <span>9</span>
-          <span>10</span>
-          <span>11</span>
-          <span>12</span>
+          <span>Auto Repair</span>
+          <span>Electricians</span>
+          <span>Contractors</span>
+          <span>Dry Cleaning</span>
+          <span>Home Cleaners</span>
+          <span>HVAC</span>
+          <span>Landscaping</span>
+          <span>Movers</span>
+          <span>Oil Change</span>
+          <span>Phone Repair</span>
+          <span>Plumbers</span>
+          <span>Car Wash</span>
         </div>
       </section>
     </div>

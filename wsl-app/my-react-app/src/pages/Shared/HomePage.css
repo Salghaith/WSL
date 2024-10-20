@@ -67,6 +67,7 @@
 .hero-image img {
   width: 100%;
   max-width: 800px; /* Limits the max width of the image */
+  min-width: 300px;
   height: auto;
   margin-left: 40px;
 }
