@@ -82,7 +82,50 @@ export const editBusiness = async (req, res, next) => {
 };
 
 export const searchBusinesses = async (req, res, next) => {
+  try {
+    const { category, name } = req.query;
 
+    // Search by Category
+    if (category) {
+      const businesses = await Business.find({ categories: category });
+      if (!businesses.length) {
+        return res.status(404).json({ message: "No businesses found for this category" });
+      }
+      
+      // Sorting (if a query parameter for sorting is passed)
+      if (req.query.sort) {
+        switch (req.query.sort) {
+          case "highestRating":
+            businesses.sort((a, b) => b.ratings - a.ratings);
+            break;
+          case "mostPopular":
+            businesses.sort((a, b) => b.reviews.length - a.reviews.length); // Assuming popularity is based on number of reviews
+            break;
+          case "newest":
+            businesses.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            break;
+        }
+      }
+
+      return res.status(200).json(businesses);
+    }
+
+    // Search by Business Name (Dynamic Suggestions)
+    if (name) {
+      const regex = new RegExp(name, "i"); // Case insensitive search
+      const businesses = await Business.find({ businessName: regex }).limit(2); // Return max 2 results
+      if (!businesses.length) {
+        return res.status(404).json({ message: "No businesses found with this name" });
+      }
+      return res.status(200).json(businesses);
+    }
+
+    // If neither query parameter is provided
+    return res.status(400).json({ message: "Please provide either a category or name for searching" });
+
+  } catch (error) {
+    next(error);
+  };
 }
 
 export default editBusiness;
