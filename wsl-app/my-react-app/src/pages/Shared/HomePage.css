@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 100px 10%;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   text-align: left; /* Aligns text to the left */
 }
 
@@ -78,7 +78,7 @@
 /* Categories Section */
 .categories-section {
   padding: 80px 10%;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 .section-heading {
   font-size: 42px;
@@ -117,7 +117,7 @@
 /* How It Works Section */
 .how-it-works-section {
   padding: 80px 10%;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   text-align: center;
 }
 .steps {
@@ -146,7 +146,7 @@
 /* Get Help Today Section */
 .get-help-today-section {
   padding: 80px 10%;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 .help-tags {
   display: flex;
