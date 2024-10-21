@@ -13,7 +13,7 @@ const app = express();
 const corsOptions = {
   origin:
     process.env.NODE_ENV === "production"
-      ? "https://eloquent-pasca-f21715.netlify.app/"  // Replace with your deployed frontend URL
+      ? "https://eloquent-pasca-f21715.netlify.app"  // Replace with your deployed frontend URL
       : "http://localhost:3000",  // Localhost for development
   credentials: true,
 };
