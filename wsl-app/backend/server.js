@@ -10,9 +10,16 @@ import cors from "cors";
 dotenv.config();
 const app = express();
 
+const corsOptions = {
+  origin:
+    process.env.NODE_ENV === "production"
+      ? "https://wsl-app.com"  // Replace with your deployed frontend URL
+      : "http://localhost:3000",  // Localhost for development
+  credentials: true,
+};
 // Middleware to parse JSON requests
 app.use(express.json());
-app.use(cors({origin: "http://localhost:3000", credentials: true}));
+app.use(cors(corsOptions));
 app.use(cookieParser());
 
 // Routes
