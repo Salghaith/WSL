@@ -47,7 +47,7 @@ const Auth = ({ formValidity, onValidityChange }) => {
       if (isLoginMode) {
         // Login Mode
         const response = await axios.post(
-          "http://localhost:3001/api/auth/login",
+          "https://wsl-app-backend.onrender.com/api/auth/login",
           {
             email,
             password,
@@ -64,7 +64,7 @@ const Auth = ({ formValidity, onValidityChange }) => {
       } else {
         // Register Mode
         const res = await axios.post(
-          "http://localhost:3001/api/auth/register",
+          "https://wsl-app-backend.onrender.com/api/auth/register",
           {
             name: username,
             email,

@@ -26,7 +26,7 @@ export const UserProvider = ({children}) => {
   const logout = async () => {
     try {
       await axios.post(
-        "http://localhost:3001/api/auth/logout",
+        "https://wsl-app-backend.onrender.com/api/auth/logout",
         {},
         { withCredentials: true }
       );

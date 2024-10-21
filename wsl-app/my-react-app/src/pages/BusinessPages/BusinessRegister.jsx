@@ -60,7 +60,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
     try {
       // Send form data to backend
       const response = await axios.post(
-        "http://localhost:3001/api/auth/registerbusiness",
+        "https://wsl-app-backend.onrender.com/api/auth/registerbusiness",
         formData
       );
 

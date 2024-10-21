@@ -71,7 +71,7 @@ export default function Header(props) {
     try {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:3001/api/business/search?name=${query}`
+        `https://wsl-app-backend.onrender.com/api/business/search?name=${query}`
       );
       setSuggestions(response.data);
     } catch (error) {

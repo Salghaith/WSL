@@ -69,7 +69,7 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
     }
     try {
       const response = await axios.put(
-        "http://localhost:3001/api/business/update",
+        "https://wsl-app-backend.onrender.com/api/business/update",
         {
           businessName,
           businessCategory,

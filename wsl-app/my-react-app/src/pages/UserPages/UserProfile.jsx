@@ -51,7 +51,7 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
     }
     try {
       const response = await axios.put(
-        "http://localhost:3001/api/user/update",
+        "https://wsl-app-backend.onrender.com/api/user/update",
         {
           name,
           email,

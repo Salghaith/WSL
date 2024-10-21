@@ -25,7 +25,7 @@ const SearchForBusinesses = () => {
         setErrorMessage(""); // Reset error message
 
         const response = await axios.get(
-          `http://localhost:3001/api/business/search?category=${category}`
+          `https://wsl-app-backend.onrender.com/api/business/search?category=${category}`
         );
 
         if (response.data.length === 0) {
