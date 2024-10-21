@@ -35,6 +35,7 @@
 
 .hero-search-container {
   display: flex;
+  width: 650px;
 }
 
 .hero-search-bar {
@@ -166,4 +167,10 @@
 .help-tags span:hover {
   background-color: #000000;
   color: white;
+}
+
+@media (max-height: 846px) and (min-width: 900px) {
+  .hero-search-button {
+    padding: 18px 30px;
+  }
 }

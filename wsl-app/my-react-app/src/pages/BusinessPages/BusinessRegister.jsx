@@ -34,7 +34,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isFormValid) {
-      return alert("DON'T TOUCH THE CODE IN THE INSPECT PLEASE!!");
+      return alert("Something went wrong, please reload the page.");
     }
     if (e.target.industry.value === "notSelected") {
       return alert("Please Select a category in step 1!");

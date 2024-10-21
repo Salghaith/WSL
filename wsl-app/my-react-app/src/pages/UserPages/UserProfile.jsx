@@ -39,7 +39,7 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
   }, [loggedInUser]);
 
   if (!loggedInUser) {
-    return <div>Redirecting...</div>;
+     <div>Redirecting...</div>;
   }
   const handleEditClick = () => {
     setIsEditing(true);
@@ -47,7 +47,7 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
 
   const handleSaveClick = async () => {
     if (!isFormValid) {
-      return alert("DON'T TOUCH THE CODE IN THE INSPECT PLEASE!!");
+      return alert("Something went wrong, please reload the page.");
     }
     try {
       const response = await axios.put(
@@ -72,7 +72,11 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
       setErrors({ general: "Failed to update profile" });
     }
   };
-  const isFormValid = formValidity.name && formValidity.email;
+
+  const [isFormValid, setIsFormValid] = useState(true);
+  useEffect(() => {
+    setIsFormValid(Object.values(formValidity).every((isValid) => isValid));
+  }, [formValidity]);
 
   return (
     <div className="profile-page">

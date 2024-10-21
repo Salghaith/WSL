@@ -65,7 +65,7 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
 
   const handleSaveClick = async () => {
     if (!isFormValid) {
-      return alert("DON'T TOUCH THE CODE IN THE INSPECT PLEASE!!");
+      return alert("Something went wrong, please reload the page.");
     }
     try {
       const response = await axios.put(

@@ -155,7 +155,7 @@ export default function Header(props) {
                     Register Business
                   </Link>
                   <Link className="nav-item" to="/client/login">
-                    Login
+                    Signup
                   </Link>
                 </div>
               )}
