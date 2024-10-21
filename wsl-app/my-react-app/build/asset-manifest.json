@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.705a172c.css",
-    "main.js": "/static/js/main.2a4ac4b2.js",
-    "static/media/worker-pic.svg": "/static/media/worker-pic.8e30e0ac7277b4b17144cb7e5c68b53e.svg",
-    "static/media/home-picture2.svg": "/static/media/home-picture2.47aabba11d1735efce97d9ce11cb4b44.svg",
-    "static/media/HomeP 1.svg": "/static/media/HomeP 1.2ed0e388303716853cfa8219386cfa54.svg",
-    "static/media/logoWSL.svg": "/static/media/logoWSL.45d4e25b33c1baf326a1dc9616ae305c.svg",
-    "static/media/footer-icon.svg": "/static/media/footer-icon.69831b0d10bde30e69c4bec551973c2e.svg",
-    "static/media/username-icon.svg": "/static/media/username-icon.df1237996ed5f791e98f58e4f93a8548.svg",
-    "static/media/lock-icon.svg": "/static/media/lock-icon.aab9c93ac5db174062876f967418ae27.svg",
-    "index.html": "/index.html",
-    "static/media/email-icon.svg": "/static/media/email-icon.049d828123d7b42836dcbb6e91d5a912.svg",
-    "main.705a172c.css.map": "/static/css/main.705a172c.css.map",
-    "main.2a4ac4b2.js.map": "/static/js/main.2a4ac4b2.js.map"
+    "main.css": "/swe444_project/static/css/main.705a172c.css",
+    "main.js": "/swe444_project/static/js/main.c2279f88.js",
+    "static/media/worker-pic.svg": "/swe444_project/static/media/worker-pic.8e30e0ac7277b4b17144cb7e5c68b53e.svg",
+    "static/media/home-picture2.svg": "/swe444_project/static/media/home-picture2.47aabba11d1735efce97d9ce11cb4b44.svg",
+    "static/media/HomeP 1.svg": "/swe444_project/static/media/HomeP 1.3543742fa2e882ee0709eb14ae241f6e.svg",
+    "static/media/logoWSL.svg": "/swe444_project/static/media/logoWSL.45d4e25b33c1baf326a1dc9616ae305c.svg",
+    "static/media/footer-icon.svg": "/swe444_project/static/media/footer-icon.69831b0d10bde30e69c4bec551973c2e.svg",
+    "static/media/username-icon.svg": "/swe444_project/static/media/username-icon.df1237996ed5f791e98f58e4f93a8548.svg",
+    "static/media/lock-icon.svg": "/swe444_project/static/media/lock-icon.aab9c93ac5db174062876f967418ae27.svg",
+    "index.html": "/swe444_project/index.html",
+    "static/media/email-icon.svg": "/swe444_project/static/media/email-icon.049d828123d7b42836dcbb6e91d5a912.svg",
+    "main.705a172c.css.map": "/swe444_project/static/css/main.705a172c.css.map",
+    "main.c2279f88.js.map": "/swe444_project/static/js/main.c2279f88.js.map"
   },
   "entrypoints": [
     "static/css/main.705a172c.css",
-    "static/js/main.2a4ac4b2.js"
+    "static/js/main.c2279f88.js"
   ]
 }

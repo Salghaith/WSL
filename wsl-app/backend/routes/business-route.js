@@ -4,7 +4,7 @@ import editBusiness, {searchBusinesses} from "../controllers/business-cont.js";
 
 const router = express.Router();
 
-router.put("/update",verifyToken, editBusiness);
+router.put("/update", editBusiness);
 router.get("/search",searchBusinesses);
 
 export default router;
