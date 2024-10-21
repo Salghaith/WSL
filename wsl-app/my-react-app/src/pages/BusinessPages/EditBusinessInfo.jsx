@@ -91,7 +91,7 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
       // localStorage.setItem("currentUser", JSON.stringify(response.data.user));
       const updatedUserData = {
         ...response.data.user,
-        business: response.data.business // Add business data to the user
+        business: response.data.business, // Add business data to the user
       };
       login(updatedUserData);
       setIsEditing(false);
@@ -103,7 +103,7 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
       console.log(error);
     }
   };
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(true);
   useEffect(() => {
     setIsFormValid(Object.values(formValidity).every((isValid) => isValid));
   }, [formValidity]);
@@ -141,18 +141,18 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
             disabled={!isEditing}
             className={isEditing ? "editable" : ""}
           >
-             <option value="auto repair">Auto Repair</option>
-             <option value="car wash">Car Wash</option>
-             <option value="contractors">Contractors</option>
-             <option value="dry cleaning">Dry Cleaning</option>
-             <option value="electricians">Electricians</option>
-             <option value="home cleaners">Home Cleaners</option>
-             <option value="hvac">HVAC</option>
-             <option value="landscaping">Landscaping</option>
-             <option value="movers">Movers</option>
-             <option value="oil change">Oil Change</option>
-             <option value="phone repair">Phone Repair</option>
-             <option value="plumbers">Plumbers</option>
+            <option value="auto-repair">Auto Repair</option>
+            <option value="car-wash">Car Wash</option>
+            <option value="contractors">Contractors</option>
+            <option value="dry-cleaning">Dry Cleaning</option>
+            <option value="electricians">Electricians</option>
+            <option value="home-cleaners">Home Cleaners</option>
+            <option value="hvac">HVAC</option>
+            <option value="landscaping">Landscaping</option>
+            <option value="movers">Movers</option>
+            <option value="oil-change">Oil Change</option>
+            <option value="phone-repair">Phone Repair</option>
+            <option value="plumbers">Plumbers</option>
           </select>
         </div>
 
@@ -331,7 +331,11 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
             Edit
           </button>
           {isEditing && (
-            <button className="save-btn" onClick={handleSaveClick} disabled={!isFormValid}>
+            <button
+              className="save-btn"
+              onClick={handleSaveClick}
+              disabled={!isFormValid}
+            >
               Submit
             </button>
           )}

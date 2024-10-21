@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/Shared/HomePage";
 import BusinessRegister from "./pages/BusinessPages/BusinessRegister";
 import Auth from "./pages/Shared/Auth";
@@ -24,6 +19,10 @@ const App = () => {
       [inputId]: isValid,
     }));
   };
+
+  useEffect(() => {
+    setFormValidity({});
+  }, [location.pathname]);
 
   return (
     <UserProvider>
@@ -53,7 +52,7 @@ const App = () => {
               path="/client/profile"
               element={
                 <React.Fragment>
-                  <Header withoutSearch/>
+                  <Header withoutSearch />
                   <UserProfile
                     onValidityChange={handleValidity}
                     formValidity={formValidity}
@@ -66,7 +65,7 @@ const App = () => {
               path="/business/register"
               element={
                 <React.Fragment>
-                  <Header withoutSearch/>
+                  <Header withoutSearch />
                   <BusinessRegister
                     onValidityChange={handleValidity}
                     formValidity={formValidity}
@@ -79,7 +78,7 @@ const App = () => {
               path="/business/profile"
               element={
                 <React.Fragment>
-                  <Header withoutSearch/>
+                  <Header withoutSearch />
                   <EditBusinessInfo
                     onValidityChange={handleValidity}
                     formValidity={formValidity}

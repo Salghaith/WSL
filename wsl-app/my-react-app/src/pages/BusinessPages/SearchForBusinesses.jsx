@@ -3,15 +3,12 @@ import "./SearchForBusinesses.css";
 import Sidebar from "../../components/sidebar";
 import workerIcon from "../../assets/worker-pic.svg";
 import BusinessCard from "../../components/BusinessCard";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-const SearchForBusinesses = ({ title, posts }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 10; // Number of posts to display per page
+const SearchForBusinesses = () => {
   const location = useLocation();
-  
-  
+
   const searchParams = new URLSearchParams(location.search);
   const category = searchParams.get("category");
 
@@ -36,7 +33,6 @@ const SearchForBusinesses = ({ title, posts }) => {
         } else {
           setBusinesses(response.data); // Assuming API returns a list of businesses
         }
-
       } catch (error) {
         console.log(error);
         setErrorMessage("Error fetching businesses");
@@ -53,19 +49,20 @@ const SearchForBusinesses = ({ title, posts }) => {
 
   //if (loading) return <p>Loading...</p>;
 
-  // Calculate total number of pages
-  const totalPages = Math.ceil(posts.length / postsPerPage);
-
-  // Get the current posts to display
-  const currentPosts = posts.slice(
-    (currentPage - 1) * postsPerPage,
-    currentPage * postsPerPage
-  );
-
   // Function to handle page change
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  // const handlePageChange = (pageNumber) => {
+  //   setCurrentPage(pageNumber);
+  // };
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const postsPerPage = 1; // Number of posts to display per page
+  // // Calculate total number of pages
+  // const totalPages = Math.ceil(businesses.length / postsPerPage);
+
+  // // Get the current posts to display
+  // const currentPosts = businesses.slice(
+  //   (currentPage - 1) * postsPerPage,
+  //   currentPage * postsPerPage
+  // );
 
   return (
     <div className="search-page">
@@ -73,7 +70,7 @@ const SearchForBusinesses = ({ title, posts }) => {
         <Sidebar />
         <div className="post-section">
           <div className="post-header">
-            <h2>{`Top 10 Best ${title} in Riyadh`}</h2>
+            <h2>{`Top 10 Best ${category} in Riyadh`}</h2>
             <select className="sort-dropdown">
               <option>Sort by</option>
               <option>Rating</option>
@@ -83,7 +80,7 @@ const SearchForBusinesses = ({ title, posts }) => {
           </div>
 
           <div className="posts">
-          {businesses.map((business, index) => (
+            {businesses.map((business, index) => (
               <BusinessCard
                 key={index}
                 index={index + 1}
@@ -94,21 +91,6 @@ const SearchForBusinesses = ({ title, posts }) => {
                 openFrom={business.openingHours.from}
                 openTo={business.openingHours.to}
               />
-            ))}
-          </div>
-
-          {/* Pagination Controls */}
-          <div className="pagination">
-            {Array.from({ length: totalPages }, (_, index) => (
-              <button
-                key={index + 1}
-                className={`page-button ${
-                  currentPage === index + 1 ? "active" : ""
-                }`}
-                onClick={() => handlePageChange(index + 1)}
-              >
-                {index + 1}
-              </button>
             ))}
           </div>
         </div>

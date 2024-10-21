@@ -1,19 +1,15 @@
 import { ClickAwayListener } from "@mui/base/ClickAwayListener";
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUserCircle,
   faBars,
   faStore,
-  faHome,
-  faLaptop,
-  faBolt,
   faCarCrash,
   faCarOn,
   faPlug,
   faHammer,
   faShirt,
-  faSprayCanSparkles,
   faBroomBall,
   faFan,
   faTree,
@@ -67,35 +63,41 @@ export default function Header(props) {
     toggleSearchMenu(selected);
     //navigate(`/business/search?category=${selected}`);
   };
-const fetchSuggestions = async (query) => {
+  const fetchSuggestions = async (query) => {
     if (!query) {
       setSuggestions([]); // Clear suggestions
       return;
     }
     try {
-      setLoading(true); 
+      setLoading(true);
       const response = await axios.get(
         `http://localhost:3001/api/business/search?name=${query}`
       );
-      setSuggestions(response.data); 
+      setSuggestions(response.data);
     } catch (error) {
       console.error("Error fetching business suggestions:", error);
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
   const handleInputChange = (e) => {
     const query = e.target.value;
     setTest(query);
-    fetchSuggestions(query); 
+    fetchSuggestions(query);
   };
 
   const handleSuggestionClick = (business) => {
-    setTest(business.businessName); 
-    setOpenList(false); 
+    setTest(business.businessName);
+    setOpenList(false);
     navigate(`/`); // Navigate to the business details page
   };
+  useEffect(() => {
+    if (location.pathname !== "/business/search") {
+      setSelectedCategory(null); // Reset selected button
+      setTest("");
+    }
+  }, [location.pathname]);
   return (
     <>
       <React.Fragment>
@@ -125,19 +127,23 @@ const fetchSuggestions = async (query) => {
                 onClickAway={closeSearchList}
               >
                 <div className={`search-list ${!openList && "hideList"}`}>
-                {openList && suggestions.length > 0 && (
-              <ul className="search-menu">
-                {loading ? (
-                <li>Loading...</li>
-                  ) : (
-                  suggestions.map((business, index) => (
-                <li key={index} onClick={() => handleSuggestionClick(business)} className="dropdown-item">
-                {business.businessName}
-                </li>
-            ))
-          )}
-        </ul>
-      )}
+                  {openList && suggestions.length > 0 && (
+                    <ul className="search-menu">
+                      {loading ? (
+                        <li>Loading...</li>
+                      ) : (
+                        suggestions.map((business, index) => (
+                          <li
+                            key={index}
+                            onClick={() => handleSuggestionClick(business)}
+                            className="dropdown-item"
+                          >
+                            {business.businessName}
+                          </li>
+                        ))
+                      )}
+                    </ul>
+                  )}
                 </div>
               </ClickAwayListener>
             </div>
@@ -155,24 +161,22 @@ const fetchSuggestions = async (query) => {
               )}
 
               {loggedInUser && (
-            
-                  <div className="profile-icon" onClick={toggleDropdown}>
-                    <FontAwesomeIcon
-                      icon={isBusiness ? faStore : faUserCircle}
-                      size="2x"
-                      style={{ color: "black", cursor: "pointer" }}
-                    />
-                    <FontAwesomeIcon
-                      icon={faBars}
-                      size="2x"
-                      style={{
-                        color: "black",
-                        cursor: "pointer",
-                        marginLeft: "10px",
-                      }}
-                    />
-                  </div>
-             
+                <div className="profile-icon" onClick={toggleDropdown}>
+                  <FontAwesomeIcon
+                    icon={isBusiness ? faStore : faUserCircle}
+                    size="2x"
+                    style={{ color: "black", cursor: "pointer" }}
+                  />
+                  <FontAwesomeIcon
+                    icon={faBars}
+                    size="2x"
+                    style={{
+                      color: "black",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                    }}
+                  />
+                </div>
               )}
             </div>
 

@@ -1,71 +1,71 @@
 /* Post Section Styles */
 .post-section {
-    width: 69%;
-    margin-left: auto;
-    padding: 15px;
-    padding-top: 60px;
-  }
-  
-  .post-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .post-header h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .sort-dropdown {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f1f1f1;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .posts {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .page-button {
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    margin: 0 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .page-button:hover {
-    background-color: rgb(177, 177, 177);
-  }
-  
-  .page-button.active {
-    background-color: black;
-  }
-    
+  width: 69%;
+  margin-left: auto;
+  padding: 15px;
+  padding-top: 60px;
+}
 
-  .content-container {
-    display: flex;
-    width: 80%;
-    margin: 0 auto;
-    gap: 0;
-  }
-  
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.post-header h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.sort-dropdown {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.page-button {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.page-button:hover {
+  background-color: rgb(177, 177, 177);
+}
+
+.page-button.active {
+  background-color: black;
+}
+
+.content-container {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  gap: 0;
+}
+
+.hidePagination {
+  display: none;
+}

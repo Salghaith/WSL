@@ -18,7 +18,7 @@ import TimeSelector from "../../components/timeSelector";
 const BusinessRegister = ({ formValidity, onValidityChange }) => {
   const [hoursFrom, setHoursFrom] = React.useState(dayjs("2022-04-17T12:30"));
   const [hoursTo, setHoursTo] = React.useState(dayjs("2022-04-17T23:30"));
-  const [isFormValid, setIsFormValid] = useState(false);
+  // const [isFormValid, setIsFormValid] = useState(false);
 
   const navigate = useNavigate();
 
@@ -79,9 +79,16 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
     }
   };
 
-  useEffect(() => {
-    setIsFormValid(Object.values(formValidity).every((isValid) => isValid));
-  }, [formValidity, onValidityChange]);
+  const isFormValid =
+    formValidity["business-name"] &&
+    formValidity["business-email"] &&
+    formValidity["phone-number"] &&
+    formValidity["city"] &&
+    formValidity["street"] &&
+    formValidity["business-description"] &&
+    formValidity["owner-name"] &&
+    formValidity["owner-email"] &&
+    formValidity.password;
 
   const stepsValidity = [
     formValidity["business-name"],
