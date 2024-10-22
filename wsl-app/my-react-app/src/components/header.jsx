@@ -26,6 +26,7 @@ import axios from "axios";
 
 export default function Header(props) {
   const navigate = useNavigate();
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { loggedInUser, logout } = useContext(UserContext);
   const [test, setTest] = useState("");
@@ -71,7 +72,7 @@ export default function Header(props) {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://wsl-app-backend.onrender.com/api/business/search?name=${query}`
+        `${apiBaseUrl}/business/search?name=${query}`
       );
       setSuggestions(response.data);
     } catch (error) {

@@ -20,7 +20,7 @@ import Button from "../../components/FormElement/Button.jsx";
 const Auth = ({ formValidity, onValidityChange }) => {
   const [isLoginMode, setIsLoginMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   const navigate = useNavigate();
 
   const { login } = useContext(UserContext);
@@ -47,7 +47,7 @@ const Auth = ({ formValidity, onValidityChange }) => {
       if (isLoginMode) {
         // Login Mode
         const response = await axios.post(
-          "https://wsl-app-backend.onrender.com/api/auth/login",
+          `${apiBaseUrl}/auth/login`,
           {
             email,
             password,
@@ -64,7 +64,7 @@ const Auth = ({ formValidity, onValidityChange }) => {
       } else {
         // Register Mode
         const res = await axios.post(
-          "https://wsl-app-backend.onrender.com/api/auth/register",
+          `${apiBaseUrl}/auth/register`,
           {
             name: username,
             email,

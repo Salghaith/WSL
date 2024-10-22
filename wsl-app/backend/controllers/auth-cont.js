@@ -150,7 +150,7 @@ export const login = async (req, res, next) => {
     res.cookie("accessToken", token, { 
       httpOnly: true, 
       secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-      sameSite: "None"  // Required for cross-site cookies
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Use 'None' for cross-site in production, 'Lax' for local
     }).status(200).send(info);
   } catch (error) {
     next(error);

@@ -15,7 +15,7 @@ import {
 const UserProfile = ({ formValidity, onValidityChange }) => {
   const navigate = useNavigate();
   const { loggedInUser, login } = useContext(UserContext);
-
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL; 
   useEffect(() => {
     if (!loggedInUser) {
       navigate("/");
@@ -51,7 +51,7 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
     }
     try {
       const response = await axios.put(
-        "https://wsl-app-backend.onrender.com/api/user/update",
+        `${apiBaseUrl}/user/update`,
         {
           name,
           email

@@ -20,7 +20,7 @@ import Input from "../../components/FormElement/Input.jsx";
 const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
   const { loggedInUser, login } = useContext(UserContext);
   const navigate = useNavigate();
-
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     if (!loggedInUser) {
       navigate("/");
@@ -69,7 +69,7 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
     }
     try {
       const response = await axios.put(
-        "https://wsl-app-backend.onrender.com/api/business/update",
+        `${apiBaseUrl}/business/update`,
         {
           businessName,
           businessCategory,

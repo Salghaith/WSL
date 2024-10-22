@@ -19,7 +19,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
   const [hoursFrom, setHoursFrom] = React.useState(dayjs("2022-04-17T12:30"));
   const [hoursTo, setHoursTo] = React.useState(dayjs("2022-04-17T23:30"));
   // const [isFormValid, setIsFormValid] = useState(false);
-
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
@@ -60,7 +60,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
     try {
       // Send form data to backend
       const response = await axios.post(
-        "https://wsl-app-backend.onrender.com/api/auth/registerbusiness",
+        `${apiBaseUrl}/auth/registerbusiness`,
         formData
       );
 

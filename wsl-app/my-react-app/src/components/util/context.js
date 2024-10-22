@@ -6,7 +6,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({children}) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
-
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     try {
       const user = JSON.parse(localStorage.getItem("currentUser"));
@@ -26,7 +26,7 @@ export const UserProvider = ({children}) => {
   const logout = async () => {
     try {
       await axios.post(
-        "https://wsl-app-backend.onrender.com/api/auth/logout",
+        `${apiBaseUrl}/auth/logout`,
         {},
         { withCredentials: true }
       );

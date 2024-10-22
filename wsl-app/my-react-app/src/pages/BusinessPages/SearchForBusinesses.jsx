@@ -8,7 +8,7 @@ import axios from "axios";
 
 const SearchForBusinesses = () => {
   const location = useLocation();
-
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   const searchParams = new URLSearchParams(location.search);
   const category = searchParams.get("category");
 
@@ -25,7 +25,7 @@ const SearchForBusinesses = () => {
         setErrorMessage(""); // Reset error message
 
         const response = await axios.get(
-          `https://wsl-app-backend.onrender.com/api/business/search?category=${category}`
+          `${apiBaseUrl}/business/search?category=${category}`
         );
 
         if (response.data.length === 0) {
