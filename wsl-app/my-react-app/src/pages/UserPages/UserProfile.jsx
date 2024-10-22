@@ -54,7 +54,7 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
         "https://wsl-app-backend.onrender.com/api/user/update",
         {
           name,
-          email,
+          email
           // password,
         },
         { withCredentials: true }

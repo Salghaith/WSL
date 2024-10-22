@@ -38,7 +38,7 @@ export const editUser = async(req, res, next) => {
 
         // Update the user's profile in the database
         const updatedUser = await User.findByIdAndUpdate(userId, updateFields, { new: true });
-        res.cookie("accessToken", token, { httpOnly: true }).status(200).send(updatedUser);
+     
         res.status(200).json(updatedUser); // Respond with the updated user info
     } catch (error) {
         next(error); // Handle errors
