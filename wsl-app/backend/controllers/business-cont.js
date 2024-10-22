@@ -112,9 +112,9 @@ export const searchBusinesses = async (req, res, next) => {
     if (name) {
       const regex = new RegExp(name, "i"); // Case insensitive search
       const businesses = await Business.find({ businessName: regex }).limit(4); // Return max 2 results
-      if (!businesses.length) {
-        return res.status(404).json({ message: "No businesses found with this name" });
-      }
+      //if (!businesses.length) {
+       // return res.status(404).json({ message: "No businesses found with this name" });
+     // }
       return res.status(200).json(businesses);
     }
 
