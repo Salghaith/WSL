@@ -10,16 +10,13 @@ import cors from "cors";
 dotenv.config();
 const app = express();
 
-const corsOptions = {
-  origin:
-    process.env.NODE_ENV === "production"
-      ? "https://wsl-app.netlify.app"  // Replace with your deployed frontend URL
-      : "http://localhost:3000",  // Localhost for development
-  credentials: true,
-};
+
 // Middleware to parse JSON requests
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: ["http://localhost:3000", "https://wsl-app.netlify.app"], // Add your frontend URL
+  credentials: true
+}));
 app.use(cookieParser());
 
 // Routes
