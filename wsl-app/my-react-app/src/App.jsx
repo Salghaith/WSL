@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import HomePage from "./pages/Shared/HomePage";
 import BusinessRegister from "./pages/BusinessPages/BusinessRegister";
 import Auth from "./pages/Shared/Auth";
-import Footer from "./components/footer";
+import Footer from "./components/Footer/footer";
 import { UserProvider } from "./components/util/context";
 import SearchForBusinesses from "./pages/BusinessPages/SearchForBusinesses";
-import Header from "./components/header";
+import Header from "./components/Header/header";
 import UserProfile from "./pages/UserPages/UserProfile";
 import EditBusinessInfo from "./pages/BusinessPages/EditBusinessInfo";
 
@@ -52,7 +57,7 @@ const App = () => {
               path="/client/profile"
               element={
                 <React.Fragment>
-                  <Header withoutSearch />
+                  <Header withoutIcons />
                   <UserProfile
                     onValidityChange={handleValidity}
                     formValidity={formValidity}
@@ -65,7 +70,7 @@ const App = () => {
               path="/business/register"
               element={
                 <React.Fragment>
-                  <Header withoutSearch />
+                  <Header withoutIcons />
                   <BusinessRegister
                     onValidityChange={handleValidity}
                     formValidity={formValidity}
@@ -78,7 +83,7 @@ const App = () => {
               path="/business/profile"
               element={
                 <React.Fragment>
-                  <Header withoutSearch />
+                  <Header withoutIcons />
                   <EditBusinessInfo
                     onValidityChange={handleValidity}
                     formValidity={formValidity}
@@ -100,6 +105,7 @@ const App = () => {
                 </React.Fragment>
               }
             />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Router>
       </div>

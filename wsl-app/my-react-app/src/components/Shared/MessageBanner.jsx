@@ -1,7 +1,7 @@
 import React from "react";
-import "./ErrorBanner.css";
+import "./MessageBanner.css";
 
-const ErrorBanner = ({ message, type }) => {
+const MessageBanner = ({ message, type }) => {
   if (!message) return null; // Don't render if no message
   if (type === "error") {
     return (
@@ -19,4 +19,4 @@ const ErrorBanner = ({ message, type }) => {
   }
 };
 
-export default ErrorBanner;
+export default MessageBanner;

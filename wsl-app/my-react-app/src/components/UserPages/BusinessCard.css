@@ -1,7 +1,4 @@
-.business-card {
-}
-
-.post {
+.business-card .post {
   display: flex;
 
   background-color: white;
@@ -11,27 +8,27 @@
   gap: 20px;
 }
 
-.post-image {
+.business-card .post-image {
   width: 190px;
   height: auto;
   border-radius: 8px;
   /* margin-top: 21px; */
 }
 
-.post-info {
+.business-card .post-info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.post-title {
+.business-card .post-title {
   font-size: 20px;
   font-weight: bold;
 }
 
-.post-rating,
-.post-description,
-.post-hours {
+.business-card .post-rating,
+.business-card .post-description,
+.business-card .post-hours {
   font-size: 14px;
   margin: 5px 0;
 }

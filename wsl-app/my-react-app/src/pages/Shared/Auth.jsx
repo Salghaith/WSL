@@ -7,7 +7,7 @@ import emailIcon from "../../assets/email-icon.svg";
 import lockIcon from "../../assets/lock-icon.svg";
 import homePic from "../../assets/home-picture2.svg";
 import Input from "../../components/FormElement/Input.jsx";
-import ErrorBanner from "../../components/ErrorBanner.jsx";
+import MessageBanner from "../../components/Shared/MessageBanner.jsx";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MAXLENGTH,
@@ -20,10 +20,10 @@ import Button from "../../components/FormElement/Button.jsx";
 const Auth = ({ formValidity, onValidityChange }) => {
   const [isLoginMode, setIsLoginMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
-  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+  // const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   const navigate = useNavigate();
 
-  const { login } = useContext(UserContext);
+  const { login, apiBaseUrl } = useContext(UserContext);
 
   const switchModeHandler = () => {
     setIsLoginMode((prevMode) => !prevMode);
@@ -101,13 +101,17 @@ const Auth = ({ formValidity, onValidityChange }) => {
             <img src={logo} alt="WSL Logo" />
           </Link>
         </div>
-        <div className={`content ${isLoginMode? "login-form" : "register-form"}`}>
+        <div
+          className={`content ${isLoginMode ? "login-form" : "register-form"}`}
+        >
           <div className="header">
             {isLoginMode ? "Login into" : "Register"} your account
           </div>
           <form className="form-content" onSubmit={authSubmitHandler}>
             {/* Display the error message using ErrorBanner */}
-            {errorMessage && <ErrorBanner message={errorMessage} type="error"/>}
+            {errorMessage && (
+              <MessageBanner message={errorMessage} type="error" />
+            )}
             <div className="username">
               {!isLoginMode && (
                 <React.Fragment>
@@ -188,7 +192,9 @@ const Auth = ({ formValidity, onValidityChange }) => {
             >
               {!isLoginMode ? "Login" : "Signup"}
             </Button>
-            <div className={`divider ${isLoginMode && "hide"}`}>Are you a business?</div>
+            <div className={`divider ${isLoginMode && "hide"}`}>
+              Are you a business?
+            </div>
             {!isLoginMode && (
               <Link to="/business/register">
                 <Button type="button" hoverInverse={true} className="form-btn">

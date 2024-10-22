@@ -1,10 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-
 export const UserContext = createContext();
 
-export const UserProvider = ({children}) => {
+export const UserProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
@@ -38,7 +37,7 @@ export const UserProvider = ({children}) => {
     }
   };
   return (
-    <UserContext.Provider value={{ loggedInUser, login, logout }}>
+    <UserContext.Provider value={{ loggedInUser, login, logout, apiBaseUrl }}>
       {children}
     </UserContext.Provider>
   );

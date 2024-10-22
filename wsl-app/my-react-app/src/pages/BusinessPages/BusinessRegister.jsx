@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
 import { Stepper, Step, StepLabel, Typography } from "@mui/material";
 import axios from "axios";
 import dayjs from "dayjs";
 import Input from "../../components/FormElement/Input";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../components/util/context";
 import "./BusinessRegister.css";
 import {
   VALIDATOR_EMAIL,
@@ -13,13 +14,13 @@ import {
 } from "../../components/util/validators";
 import Button from "../../components/FormElement/Button";
 
-import TimeSelector from "../../components/timeSelector";
+import TimeSelector from "../../components/BusinessPages/timeSelector";
 
 const BusinessRegister = ({ formValidity, onValidityChange }) => {
   const [hoursFrom, setHoursFrom] = React.useState(dayjs("2022-04-17T12:30"));
   const [hoursTo, setHoursTo] = React.useState(dayjs("2022-04-17T23:30"));
-  // const [isFormValid, setIsFormValid] = useState(false);
-  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+  // const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+  const { apiBaseUrl } = useContext(UserContext);
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);

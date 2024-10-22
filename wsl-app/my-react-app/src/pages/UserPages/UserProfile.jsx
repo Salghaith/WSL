@@ -4,7 +4,7 @@ import "../Shared/editCard.css";
 import { UserContext } from "../../components/util/context";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import ErrorBanner from "../../components/ErrorBanner";
+import MessageBanner from "../../components/Shared/MessageBanner.jsx";
 import Input from "../../components/FormElement/Input";
 import {
   VALIDATOR_EMAIL,
@@ -14,8 +14,8 @@ import {
 
 const UserProfile = ({ formValidity, onValidityChange }) => {
   const navigate = useNavigate();
-  const { loggedInUser, login } = useContext(UserContext);
-  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL; 
+  const { loggedInUser, login, apiBaseUrl } = useContext(UserContext);
+  // const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     if (!loggedInUser) {
       navigate("/");
@@ -39,7 +39,7 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
   }, [loggedInUser]);
 
   if (!loggedInUser) {
-     <div>Redirecting...</div>;
+    <div>Redirecting...</div>;
   }
   const handleEditClick = () => {
     setIsEditing(true);
@@ -54,7 +54,7 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
         `${apiBaseUrl}/user/update`,
         {
           name,
-          email
+          email,
           // password,
         },
         { withCredentials: true }
@@ -145,7 +145,7 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
 
         {/* Success Message */}
         {successMessage && (
-          <ErrorBanner message={successMessage} type="success" />
+          <MessageBanner message={successMessage} type="success" />
         )}
       </div>
     </div>

@@ -5,10 +5,10 @@ import "../Shared/editCard.css";
 import { UserContext } from "../../components/util/context";
 import { useNavigate } from "react-router-dom";
 
-import TimeSelector from "../../components/timeSelector"; // Ensure you're importing this component
+import TimeSelector from "../../components/BusinessPages/timeSelector.jsx"; // Ensure you're importing this component
 import dayjs from "dayjs";
 import axios from "axios";
-import ErrorBanner from "../../components/ErrorBanner";
+import MessageBanner from "../../components/Shared/MessageBanner.jsx";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MAXLENGTH,
@@ -18,9 +18,9 @@ import {
 import Input from "../../components/FormElement/Input.jsx";
 
 const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
-  const { loggedInUser, login } = useContext(UserContext);
+  const { loggedInUser, login, apiBaseUrl } = useContext(UserContext);
   const navigate = useNavigate();
-  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+  // const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     if (!loggedInUser) {
       navigate("/");
@@ -344,7 +344,7 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
         {/* Success Message */}
         {successMessage && (
           // <div className="success-message">{successMessage}</div>
-          <ErrorBanner message={successMessage} type="success" />
+          <MessageBanner message={successMessage} type="success" />
         )}
       </div>
     </div>

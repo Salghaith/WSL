@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./SearchForBusinesses.css";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../components/UserPages/sidebar";
 import workerIcon from "../../assets/worker-pic.svg";
-import BusinessCard from "../../components/BusinessCard";
+import BusinessCard from "../../components/UserPages/BusinessCard";
 import { useLocation } from "react-router-dom";
+import { UserContext } from "../../components/util/context";
 import axios from "axios";
 
 const SearchForBusinesses = () => {
   const location = useLocation();
-  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+  const { apiBaseUrl } = useContext(UserContext);
+  // const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
   const searchParams = new URLSearchParams(location.search);
   const category = searchParams.get("category");
 
