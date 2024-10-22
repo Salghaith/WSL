@@ -147,7 +147,11 @@ export const login = async (req, res, next) => {
         info.business = null; // If no business is found
       }
     }
-    res.cookie("accessToken", token, { httpOnly: true }).status(200).send(info);
+    res.cookie("accessToken", token, { 
+      httpOnly: true, 
+      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+      sameSite: "None"  // Required for cross-site cookies
+    }).status(200).send(info);
   } catch (error) {
     next(error);
   }
