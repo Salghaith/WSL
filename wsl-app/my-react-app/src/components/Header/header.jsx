@@ -18,6 +18,7 @@ export default function Header(props) {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { loggedInUser, logout, apiBaseUrl } = useContext(UserContext);
+  
   const [prompt, setPrompt] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
