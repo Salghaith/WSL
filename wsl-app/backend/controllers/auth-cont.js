@@ -106,7 +106,11 @@ export const registerUser = async (req, res, next) => {
 
     // Exclude password and return user info with token
     const { password, ...info } = savedUser._doc;
-    res.cookie("accessToken", token, { httpOnly: true }).status(200).send(info);
+    res.cookie("accessToken", token, { 
+      httpOnly: true, 
+      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // Use 'None' for cross-site in production, 'Lax' for local
+    }).status(200).send(info);
   } catch (error) {
     next(error);
   }
