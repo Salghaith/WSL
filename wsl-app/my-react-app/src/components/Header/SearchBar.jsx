@@ -38,6 +38,7 @@ const SearchBar = ({ apiBaseUrl, setPrompt, prompt }) => {
     const query = e.target.value;
     setPrompt(query);
     fetchSuggestions(query);
+    setOpenList(true);
   };
   const handleSuggestionClick = (business) => {
     setPrompt(business.businessName);
