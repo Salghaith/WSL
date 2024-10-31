@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Stepper, Step, StepLabel, Typography } from "@mui/material";
 import axios from "axios";
 import dayjs from "dayjs";
@@ -13,13 +13,15 @@ import {
   VALIDATOR_REQUIRE,
 } from "../../components/util/validators";
 import Button from "../../components/FormElement/Button";
-
+import getLocation from "../../components/util/getLocation";
 import TimeSelector from "../../components/BusinessPages/timeSelector";
+import RegisterMap from "../../components/BusinessPages/RegisterMap";
+import DiscreteSlider from "../../components/BusinessPages/Slider";
 
 const BusinessRegister = ({ formValidity, onValidityChange }) => {
   const [hoursFrom, setHoursFrom] = React.useState(dayjs("2022-04-17T12:30"));
   const [hoursTo, setHoursTo] = React.useState(dayjs("2022-04-17T23:30"));
-  // const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+  const [radius, setRadius] = useState(0);
   const { apiBaseUrl } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -42,12 +44,12 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
     }
 
     const formData = {
-      businessName: e.target["business-name"].value, //
+      businessName: e.target["business-name"].value,
       categories: e.target.industry.value,
       businessEmail: e.target["business-email"].value,
       phoneNumber: e.target["phone-number"].value,
-      city: e.target.city.value,
-      street: e.target.street.value,
+      city: finalCoordinates ? finalCoordinates.lat : null, //Replace this variable with lat,
+      street: finalCoordinates ? finalCoordinates.lng : null, //Replace this variable with lng, and add one more variable (radius).
       openingHours: {
         from: hoursFrom.format("h:mm A"),
         to: hoursTo.format("h:mm A"),
@@ -84,8 +86,6 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
     formValidity["business-name"] &&
     formValidity["business-email"] &&
     formValidity["phone-number"] &&
-    formValidity["city"] &&
-    formValidity["street"] &&
     formValidity["business-description"] &&
     formValidity["owner-name"] &&
     formValidity["owner-email"] &&
@@ -93,10 +93,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
 
   const stepsValidity = [
     formValidity["business-name"],
-    formValidity["business-email"] &&
-      formValidity["phone-number"] &&
-      formValidity["city"] &&
-      formValidity["street"],
+    formValidity["business-email"] && formValidity["phone-number"],
     formValidity["business-description"],
     formValidity["owner-name"] &&
       formValidity["owner-email"] &&
@@ -108,6 +105,14 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
     "Business Operation Details",
     "Owner/Representative Details",
   ];
+  const initCoords = getLocation(step);
+  const [finalCoordinates, setFinalCoordinates] = useState(
+    initCoords || { lat: 24.7228109, lng: 46.6202363 }
+  );
+
+  const onChangeMap = (lat, lng) => {
+    setFinalCoordinates({ lat, lng });
+  };
 
   return (
     <React.Fragment>
@@ -225,26 +230,17 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                 <div className="form-group">
                   <label htmlFor="business-address">Business Address</label>
                   <div className="address-inputs">
-                    <Input
-                      element="input"
-                      type="text"
-                      id="city"
-                      name="city"
-                      placeholder="City"
-                      validators={[VALIDATOR_REQUIRE()]}
-                      errorText="This Field Is Required"
-                      onValidityChange={onValidityChange}
-                    />
-                    <Input
-                      element="input"
-                      type="text"
-                      id="street"
-                      name="street"
-                      placeholder="Street"
-                      validators={[VALIDATOR_REQUIRE()]}
-                      errorText="This Field Is Required"
-                      onValidityChange={onValidityChange}
-                    />
+                    {initCoords && (
+                      <RegisterMap
+                        coords={initCoords}
+                        radius={radius}
+                        onChangeMap={onChangeMap}
+                      />
+                    )}
+                  </div>
+                  <div className="form-group">
+                    <label>Coverge Area</label>
+                    <DiscreteSlider onChange={(value) => setRadius(value)} />
                   </div>
                 </div>
                 <Button
