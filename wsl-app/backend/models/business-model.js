@@ -6,9 +6,9 @@ const businessSchema = new mongoose.Schema({
   businessName: { type: String, required: true },
   email: { type: String, required: true },
   phoneNumber: { type: String, required: true }, // Business owner's phone number
-  location:  {
-    city: { type: String, required: true },
-    street: { type: String, required: true },
+  location: {
+    latitude: { type: Number, required: true }, // New field for latitude
+    longitude: { type: Number, required: true }, // New field for longitude
   },
   categories: [{ type: String, required: true, }], // Array of categories (e.g., electricians, car washes)
   description: { type: String, required: true }, // Business description enum: ['Electricians', 'Car Washes', 'Plumbers', 'Mechanics', 'Cleaning Services']

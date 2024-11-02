@@ -48,8 +48,8 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
       categories: e.target.industry.value,
       businessEmail: e.target["business-email"].value,
       phoneNumber: e.target["phone-number"].value,
-      city: finalCoordinates ? finalCoordinates.lat : null, //Replace this variable with lat,
-      street: finalCoordinates ? finalCoordinates.lng : null, //Replace this variable with lng, and add one more variable (radius).
+      latitude: finalCoordinates ? finalCoordinates.lat : null, // New field for latitude
+      longitude: finalCoordinates ? finalCoordinates.lng : null, //Replace this variable with lng, and add one more variable (radius).
       openingHours: {
         from: hoursFrom.format("h:mm A"),
         to: hoursTo.format("h:mm A"),

@@ -18,8 +18,8 @@ export const registerBusiness = async (req, res, next) => {
       businessName,
       businessEmail, // Business contact email
       phoneNumber,
-      city,
-      street,
+      longitude,
+      latitude,
       categories,
       description,
       openingHours,
@@ -46,8 +46,8 @@ export const registerBusiness = async (req, res, next) => {
       email: businessEmail, // Business contact email
       phoneNumber,
       location: {
-        city,
-        street,
+        latitude,  // New field
+        longitude, // New field
       },
       categories,
       description,
