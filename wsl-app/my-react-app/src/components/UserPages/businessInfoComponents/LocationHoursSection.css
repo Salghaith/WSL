@@ -1,0 +1,73 @@
+.location-hours-section {
+  padding: 10px 0;
+}
+
+.section-titlep {
+  font-size: 26px;
+  font-weight: bold;
+  
+  margin-bottom: 15px;
+}
+
+.location-hours-content {
+  display: flex;
+  justify-content: stretch;
+  gap: 170px;
+}
+
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.map-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.address {
+  margin-top: 25px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.business-hours-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 18px;
+  text-align: right;
+}
+
+.hours-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.day {
+  width: 50px;
+  font-weight: bold;
+}
+
+.hours {
+  width: 200px;
+}
+
+.status {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.open {
+  color: green;
+}
+
+.closed {
+  color: red;
+}

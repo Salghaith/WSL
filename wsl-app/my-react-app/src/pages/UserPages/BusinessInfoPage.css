@@ -1,0 +1,39 @@
+.business-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 50px;
+  gap: 20px;
+}
+
+.business-info-wrapper {
+  width: 60%;
+}
+
+.contact-info-wrapper {
+  width: 30%;
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid #f0f0f0;
+  margin: 5px 0; /* Consistent spacing above and below */
+}
+
+.business-page-container {
+  display: flex;
+}
+
+.business-info-wrapper {
+  flex: 3;
+  padding-right: 20px;
+}
+
+.contact-info-wrapper {
+  flex: 1;
+  position: sticky;
+  top: 20px; /* Adjust this value if you want more space between the top of the viewport */
+  align-self: flex-start; /* Ensures sticky positioning takes effect */
+}

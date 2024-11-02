@@ -1,0 +1,25 @@
+.license-section {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    /* Removed margin-top */
+  }
+  
+  .license-image {
+    width: 70px;
+    height: 80px;
+    margin-right: 15px;
+    object-fit: cover;
+  }
+  
+  .verified-license {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .license-confirmation {
+    font-size: 20px;
+    color: #555;
+  }
+  

@@ -1,0 +1,38 @@
+.business-Info-section {
+  padding: 10px 0;
+  padding-left: 0;
+}
+
+.business-name {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.business-description {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.business-status-hours {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.light-divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 20px 0; /* Same spacing above and below the divider */
+}
+
+.open {
+  color: green;
+}
+
+.closed {
+  color: red;
+}

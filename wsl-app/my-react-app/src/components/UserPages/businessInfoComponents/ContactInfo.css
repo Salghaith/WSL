@@ -1,0 +1,57 @@
+.contact-info-section {
+  position: sticky;
+  top: 20px;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  width: 100%;
+}
+
+.contact-heading {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.light-divider {
+  border: none;
+  border-top: 1px solid #f0f0f0;
+  margin: 20px 0;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.contact-text {
+  font-size: 22px;
+  margin: 0;
+  
+}
+
+.contact-icon {
+  color: #666;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.contact-icon:hover {
+  color: #333;
+}
+
+.address-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px; /* Adds space between "Get Directions" and address */
+  
+}
+
+.contact-address {
+  font-size: 22px;
+  margin: 0;
+  
+}

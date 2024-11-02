@@ -1,0 +1,35 @@
+.highlights-section {
+    padding: 10px 0;
+  }
+  
+  .highlights-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .highlights-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+  }
+  
+  .highlight-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 120px;
+  }
+  
+  .highlight-icon {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .highlight-label {
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+  }
+  

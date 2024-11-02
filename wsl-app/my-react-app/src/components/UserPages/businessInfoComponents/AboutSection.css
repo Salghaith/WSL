@@ -1,0 +1,43 @@
+.about-section {
+  padding: 10px 0;
+}
+
+.about-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 5px; /* Reduced space below title */
+}
+
+.about-owner {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px; /* Reduced space below user profile */
+}
+
+.owner-icon {
+  color: #333;
+  margin-right: 20px;
+}
+
+.owner-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.owner-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 1px; /* Reduced space between name and role */
+}
+
+.owner-role {
+  font-size: 18px;
+  color: #777;
+  margin-top: 0;
+}
+
+.owner-description {
+  font-size: 20px;
+  margin-top: 10px; /* Reduced space above description */
+  line-height: 1.6;
+}
