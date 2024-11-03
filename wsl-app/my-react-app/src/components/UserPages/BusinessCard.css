@@ -1,3 +1,7 @@
+.business-card {
+  cursor: pointer;
+}
+
 .business-card .post {
   display: flex;
 

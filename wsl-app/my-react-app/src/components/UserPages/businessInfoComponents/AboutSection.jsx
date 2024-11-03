@@ -14,7 +14,7 @@ export default function AboutSection({ owner }) {
           <p className="owner-role">Business Owner</p>
         </div>
       </div>
-      <p className="owner-description">{owner.fullDescription}</p>
+      <p className="owner-description">Description</p>
     </div>
   );
 }

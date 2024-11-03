@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
-import './UserRating.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { Rating } from '@mui/material';
+import React, { useState } from "react";
+import "./UserRating.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { Rating } from "@mui/material";
+import HalfRating from "../../Shared/RatingStars";
 
-export default function UserRating({ userName, businessName, overallRating, totalReviews, ratingDistribution, onReviewSubmit }) {
+export default function UserRating({
+  userName,
+  businessName,
+  overallRating,
+  totalReviews,
+  ratingDistribution,
+  onReviewSubmit,
+}) {
   const [userRating, setUserRating] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviewText, setReviewText] = useState("");
@@ -29,7 +37,11 @@ export default function UserRating({ userName, businessName, overallRating, tota
   return (
     <div className="user-rating-section">
       <div className="user-info">
-        <FontAwesomeIcon icon={faUserCircle} size="3x" className="profile-icon" />
+        <FontAwesomeIcon
+          icon={faUserCircle}
+          size="3x"
+          className="profile-icon"
+        />
         <p className="user-name">{userName}</p>
         <Rating
           name="user-rating"
@@ -47,12 +59,12 @@ export default function UserRating({ userName, businessName, overallRating, tota
         <div className="rating-details">
           <div className="overall-rating-section">
             <p className="overall-rating-label">Overall Rating</p>
-            <Rating name="overall-rating" value={overallRating} readOnly precision={0.5} />
+            <HalfRating name="overall-rating" rating={overallRating} />
             <p className="review-count">{totalReviews} reviews</p>
           </div>
         </div>
 
-        <div className="rating-distribution">
+        {/* <div className="rating-distribution">                                         !!Will do later!!
           {Object.entries(ratingDistribution).map(([stars, count]) => (
             <div key={stars} className="rating-bar-item">
               <span className="star-label">{stars} Stars</span>
@@ -65,7 +77,7 @@ export default function UserRating({ userName, businessName, overallRating, tota
               <span className="rating-count">{count}</span>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Modal for review submission */}
@@ -73,10 +85,11 @@ export default function UserRating({ userName, businessName, overallRating, tota
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h3 className="modal-title">Leave a Review</h3>
-            <Rating
+            <HalfRating
               name="modal-rating"
-              value={userRating}
+              rating={userRating}
               precision={0.5}
+              readOnly={false}
               onChange={(event, newValue) => handleRatingChange(newValue)}
             />
             <textarea

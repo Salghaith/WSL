@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './BusinessInfo.css';
-import HalfRating from '../HalfRating';
+import HalfRating from "../../Shared/RatingStars";
 
 export default function BusinessInfo({ businessInfo }) {
   const [currentStatus, setCurrentStatus] = useState({ day: "", status: "" });
@@ -12,8 +12,8 @@ export default function BusinessInfo({ businessInfo }) {
       const currentHour = today.getHours();
       const currentMinute = today.getMinutes();
 
-      const openingTime = businessInfo.openingHours[dayOfWeek]?.start || "00:00";
-      const closingTime = businessInfo.openingHours[dayOfWeek]?.end || "00:00";
+      const openingTime = businessInfo.openingHours?.from || "00:00";
+      const closingTime = businessInfo.openingHours?.to || "00:00";
 
       const [openingHour, openingMinute] = openingTime.split(":").map(Number);
       const [closingHour, closingMinute] = closingTime.split(":").map(Number);
@@ -33,7 +33,7 @@ export default function BusinessInfo({ businessInfo }) {
 
   return (
     <div className="business-Info-section">
-      <h2 className="business-name">{businessInfo.name}</h2>
+      <h2 className="business-name">{businessInfo.businessName}</h2>
       <div className="rating-review-container">
         <HalfRating rating={businessInfo.rating} reviewers={businessInfo.reviewers} readOnly={true} />
         <span className="review-count">({businessInfo.reviewers} reviews)</span>
@@ -45,7 +45,7 @@ export default function BusinessInfo({ businessInfo }) {
           {currentStatus.status}
         </span>
         <span className="business-hours">
-          {`${currentStatus.day}: ${businessInfo.openingHours[currentStatus.day]?.start || "N/A"} - ${businessInfo.openingHours[currentStatus.day]?.end || "N/A"}`}
+          {`${currentStatus.day}: ${businessInfo.openingHours.from || "N/A"} - ${businessInfo.openingHours?.to || "N/A"}`}
         </span>
       </div>
     </div>

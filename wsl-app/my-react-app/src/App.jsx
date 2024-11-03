@@ -15,6 +15,7 @@ import SearchForBusinesses from "./pages/BusinessPages/SearchForBusinesses";
 import Header from "./components/Header/header";
 import UserProfile from "./pages/UserPages/UserProfile";
 import EditBusinessInfo from "./pages/BusinessPages/EditBusinessInfo";
+import BusinessInfo from "./pages/UserPages/BusinessInfoPage";
 
 const App = () => {
   const [formValidity, setFormValidity] = useState({});
@@ -101,6 +102,16 @@ const App = () => {
                     title="Saleh"
                     posts={[{ title: "Moh" }, { title: "Siu" }]}
                   />
+                  <Footer />
+                </React.Fragment>
+              }
+            />
+            <Route
+              path="/business/:businessId/info"
+              element={
+                <React.Fragment>
+                  <Header withoutIcons />
+                  <BusinessInfo />
                   <Footer />
                 </React.Fragment>
               }

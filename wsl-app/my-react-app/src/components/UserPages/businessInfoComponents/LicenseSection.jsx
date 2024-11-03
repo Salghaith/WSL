@@ -1,6 +1,6 @@
 import React from 'react';
 import './LicenseSection.css';
-import licenseImage from '../../images/License.svg';
+import licenseImage from "../../../assets/logoWSL.svg";
 
 
 export default function LicenseSection() {

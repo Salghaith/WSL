@@ -9,13 +9,13 @@ export default function HalfRating(props) {
         name="half-rating-read"
         value={props.rating}
         precision={0.5} //minimum inceament value allowed
-        readOnly
+        readOnly={props.readOnly ?? true}
         className={props.className}
-        //Here should implement when the user wants to rate the business, by modifing readOnly={editable?} and add onChange...
+        onChange={props.onChange}
       />
       <Box sx={{ ml: 1 }}>{props.rating}</Box>
       <Box sx={{ ml: 1, fontSize: "small", color: "#a9a9a9" }}>
-        ({props.reviewers} {props.reviewers > 1 ? "Reviews" : "Review"})
+        ({props.reviewers || 0} {props.reviewers > 1 ? "Reviews" : "Review"})
       </Box>
     </Box>
   );

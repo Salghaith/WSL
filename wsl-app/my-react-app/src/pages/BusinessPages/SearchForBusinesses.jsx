@@ -84,6 +84,7 @@ const SearchForBusinesses = () => {
           <div className="posts">
             {businesses.map((business, index) => (
               <BusinessCard
+                business={business}
                 key={index}
                 index={index + 1}
                 image={workerIcon} // Assuming you have a default image

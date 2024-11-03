@@ -45,10 +45,10 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
     street: loggedInUser?.business?.location?.street || "",
   });
   const [hoursFrom, setHoursFrom] = useState(
-    loggedInUser?.business?.openingHours?.from || "2022-04-17T12:30"
+    loggedInUser?.business?.openingHours?.from || "2024-04-17T12:30"
   );
   const [hoursTo, setHoursTo] = useState(
-    loggedInUser?.business?.openingHours?.to || "2022-04-17T23:30"
+    loggedInUser?.business?.openingHours?.to || "2024-04-17T23:30"
   );
   const [description, setDescription] = useState(
     loggedInUser?.business?.description || ""

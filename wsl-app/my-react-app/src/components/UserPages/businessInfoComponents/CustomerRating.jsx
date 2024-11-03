@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import './CustomerRating.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { Rating } from '@mui/material';
+import React, { useState } from "react";
+import "./CustomerRating.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUserCircle,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { Rating } from "@mui/material";
+import HalfRating from "../../Shared/RatingStars";
 
-export default function CustomerRating({ reviews, newReview }) {
+export default function CustomerRating({ reviews }) {
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 5;
 
-  // Combine the new review (if exists) at the top of the list
-  const allReviews = newReview ? [newReview, ...reviews] : reviews;
-
   // Calculate the total number of pages
-  const totalPages = Math.ceil(allReviews.length / reviewsPerPage);
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage);
 
   // Calculate the current reviews to display based on pagination
-  const currentReviews = allReviews.slice(
+  const currentReviews = reviews.slice(
     (currentPage - 1) * reviewsPerPage,
     currentPage * reviewsPerPage
   );
@@ -31,21 +32,28 @@ export default function CustomerRating({ reviews, newReview }) {
         {currentReviews.map((review, index) => (
           <div key={index} className="review-card">
             <div className="review-header">
-              <FontAwesomeIcon icon={faUserCircle} size="2x" className="profile-icon" />
+              <FontAwesomeIcon
+                icon={faUserCircle}
+                size="2x"
+                className="profile-icon"
+              />
               <p className="customer-name">{review.name}</p>
             </div>
-            <Rating name="customer-rating" value={review.rating} readOnly precision={0.5} />
+
+            <HalfRating name="customer-rating" rating={review.rating} />
             <p className="customer-review-text">{review.text}</p>
           </div>
         ))}
       </div>
-      
+
       {/* Pagination Controls */}
       <div className="pagination-controls">
         {Array.from({ length: totalPages }, (_, index) => (
           <span
             key={index + 1}
-            className={`page-number ${currentPage === index + 1 ? 'active' : ''}`}
+            className={`page-number ${
+              currentPage === index + 1 ? "active" : ""
+            }`}
             onClick={() => handlePageChange(index + 1)}
           >
             {index + 1}
@@ -54,7 +62,9 @@ export default function CustomerRating({ reviews, newReview }) {
         <FontAwesomeIcon
           icon={faChevronRight}
           className="next-arrow"
-          onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+          onClick={() =>
+            currentPage < totalPages && handlePageChange(currentPage + 1)
+          }
         />
       </div>
     </div>
