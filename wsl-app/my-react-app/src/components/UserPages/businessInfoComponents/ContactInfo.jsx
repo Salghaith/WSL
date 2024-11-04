@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect}from "react";
 import "./ContactInfo.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,8 +6,18 @@ import {
   faPhone,
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import getAddress from "../../util/getAddress";
 
 export default function ContactInfo({ contactInfo }) {
+  const [address, setAddress] = useState({ street: '', city: '', district: '' });
+
+  useEffect(() => {
+    if (contactInfo?.location) {
+      getAddress(contactInfo.location.latitude, contactInfo.location.longitude)
+        .then((data) => setAddress(data))
+        .catch((error) => console.error("Error fetching address:", error));
+    }
+  }, [contactInfo]);
   return (
     <div className="contact-info-section">
       <h2 className="contact-heading">Contact Information</h2>
@@ -41,13 +51,15 @@ export default function ContactInfo({ contactInfo }) {
       <hr className="light-divider" />
 
       <div className="address-container">
-        <p className="contact-address">{`${contactInfo.location.city}, ${contactInfo.location.street}`}</p>
+        <p className="contact-address">{`${address.district ?? "N/A"}, ${
+          address.street ?? "N/A"
+        }`}</p>
         <FontAwesomeIcon
           icon={faMapMarkerAlt}
           className="contact-icon"
           onClick={() =>
             window.open(
-              `https://www.google.com/maps/@${contactInfo.location.lat},${contactInfo.location.lng}`,
+              `https://www.google.com/maps/search/?api=1&query=${contactInfo.location.latitude},${contactInfo.location.longitude}`,
               "_blank"
             )
           }

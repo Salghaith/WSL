@@ -43,7 +43,9 @@ const SearchBar = ({ apiBaseUrl, setPrompt, prompt }) => {
   const handleSuggestionClick = (business) => {
     setPrompt(business.businessName);
     setOpenList(false);
-    navigate(`/`); // Navigate to the business details page
+    navigate(`/business/${business.businessName}/info`, {
+      state: { businessData: business },
+    }); // Navigate to the business details page
   };
 
   return (

@@ -8,10 +8,18 @@ import UserRating from "../../components/UserPages/businessInfoComponents/UserRa
 import CustomerRating from "../../components/UserPages/businessInfoComponents/CustomerRating";
 import "./BusinessInfoPage.css";
 import { UserContext } from "../../components/util/context";
+import { useLocation } from "react-router-dom";
 
 export default function BusinessPage() {
   const { loggedInUser } = useContext(UserContext);
+  const location = useLocation();
+  const { businessData } = location.state || {};
 
+  if (!businessData) {
+    return <p>No Business Data Available</p>;
+  }
+
+  const reviews = [{}]
   const onReviewSubmit = (newRating) => {
     let name = newRating.name;
     let rating = newRating.rating;
@@ -23,19 +31,19 @@ export default function BusinessPage() {
       <div className="business-info-wrapper">
         <BusinessInfo
           businessInfo={
-            businessInfo
+            businessData
           } /* Checked businessInfo = business Object*/
         />
         <hr className="section-divider" />
         <LicenseSection /* Checked */ />
         <hr className="section-divider" />
-        <AboutSection owner={owner} /* Checked owner = business Object*/ />
+        <AboutSection owner={businessData.owner} /* Checked owner = business Object*/ />
         <hr className="section-divider" />
-        <LocationHoursSection
+        {/* <LocationHoursSection
           location={location}
-          hours={businessInfo.openingHours} /* Not ready yet! */
+          hours={businessData.openingHours} // Not ready yet! 
         />
-        <hr className="section-divider" />
+        <hr className="section-divider" /> */}
 
         {/* User Rating Section */}
         {loggedInUser && (
@@ -43,9 +51,9 @@ export default function BusinessPage() {
             <UserRating
               /* Checked businessInfo = business Object*/
               userName={loggedInUser.name}
-              businessName={businessInfo.name}
-              overallRating={businessInfo.rating}
-              totalReviews={businessInfo.reviewers}
+              businessName={businessData}
+              overallRating={businessData.rating}
+              totalReviews={businessData.reviewers}
               //ratingDistribution={ratingDistribution}
               onReviewSubmit={onReviewSubmit}
             />
@@ -60,7 +68,7 @@ export default function BusinessPage() {
 
       <div className="contact-info-wrapper">
         <ContactInfo
-          contactInfo={contactInfo}
+          contactInfo={businessData}
           /* Checked contactInfo = business Object*/
         />
       </div>

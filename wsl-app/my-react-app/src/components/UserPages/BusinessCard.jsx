@@ -8,7 +8,9 @@ const BusinessCard = (props) => {
   const navigate = useNavigate();
   const coor = { lat: 24.7660544, lng: 46.7533824 };
   const handleClick = () => {
-    navigate("/");
+    navigate(`/business/${props.title}/info`, {
+      state: { businessData: props.business },
+    });
   };
   return (
     <div className="business-card" onClick={handleClick}>

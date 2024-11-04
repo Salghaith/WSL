@@ -51,7 +51,7 @@ export default function UserRating({
           className="user-rating-stars"
         />
         <p className="start-review-text" onClick={openModal}>
-          Start your review of {businessName}
+          {`Start your review of ${businessName.businessName}`}
         </p>
       </div>
 

@@ -107,7 +107,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
   ];
   const initCoords = getLocation(step);
   const [finalCoordinates, setFinalCoordinates] = useState(
-    initCoords || { lat: 24.7228109, lng: 46.6202363 }
+    initCoords || { lat: 0, lng: 0 }
   );
 
   const onChangeMap = (lat, lng) => {

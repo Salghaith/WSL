@@ -45,12 +45,15 @@ const Input = (props) => {
     ) : (
       <textarea
         id={props.id}
+        type={props.type}
+        className={props.className}
         rows={props.rows || 3}
         columns={props.columns || 3}
         onChange={changeHandler}
         onBlur={touchHandler}
         value={props.value}
         placeholder={props.placeholder}
+        disabled={props.disabled}
       />
     );
 
