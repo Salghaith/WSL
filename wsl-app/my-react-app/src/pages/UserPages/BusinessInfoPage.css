@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 70%;
+  width: 75%;
   margin: 0 auto;
   padding-top: 50px;
   gap: 20px;
@@ -10,10 +10,6 @@
 
 .business-info-wrapper {
   width: 60%;
-}
-
-.contact-info-wrapper {
-  width: 30%;
 }
 
 .section-divider {

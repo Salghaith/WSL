@@ -60,7 +60,7 @@ export default function UserRating({
           <div className="overall-rating-section">
             <p className="overall-rating-label">Overall Rating</p>
             <HalfRating name="overall-rating" rating={overallRating} />
-            <p className="review-count">{totalReviews} reviews</p>
+            {/* <p className="review-count">{totalReviews} reviews</p> */}
           </div>
         </div>
 
