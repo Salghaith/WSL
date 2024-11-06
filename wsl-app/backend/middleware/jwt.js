@@ -8,7 +8,6 @@ const verifyToken = (req, res, next) =>{
 
     jwt.verify(token, process.env.JWT_KEY, async(err, payload)=>{
         if(err) return next(createError(403,"Token isn't valid!"));
-        console.log("Decoded Token Payload: ", payload);
         req.userId = payload.id;
         req.isBusiness = payload.isBusiness;
         next();

@@ -1,5 +1,6 @@
 import User from "../models/user-model.js";
 import Business from "../models/business-model.js";
+import Review from "../models/review-model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import createError from "../utils/createError.js";
@@ -133,6 +134,75 @@ export const searchBusinesses = async (req, res, next) => {
     return res.status(400).json({
       message: "Please provide either a category or name for searching",
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const submitReview = async (req, res, next) => {
+  try {
+    const { businessId, rating, text } = req.body;
+    const clientId = req.userId; // middleware adds userId to the request
+
+    const business = await Business.findById(businessId);
+    if (!business) {
+      return res.status(404).json({ message: "Business not found" });
+    }
+
+   
+    const newReview = new Review({
+      business: businessId,
+      client: clientId,
+      rating,
+      comment: text,
+    });
+
+    await newReview.save();
+
+    
+
+ // Calculate the previous count of reviews
+    const previousReviewCount = business.reviews.length;
+
+// Handle initial case where there are no previous reviews
+    if (previousReviewCount === 0) {
+    // First review, so set ratings directly to the new rating
+    business.ratings = rating;
+    } else {
+    // Calculate the previous total ratings based on the current average and count
+    const previousTotalRating = business.ratings * previousReviewCount;
+
+    // Add the new rating to the total
+    const newTotalRating = previousTotalRating + rating;
+
+    // Calculate the new average by dividing the updated total by the updated count
+    const newReviewCount = previousReviewCount + 1;
+    business.ratings = newTotalRating / newReviewCount;
+    }
+    business.reviews.push(newReview._id);
+    await business.save();
+
+    res.status(201).json({ message: "Review submitted successfully", business });
+  } catch (error) {
+    console.error("Error submitting review:", error);
+    res.status(500).json({ message: "Failed to submit review" });
+    next(error);
+  }
+};
+
+export const getBusinessReviews = async (req, res, next) => {
+  try {
+    const businessId = req.params.businessId;
+    const business = await Business.findById(businessId).populate({
+      path: "reviews",
+      populate: { path: "client", select: "name" } // Populate 'client' field with only 'name'
+    });
+    
+    if (!business) {
+      return res.status(404).json({ message: "Business not found" });
+    }
+
+    res.status(200).json({ reviews: business.reviews });
   } catch (error) {
     next(error);
   }

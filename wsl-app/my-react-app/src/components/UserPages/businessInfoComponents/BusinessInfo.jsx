@@ -38,8 +38,8 @@ export default function BusinessInfo({ businessInfo }) {
       <h2 className="business-name">{businessInfo.businessName}</h2>
       <div className="rating-review-container">
         <HalfRating
-          rating={businessInfo.rating}
-          reviewers={businessInfo.reviewers}
+          rating={businessInfo.ratings}
+          reviewers={businessInfo.reviews.length}
           readOnly={true}
         />
         <span className="review-count"></span>

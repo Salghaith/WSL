@@ -37,11 +37,11 @@ export default function CustomerRating({ reviews }) {
                 size="2x"
                 className="profile-icon"
               />
-              <p className="customer-name">{review.name}</p>
+              <p className="customer-name">{review.client.name}</p>
             </div>
 
             <HalfRating name="customer-rating" rating={review.rating} />
-            <p className="customer-review-text">{review.text}</p>
+            <p className="customer-review-text">{review.comment}</p>
           </div>
         ))}
       </div>
