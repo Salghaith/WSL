@@ -47,7 +47,10 @@ export default function UserRating({
           name="user-rating"
           value={userRating}
           precision={0.5}
-          onChange={(event, newValue) => handleRatingChange(newValue)}
+          onChange={(event, newValue) => {
+            handleRatingChange(newValue);
+            openModal();
+          }}
           className="user-rating-stars"
         />
         <p className="start-review-text" onClick={openModal}>
@@ -59,7 +62,11 @@ export default function UserRating({
         <div className="rating-details">
           <div className="overall-rating-section">
             <p className="overall-rating-label">Overall Rating</p>
-            <HalfRating name="overall-rating" rating={overallRating} />
+            <HalfRating
+              name="overall-rating"
+              rating={overallRating.toFixed(1)}
+              reviewers={totalReviews}
+            />
             {/* <p className="review-count">{totalReviews} reviews</p> */}
           </div>
         </div>
@@ -90,6 +97,7 @@ export default function UserRating({
               rating={userRating}
               precision={0.5}
               readOnly={false}
+              withoutReviews={true}
               onChange={(event, newValue) => handleRatingChange(newValue)}
             />
             <textarea

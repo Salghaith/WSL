@@ -239,7 +239,7 @@ const BusinessRegister = ({ formValidity, onValidityChange }) => {
                     )}
                   </div>
                   <div className="form-group">
-                    <label>Coverge Area</label>
+                    <label>Coverge Area (Km)</label>
                     <DiscreteSlider onChange={(value) => setRadius(value)} />
                   </div>
                 </div>

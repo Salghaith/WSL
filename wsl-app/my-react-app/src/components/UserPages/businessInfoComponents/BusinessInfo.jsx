@@ -12,8 +12,8 @@ export default function BusinessInfo({ businessInfo }) {
       const currentHour = today.getHours();
       const currentMinute = today.getMinutes();
 
-      const openingTime = "00:00";
-      const closingTime = "00:00";
+      const openingTime = businessInfo.openingHours.from ?? "00:00";
+      const closingTime = businessInfo.openingHours.to ?? "00:00";
 
       const [openingHour, openingMinute] = openingTime.split(":").map(Number);
       const [closingHour, closingMinute] = closingTime.split(":").map(Number);
@@ -38,7 +38,7 @@ export default function BusinessInfo({ businessInfo }) {
       <h2 className="business-name">{businessInfo.businessName}</h2>
       <div className="rating-review-container">
         <HalfRating
-          rating={businessInfo.ratings}
+          rating={businessInfo.ratings.toFixed(1)}
           reviewers={businessInfo.reviews.length}
           readOnly={true}
         />

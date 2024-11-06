@@ -90,6 +90,7 @@ const SearchForBusinesses = () => {
                 image={workerIcon} // Assuming you have a default image
                 title={business.businessName}
                 rating={business.ratings || 0}
+                reviewers={business.reviews.length}
                 description={business.description}
                 openFrom={business.openingHours.from}
                 openTo={business.openingHours.to}

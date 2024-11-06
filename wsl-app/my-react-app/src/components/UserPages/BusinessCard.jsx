@@ -15,15 +15,15 @@ const BusinessCard = (props) => {
   return (
     <div className="business-card" onClick={handleClick}>
       <div key={props.index} className="post">
-        {/* <img src={props.image} alt={props.title} className="post-image" /> */}
-        <div className="post-image">
+        <img src={props.image} alt={props.title} className="post-image" />
+        {/* <div className="post-image">
           <Map center={coor} zoom={15} />
-        </div>
+        </div> */}
         <div className="post-info">
           <h3 className="post-title">{props.title}</h3>
           <HalfRating
             className="post-rating"
-            rating={props.rating}
+            rating={props.rating.toFixed(1)}
             reviewers={props.reviewers}
           />
           <p className="post-description">{props.description}</p>

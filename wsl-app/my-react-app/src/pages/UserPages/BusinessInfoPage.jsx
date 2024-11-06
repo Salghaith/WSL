@@ -8,20 +8,18 @@ import UserRating from "../../components/UserPages/businessInfoComponents/UserRa
 import CustomerRating from "../../components/UserPages/businessInfoComponents/CustomerRating";
 import "./BusinessInfoPage.css";
 import { UserContext } from "../../components/util/context";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import getAddress from "../../components/util/getAddress";
 
 export default function BusinessPage() {
   const { loggedInUser, apiBaseUrl } = useContext(UserContext);
   const location = useLocation();
+  const navigate = useNavigate();
   const { businessData } = location.state || {};
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  if (!businessData) {
-    return <p>No Business Data Available</p>;
-  }
 
   useEffect(() => {
     if (businessData) {
@@ -43,12 +41,10 @@ export default function BusinessPage() {
     }
   }, [businessData]);
 
-  
-
   const onReviewSubmit = async (newReview) => {
     try {
       const { rating, text } = newReview;
-  
+
       const response = await axios.post(
         `${apiBaseUrl}/business/review`,
         {
@@ -58,7 +54,7 @@ export default function BusinessPage() {
         },
         { withCredentials: true }
       );
-  
+
       if (response.status === 201) {
         console.log("Review submitted successfully:", response.data);
         // Optionally update local state to display the new review immediately
@@ -66,8 +62,8 @@ export default function BusinessPage() {
     } catch (error) {
       console.error("Error submitting review:", error);
     }
+    window.location.reload();
   };
-  
 
   const [address, setAddress] = useState({ street: "", district: "" });
 
@@ -81,6 +77,10 @@ export default function BusinessPage() {
         .catch((error) => console.error("Error fetching address:", error));
     }
   }, []);
+
+  if (!businessData) {
+    return <p>No Business Data Available</p>;
+  }
 
   return (
     <div className="business-page-container">
