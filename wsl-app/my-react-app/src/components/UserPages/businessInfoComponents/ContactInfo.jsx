@@ -6,18 +6,9 @@ import {
   faPhone,
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import getAddress from "../../util/getAddress";
 
-export default function ContactInfo({ contactInfo }) {
-  const [address, setAddress] = useState({ street: '', city: '', district: '' });
-
-  useEffect(() => {
-    if (contactInfo?.location) {
-      getAddress(contactInfo.location.latitude, contactInfo.location.longitude)
-        .then((data) => setAddress(data))
-        .catch((error) => console.error("Error fetching address:", error));
-    }
-  }, [contactInfo]);
+export default function ContactInfo({ contactInfo, address }) {
+  
   return (
     <div className="contact-info-section">
       <h2 className="contact-heading">Contact Information</h2>

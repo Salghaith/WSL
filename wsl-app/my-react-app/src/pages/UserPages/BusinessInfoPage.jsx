@@ -10,6 +10,7 @@ import "./BusinessInfoPage.css";
 import { UserContext } from "../../components/util/context";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import getAddress from "../../components/util/getAddress";
 
 export default function BusinessPage() {
   const { loggedInUser, apiBaseUrl } = useContext(UserContext);
@@ -68,6 +69,19 @@ export default function BusinessPage() {
   };
   
 
+  const [address, setAddress] = useState({ street: "", district: "" });
+
+  useEffect(() => {
+    if (businessData?.location) {
+      getAddress(
+        businessData.location.latitude,
+        businessData.location.longitude
+      )
+        .then((data) => setAddress(data))
+        .catch((error) => console.error("Error fetching address:", error));
+    }
+  }, []);
+
   return (
     <div className="business-page-container">
       <div className="business-info-wrapper">
@@ -79,13 +93,16 @@ export default function BusinessPage() {
         <hr className="section-divider" />
         <LicenseSection /* Checked */ />
         <hr className="section-divider" />
-        <AboutSection owner={businessData.owner} /* Checked owner = business Object*/ />
-        <hr className="section-divider" />
-        {/* <LocationHoursSection
-          location={location}
-          hours={businessData.openingHours} // Not ready yet! 
+        <AboutSection
+          owner={businessData.owner} /* Checked owner = business Object*/
         />
-        <hr className="section-divider" /> */}
+        <hr className="section-divider" />
+        <LocationHoursSection
+          location={businessData.location}
+          address={address}
+          hours={businessData.openingHours} // Not ready yet!
+        />
+        <hr className="section-divider" />
 
         {/* User Rating Section */}
         {loggedInUser && (
@@ -111,6 +128,7 @@ export default function BusinessPage() {
       <div className="contact-info-wrapper">
         <ContactInfo
           contactInfo={businessData}
+          address={address}
           /* Checked contactInfo = business Object*/
         />
       </div>

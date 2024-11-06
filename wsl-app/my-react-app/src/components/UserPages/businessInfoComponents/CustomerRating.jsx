@@ -40,7 +40,7 @@ export default function CustomerRating({ reviews }) {
               <p className="customer-name">{review.client.name}</p>
             </div>
 
-            <HalfRating name="customer-rating" rating={review.rating} />
+            <HalfRating name="customer-rating" rating={review.rating} withoutReviews={true}/>
             <p className="customer-review-text">{review.comment}</p>
           </div>
         ))}

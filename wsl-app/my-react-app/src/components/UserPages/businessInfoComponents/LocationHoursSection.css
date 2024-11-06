@@ -12,7 +12,7 @@
 .location-hours-content {
   display: flex;
   justify-content: stretch;
-  gap: 170px;
+  /* gap: 70px; */
 }
 
 .map-container {
@@ -22,9 +22,9 @@
 }
 
 .map-image {
-  width: 100%;
+  width: 450px;
   max-width: 500px;
-  height: auto;
+  height: 300px;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -50,10 +50,10 @@
   gap: 20px;
 }
 
-.day {
+/* .day {
   width: 50px;
   font-weight: bold;
-}
+} */
 
 .hours {
   width: 200px;

@@ -14,9 +14,9 @@ export default function HalfRating(props) {
         onChange={props.onChange}
       />
       <Box sx={{ ml: 1 }}>{props.rating}</Box>
-      <Box sx={{ ml: 1, fontSize: "small", color: "#a9a9a9" }}>
+      {!props.withoutReviews && <Box sx={{ ml: 1, fontSize: "small", color: "#a9a9a9" }}>
         ({props.reviewers || 0} {props.reviewers > 1 ? "Reviews" : "Review"})
-      </Box>
+      </Box>}
     </Box>
   );
 }

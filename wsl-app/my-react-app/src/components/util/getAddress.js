@@ -1,4 +1,3 @@
-// In "../../util/getAddress.js"
 export default async function getAddress(latitude, longitude) {
   const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
   const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
@@ -10,13 +9,9 @@ export default async function getAddress(latitude, longitude) {
       const addressComponents = data.results[0].address_components;
 
       let street = "";
-      let city = "";
       let district = "";
 
       addressComponents.forEach((component) => {
-        if (component.types.includes("locality")) {
-          city = component.long_name;
-        }
         if (component.types.includes("route")) {
           street = component.long_name;
         }
@@ -25,13 +20,13 @@ export default async function getAddress(latitude, longitude) {
         }
       });
 
-      return { street, city, district };
+      return { street, district };
     } else {
       console.error("No results found");
-      return { street: "", city: "", district: "" };
+      return { street: "", district: "" };
     }
   } catch (error) {
     console.error("Error fetching address:", error);
-    return { street: "", city: "", district: "" };
+    return { street: "", district: "" };
   }
 }

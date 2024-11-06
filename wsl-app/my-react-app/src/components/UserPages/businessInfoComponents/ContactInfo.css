@@ -3,7 +3,7 @@
   top: 20px;
   padding: 20px;
   border: 1px solid #f0f0f0;
-  width: 100%;
+  width: 300px;
 }
 
 .contact-heading {
@@ -23,12 +23,16 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .contact-text {
   font-size: 22px;
   margin: 0;
-  
+  flex-basis: 70%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
 }
 
 .contact-icon {
