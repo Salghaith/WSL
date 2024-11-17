@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import MessageBanner from "../../components/Shared/MessageBanner.jsx";
 import Input from "../../components/FormElement/Input";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MAXLENGTH,
@@ -15,7 +17,7 @@ import {
 const UserProfile = ({ formValidity, onValidityChange }) => {
   const navigate = useNavigate();
   const { loggedInUser, login, apiBaseUrl } = useContext(UserContext);
-  // const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
   useEffect(() => {
     if (!loggedInUser) {
       navigate("/");
@@ -30,6 +32,8 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (loggedInUser) {
@@ -49,6 +53,7 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
     if (!isFormValid) {
       return alert("Something went wrong, please reload the page.");
     }
+    setLoading(true);
     try {
       const response = await axios.put(
         `${apiBaseUrl}/user/update`,
@@ -60,15 +65,15 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
         { withCredentials: true }
       );
 
-      // localStorage.setItem("currentUser", JSON.stringify(response.data));
       login(response.data);
-
+      setLoading(false);
       setIsEditing(false);
       setErrors({}); // Clear errors on successful submission
 
       setSuccessMessage("Profile updated successfully!");
       setTimeout(() => setSuccessMessage(""), 5000); // Message disappears after 5 seconds
     } catch (error) {
+      setLoading(false);
       setErrors({ general: "Failed to update profile" });
     }
   };
@@ -80,6 +85,15 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
 
   return (
     <div className="profile-page">
+      <div>
+        <Backdrop
+          sx={(theme) => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
+          open={loading}
+          onClick={() => {}}
+        >
+          <CircularProgress color="black" />
+        </Backdrop>
+      </div>
       <div className="profile-container">
         <h2 className="profile-title">User Profile</h2>
         <div className="profile-field">

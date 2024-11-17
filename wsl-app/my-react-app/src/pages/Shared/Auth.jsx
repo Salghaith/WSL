@@ -8,6 +8,8 @@ import lockIcon from "../../assets/lock-icon.svg";
 import homePic from "../../assets/home-picture2.svg";
 import Input from "../../components/FormElement/Input.jsx";
 import MessageBanner from "../../components/Shared/MessageBanner.jsx";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MAXLENGTH,
@@ -19,8 +21,11 @@ import Button from "../../components/FormElement/Button.jsx";
 
 const Auth = ({ formValidity, onValidityChange }) => {
   const [isLoginMode, setIsLoginMode] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState(null);
-  // const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const { login, apiBaseUrl } = useContext(UserContext);
@@ -44,6 +49,7 @@ const Auth = ({ formValidity, onValidityChange }) => {
     }
 
     try {
+      setLoading(true);
       if (isLoginMode) {
         // Login Mode
         const response = await axios.post(
@@ -56,6 +62,7 @@ const Auth = ({ formValidity, onValidityChange }) => {
         );
 
         login(response.data);
+        setLoading(false);
         navigate("/");
         console.log("Login successful:", response.data);
         // Save the JWT token or session data
@@ -73,10 +80,12 @@ const Auth = ({ formValidity, onValidityChange }) => {
           { withCredentials: true }
         );
         login(res.data);
+        setLoading(false);
         navigate("/");
         // Handle post-registration logic (e.g., auto-login, redirect)
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
         // If the server sends a meaningful error message
         setErrorMessage(error.response.data || "An unknown error occurred");
@@ -96,6 +105,15 @@ const Auth = ({ formValidity, onValidityChange }) => {
   return (
     <div className="auth-container">
       <div className="left-section">
+        <div>
+        <Backdrop
+          sx={(theme) => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
+          open={loading}
+          onClick={() => {}}
+        >
+          <CircularProgress color="black" />
+        </Backdrop>
+        </div>
         <div className="logo">
           <Link to="/">
             <img src={logo} alt="WSL Logo" />

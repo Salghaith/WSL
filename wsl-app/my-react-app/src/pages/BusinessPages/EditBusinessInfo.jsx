@@ -9,6 +9,8 @@ import TimeSelector from "../../components/BusinessPages/timeSelector.jsx"; // E
 import dayjs from "dayjs";
 import axios from "axios";
 import MessageBanner from "../../components/Shared/MessageBanner.jsx";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MAXLENGTH,
@@ -20,12 +22,14 @@ import Input from "../../components/FormElement/Input.jsx";
 const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
   const { loggedInUser, login, apiBaseUrl } = useContext(UserContext);
   const navigate = useNavigate();
-  // const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
   useEffect(() => {
     if (!loggedInUser) {
       navigate("/");
     }
   }, [loggedInUser, navigate]);
+
+  const [loading, setLoading] = useState(false);
 
   const [isEditing, setIsEditing] = useState(false);
   const [businessName, setBusinessName] = useState(
@@ -67,6 +71,7 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
     if (!isFormValid) {
       return alert("Something went wrong, please reload the page.");
     }
+    setLoading(true);
     try {
       const response = await axios.put(
         `${apiBaseUrl}/business/update`,
@@ -94,11 +99,13 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
         business: response.data.business, // Add business data to the user
       };
       login(updatedUserData);
+      setLoading(false);
       setIsEditing(false);
       setErrors({});
       setSuccessMessage("Business info updated successfully!");
       setTimeout(() => setSuccessMessage(""), 5000); // Message disappears after 5 seconds
     } catch (error) {
+      setLoading(false);
       setErrors({ general: "Failed to update business info" });
       console.log(error);
     }
@@ -110,6 +117,15 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
 
   return (
     <div className="business-edit-page">
+      <div>
+        <Backdrop
+          sx={(theme) => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
+          open={loading}
+          onClick={() => {}}
+        >
+          <CircularProgress color="black" />
+        </Backdrop>
+      </div>
       <div className="profile-container">
         <h2 className="profile-title">Edit Business Info</h2>
 
