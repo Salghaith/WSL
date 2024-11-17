@@ -7,6 +7,7 @@ import LocationHoursSection from "../../components/UserPages/businessInfoCompone
 import UserRating from "../../components/UserPages/businessInfoComponents/UserRating";
 import CustomerRating from "../../components/UserPages/businessInfoComponents/CustomerRating";
 import "./BusinessInfoPage.css";
+import CircularProgress from "@mui/material/CircularProgress";
 import { UserContext } from "../../components/util/context";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -79,11 +80,16 @@ export default function BusinessPage() {
   }, []);
 
   if (!businessData) {
-    return <p>No Business Data Available</p>;
+    return <p>No Business Data Available</p>; //Here should be navigation statement.
   }
 
   return (
     <div className="business-page-container">
+      {loading && (
+        <div className="loader">
+          <CircularProgress color="black" />
+        </div>
+      )}
       <div className="business-info-wrapper">
         <BusinessInfo
           businessInfo={

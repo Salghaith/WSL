@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 const BusinessCard = (props) => {
   const navigate = useNavigate();
-  const coor = { lat: 24.7660544, lng: 46.7533824 };
   const handleClick = () => {
     navigate(`/business/${props.title}/info`, {
       state: { businessData: props.business },
@@ -16,9 +15,6 @@ const BusinessCard = (props) => {
     <div className="business-card" onClick={handleClick}>
       <div key={props.index} className="post">
         <img src={props.image} alt={props.title} className="post-image" />
-        {/* <div className="post-image">
-          <Map center={coor} zoom={15} />
-        </div> */}
         <div className="post-info">
           <h3 className="post-title">{props.title}</h3>
           <HalfRating

@@ -5,6 +5,7 @@ import workerIcon from "../../assets/worker-pic.svg";
 import BusinessCard from "../../components/UserPages/BusinessCard";
 import { useLocation } from "react-router-dom";
 import { UserContext } from "../../components/util/context";
+import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
 
 const SearchForBusinesses = () => {
@@ -49,8 +50,6 @@ const SearchForBusinesses = () => {
     }
   }, [category]);
 
-  //if (loading) return <p>Loading...</p>;
-
   // Function to handle page change
   // const handlePageChange = (pageNumber) => {
   //   setCurrentPage(pageNumber);
@@ -65,7 +64,6 @@ const SearchForBusinesses = () => {
   //   (currentPage - 1) * postsPerPage,
   //   currentPage * postsPerPage
   // );
-
   return (
     <div className="search-page">
       <div className="content-container">
@@ -82,6 +80,11 @@ const SearchForBusinesses = () => {
           </div>
 
           <div className="posts">
+            {loading && (
+              <div className="loader">
+                <CircularProgress color="black" />
+              </div>
+            )}
             {businesses.map((business, index) => (
               <BusinessCard
                 business={business}
