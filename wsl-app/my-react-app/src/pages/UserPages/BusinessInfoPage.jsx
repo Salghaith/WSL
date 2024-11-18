@@ -7,7 +7,6 @@ import LocationHoursSection from "../../components/UserPages/businessInfoCompone
 import UserRating from "../../components/UserPages/businessInfoComponents/UserRating";
 import CustomerRating from "../../components/UserPages/businessInfoComponents/CustomerRating";
 import "./BusinessInfoPage.css";
-import CircularProgress from "@mui/material/CircularProgress";
 import { UserContext } from "../../components/util/context";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -17,7 +16,9 @@ export default function BusinessPage() {
   const { loggedInUser, apiBaseUrl } = useContext(UserContext);
   const location = useLocation();
   const navigate = useNavigate();
-  const { businessData } = location.state || {};
+  //const { businessData } = location.state || {};
+  const initialBusinessData = location.state?.businessData || {};
+  const [businessData, setBusinessData] = useState(initialBusinessData);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
@@ -30,6 +31,11 @@ export default function BusinessPage() {
             `${apiBaseUrl}/business/${businessData._id}/reviews`
           );
           setReviews(response.data.reviews); // Assuming the API returns reviews in this format
+          setBusinessData((prev) => ({
+            ...prev,
+            ratings: response.data.ratings,
+            reviews: response.data.reviews,
+          }));
         } catch (error) {
           console.error("Error fetching reviews:", error);
           setErrorMessage("Failed to load reviews");
@@ -58,12 +64,13 @@ export default function BusinessPage() {
 
       if (response.status === 201) {
         console.log("Review submitted successfully:", response.data);
+        setBusinessData(response.data.business);
         // Optionally update local state to display the new review immediately
       }
     } catch (error) {
       console.error("Error submitting review:", error);
     }
-    window.location.reload();
+    //window.location.reload();
   };
 
   const [address, setAddress] = useState({ street: "", district: "" });
@@ -80,16 +87,11 @@ export default function BusinessPage() {
   }, []);
 
   if (!businessData) {
-    return <p>No Business Data Available</p>; //Here should be navigation statement.
+    return <p>No Business Data Available</p>;
   }
 
   return (
     <div className="business-page-container">
-      {loading && (
-        <div className="loader">
-          <CircularProgress color="black" />
-        </div>
-      )}
       <div className="business-info-wrapper">
         <BusinessInfo
           businessInfo={

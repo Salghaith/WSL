@@ -202,7 +202,10 @@ export const getBusinessReviews = async (req, res, next) => {
       return res.status(404).json({ message: "Business not found" });
     }
 
-    res.status(200).json({ reviews: business.reviews });
+    res.status(200).json({ 
+      reviews: business.reviews,
+      ratings: business.ratings
+     });
   } catch (error) {
     next(error);
   }

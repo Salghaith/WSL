@@ -64,7 +64,7 @@ export default function UserRating({
             <p className="overall-rating-label">Overall Rating</p>
             <HalfRating
               name="overall-rating"
-              rating={overallRating.toFixed(1)}
+              rating={overallRating?.toFixed(1) || "0.0"}
               reviewers={totalReviews}
             />
             {/* <p className="review-count">{totalReviews} reviews</p> */}
