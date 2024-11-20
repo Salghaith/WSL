@@ -1,35 +1,53 @@
 .business-page-container {
   display: flex;
+  flex-direction: column; 
   justify-content: center;
   align-items: flex-start;
-  width: 75%;
+  width: 90%; 
   margin: 0 auto;
   padding-top: 50px;
   gap: 20px;
 }
 
 .business-info-wrapper {
-  width: 60%;
+  width: 100%; 
+}
+
+.contact-info-wrapper {
+  width: 100%; 
+  position: relative; 
+  top: auto;
 }
 
 .section-divider {
   border: none;
   border-top: 1px solid #f0f0f0;
-  margin: 5px 0; /* Consistent spacing above and below */
+  margin: 5px 0; 
 }
 
-.business-page-container {
-  display: flex;
+
+@media (min-width: 768px) {
+  .business-page-container {
+    flex-direction: row; 
+    width: 85%; 
+  }
+
+  .business-info-wrapper {
+    flex: 3;
+    width: 60%; 
+    padding-right: 20px;
+  }
+
+  .contact-info-wrapper {
+    flex: 1;
+    width: 40%; 
+    position: sticky;
+    top: 20px; 
+  }
 }
 
-.business-info-wrapper {
-  flex: 3;
-  padding-right: 20px;
-}
-
-.contact-info-wrapper {
-  flex: 1;
-  position: sticky;
-  top: 20px; /* Adjust this value if you want more space between the top of the viewport */
-  align-self: flex-start; /* Ensures sticky positioning takes effect */
+@media (min-width: 1024px) {
+  .business-page-container {
+    width: 75%; 
+  }
 }
