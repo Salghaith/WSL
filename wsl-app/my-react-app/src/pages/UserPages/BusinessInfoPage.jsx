@@ -69,8 +69,31 @@ export default function BusinessPage() {
       }
     } catch (error) {
       console.error("Error submitting review:", error);
+    } finally {
+      sendEmail();
     }
     //window.location.reload();
+  };
+  
+  const sendEmail = async () => {
+    try {
+      const userEmail = loggedInUser.email;
+      const emailMessage = "TEST";
+      const response = await axios.post(
+        `${apiBaseUrl}/business/mail`,
+        {
+          userEmail,
+          emailMessage,
+        },
+        { withCredentials: true }
+      );
+
+      if (response.status === 201) {
+        console.log("Email sent successfully:", response.data);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
   };
 
   const [address, setAddress] = useState({ street: "", district: "" });
@@ -93,17 +116,11 @@ export default function BusinessPage() {
   return (
     <div className="business-page-container">
       <div className="business-info-wrapper">
-        <BusinessInfo
-          businessInfo={
-            businessData
-          } /* Checked businessInfo = business Object*/
-        />
+        <BusinessInfo businessInfo={businessData} />
         <hr className="section-divider" />
         <LicenseSection /* Checked */ />
         <hr className="section-divider" />
-        <AboutSection
-          owner={businessData.owner} /* Checked owner = business Object*/
-        />
+        <AboutSection owner={businessData.owner} />
         <hr className="section-divider" />
         <LocationHoursSection
           location={businessData.location}
@@ -116,7 +133,6 @@ export default function BusinessPage() {
         {loggedInUser && (
           <>
             <UserRating
-              /* Checked businessInfo = business Object*/
               userName={loggedInUser.name}
               businessName={businessData}
               overallRating={businessData.ratings}
@@ -130,15 +146,11 @@ export default function BusinessPage() {
         )}
 
         {/* Customer Ratings Section */}
-        <CustomerRating reviews={reviews} /* Checked */ />
+        <CustomerRating reviews={reviews} />
       </div>
 
       <div className="contact-info-wrapper">
-        <ContactInfo
-          contactInfo={businessData}
-          address={address}
-          /* Checked contactInfo = business Object*/
-        />
+        <ContactInfo contactInfo={businessData} address={address} />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import Review from "../models/review-model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import createError from "../utils/createError.js";
+import nodemailer from "nodemailer";
 
 export const editBusiness = async (req, res, next) => {
   try {
@@ -149,7 +150,6 @@ export const submitReview = async (req, res, next) => {
       return res.status(404).json({ message: "Business not found" });
     }
 
-   
     const newReview = new Review({
       business: businessId,
       client: clientId,
@@ -159,30 +159,30 @@ export const submitReview = async (req, res, next) => {
 
     await newReview.save();
 
-    
-
- // Calculate the previous count of reviews
+    // Calculate the previous count of reviews
     const previousReviewCount = business.reviews.length;
 
-// Handle initial case where there are no previous reviews
+    // Handle initial case where there are no previous reviews
     if (previousReviewCount === 0) {
-    // First review, so set ratings directly to the new rating
-    business.ratings = rating;
+      // First review, so set ratings directly to the new rating
+      business.ratings = rating;
     } else {
-    // Calculate the previous total ratings based on the current average and count
-    const previousTotalRating = business.ratings * previousReviewCount;
+      // Calculate the previous total ratings based on the current average and count
+      const previousTotalRating = business.ratings * previousReviewCount;
 
-    // Add the new rating to the total
-    const newTotalRating = previousTotalRating + rating;
+      // Add the new rating to the total
+      const newTotalRating = previousTotalRating + rating;
 
-    // Calculate the new average by dividing the updated total by the updated count
-    const newReviewCount = previousReviewCount + 1;
-    business.ratings = newTotalRating / newReviewCount;
+      // Calculate the new average by dividing the updated total by the updated count
+      const newReviewCount = previousReviewCount + 1;
+      business.ratings = newTotalRating / newReviewCount;
     }
     business.reviews.push(newReview._id);
     await business.save();
 
-    res.status(201).json({ message: "Review submitted successfully", business });
+    res
+      .status(201)
+      .json({ message: "Review submitted successfully", business });
   } catch (error) {
     console.error("Error submitting review:", error);
     res.status(500).json({ message: "Failed to submit review" });
@@ -195,18 +195,49 @@ export const getBusinessReviews = async (req, res, next) => {
     const businessId = req.params.businessId;
     const business = await Business.findById(businessId).populate({
       path: "reviews",
-      populate: { path: "client", select: "name" } // Populate 'client' field with only 'name'
+      populate: { path: "client", select: "name" }, // Populate 'client' field with only 'name'
     });
-    
+
     if (!business) {
       return res.status(404).json({ message: "Business not found" });
     }
 
-    res.status(200).json({ 
+    res.status(200).json({
       reviews: business.reviews,
-      ratings: business.ratings
-     });
+      ratings: business.ratings,
+    });
   } catch (error) {
+    next(error);
+  }
+};
+export const sendEmail = async (req, res, next) => {
+  try {
+    const { userEmail, emailMessage } = req.body;
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "wsl1apps@gmail.com",
+        pass: "myxpgxwmqdafdoyh",
+      },
+    });
+
+    const mailOptions = {
+      from: "wsl1apps@gmail.com",
+      to: userEmail,
+      subject: "Notification from WSL app",
+      text: emailMessage,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log("Error sending email:", error);
+      } else {
+        console.log("Email sent:", info.response);
+      }
+    });
+  } catch (error) {
+    console.error("Error Sending the Email:", error);
+    res.status(500).json({ message: "Failed to send email" });
     next(error);
   }
 };
