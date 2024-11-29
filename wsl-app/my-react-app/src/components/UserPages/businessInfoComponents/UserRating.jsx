@@ -28,11 +28,14 @@ export default function UserRating({
     const newReview = {
       name: userName,
       rating: userRating,
-      text: reviewText,
+      text: reviewText || " ",
     };
     onReviewSubmit(newReview);
     closeModal();
   };
+  const userReview = businessName.reviews.find(
+    (review) => review.client?.name === userName
+  );
 
   return (
     <div className="user-rating-section">
@@ -45,17 +48,20 @@ export default function UserRating({
         <p className="user-name">{userName}</p>
         <Rating
           name="user-rating"
-          value={userRating}
+          value={userReview?.rating ?? 0}
           precision={0.5}
+          readOnly={userReview}
           onChange={(event, newValue) => {
             handleRatingChange(newValue);
             openModal();
           }}
           className="user-rating-stars"
         />
-        <p className="start-review-text" onClick={openModal}>
-          {`Start your review of ${businessName.businessName}`}
-        </p>
+        {!userReview && (
+          <p className="start-review-text" onClick={openModal}>
+            {`Start your review of ${businessName.businessName}`}
+          </p>
+        )}
       </div>
 
       <div className="rating-container">
