@@ -16,6 +16,7 @@ import {
   userReviewEmailTemplate,
   ownerReviewNotificationTemplate,
 } from "../../components/util/emailTemplates";
+import Snackbar from "@mui/material/Snackbar";
 
 export default function BusinessPage() {
   const { loggedInUser, apiBaseUrl } = useContext(UserContext);
@@ -27,6 +28,8 @@ export default function BusinessPage() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [successReview, setSuccessReview] = useState(false);
+  const audio = new Audio("https://www.soundjay.com/buttons/button-37a.mp3");
 
   useEffect(() => {
     if (businessData) {
@@ -71,6 +74,8 @@ export default function BusinessPage() {
         console.log("Review submitted successfully:", response.data);
         setBusinessData(response.data.business);
         // Optionally update local state to display the new review immediately
+        setSuccessReview(true);
+        audio.play();
         sendEmail(
           loggedInUser.email,
           "Review submitted successfully!",
@@ -108,6 +113,11 @@ export default function BusinessPage() {
 
   return (
     <div className="business-page-container">
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "left" }}
+        open={successReview}
+        message="Review submitted successfully!"
+      />
       <div className="business-info-wrapper">
         <BusinessInfo businessInfo={businessData} />
         <hr className="section-divider" />
@@ -141,7 +151,6 @@ export default function BusinessPage() {
         {/* Customer Ratings Section */}
         <CustomerRating reviews={reviews} />
       </div>
-
       <div className="contact-info-wrapper">
         <ContactInfo contactInfo={businessData} address={address} />
       </div>
