@@ -188,9 +188,11 @@ const Auth = ({ formValidity, onValidityChange }) => {
 
             {isLoginMode && (
               <React.Fragment>
+                <Link to="/client/resetPassword">
                 <div className="link-container">
                   <a>Forgot Password?</a>
                 </div>
+                </Link>
               </React.Fragment>
             )}
 

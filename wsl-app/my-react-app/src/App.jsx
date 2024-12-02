@@ -16,6 +16,7 @@ import Header from "./components/Header/header";
 import UserProfile from "./pages/UserPages/UserProfile";
 import EditBusinessInfo from "./pages/BusinessPages/EditBusinessInfo";
 import BusinessInfo from "./pages/UserPages/BusinessInfoPage";
+import ResetPassword from "./pages/Shared/resetPassword";
 
 const App = () => {
   const [formValidity, setFormValidity] = useState({});
@@ -112,6 +113,16 @@ const App = () => {
                 <React.Fragment>
                   <Header withoutIcons />
                   <BusinessInfo />
+                  <Footer />
+                </React.Fragment>
+              }
+            />
+            <Route
+              path="/client/resetPassword"
+              element={
+                <React.Fragment>
+                  <Header withoutIcons />
+                  <ResetPassword />
                   <Footer />
                 </React.Fragment>
               }

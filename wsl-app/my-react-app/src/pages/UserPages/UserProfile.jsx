@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import "./UserProfile.css";
 import "../Shared/editCard.css";
 import { UserContext } from "../../components/util/context";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import MessageBanner from "../../components/Shared/MessageBanner.jsx";
 import Input from "../../components/FormElement/Input";
@@ -154,6 +154,13 @@ const UserProfile = ({ formValidity, onValidityChange }) => {
             >
               Submit
             </button>
+          )}
+          {!isEditing && (
+            <Link to="/client/resetPassword">
+              <button className="edit-btn" onClick={handleEditClick}>
+                Reset Password
+              </button>
+            </Link>
           )}
         </div>
 

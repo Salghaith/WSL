@@ -10,3 +10,7 @@
 .profile-page .save-btn {
   margin-right: 8px;
 }
+
+.profile-page .disable {
+  display: none;
+}
