@@ -16,7 +16,7 @@ export const editBusiness = async (req, res, next) => {
       businessCategory,
       businessEmail,
       businessPhone,
-      businessAddress,
+      // businessAddress,
       openingHours,
       description,
     } = req.body;
@@ -66,10 +66,10 @@ export const editBusiness = async (req, res, next) => {
     business.categories = [businessCategory];
     business.email = businessEmail;
     business.phoneNumber = businessPhone;
-    business.location = {
-      city: businessAddress.city,
-      street: businessAddress.street,
-    };
+    // business.location = {
+    //   city: businessAddress.city,
+    //   street: businessAddress.street,
+    // };
     business.openingHours = {
       from: openingHours.from,
       to: openingHours.to,
@@ -212,20 +212,20 @@ export const getBusinessReviews = async (req, res, next) => {
 };
 export const sendEmail = async (req, res, next) => {
   try {
-    const { userEmail, emailMessage } = req.body;
+    const { to, subject, html } = req.body;
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "wsl1apps@gmail.com",
-        pass: "myxpgxwmqdafdoyh",
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
       },
     });
 
     const mailOptions = {
-      from: "wsl1apps@gmail.com",
-      to: userEmail,
-      subject: "Notification from WSL app",
-      text: emailMessage,
+      from: process.env.EMAIL,
+      to,
+      subject,
+      html,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

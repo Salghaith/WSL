@@ -80,7 +80,7 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
           businessCategory,
           businessEmail,
           businessPhone,
-          businessAddress,
+          // businessAddress,
           openingHours: {
             from: hoursFrom.format("h:mm A"),
             to: hoursTo.format("h:mm A"),
@@ -88,7 +88,6 @@ const EditBusinessInfo = ({ formValidity, onValidityChange }) => {
           description,
           ownerName,
           ownerEmail,
-          // password,
         },
         { withCredentials: true }
       );

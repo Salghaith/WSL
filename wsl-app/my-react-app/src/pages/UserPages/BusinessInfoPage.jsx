@@ -11,6 +11,11 @@ import { UserContext } from "../../components/util/context";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import getAddress from "../../components/util/getAddress";
+import sendEmail from "../../components/util/sendEmail";
+import {
+  userReviewEmailTemplate,
+  ownerReviewNotificationTemplate,
+} from "../../components/util/emailTemplates";
 
 export default function BusinessPage() {
   const { loggedInUser, apiBaseUrl } = useContext(UserContext);
@@ -46,7 +51,7 @@ export default function BusinessPage() {
 
       fetchReviews();
     }
-  }, [businessData]);
+  }, [businessData._id]);
 
   const onReviewSubmit = async (newReview) => {
     try {
@@ -66,33 +71,21 @@ export default function BusinessPage() {
         console.log("Review submitted successfully:", response.data);
         setBusinessData(response.data.business);
         // Optionally update local state to display the new review immediately
+        sendEmail(
+          loggedInUser.email,
+          "Review submitted successfully!",
+          userReviewEmailTemplate(),
+          apiBaseUrl
+        ); //Send email to the user.
+        sendEmail(
+          businessData.email,
+          "New Review to Your Business!",
+          ownerReviewNotificationTemplate(loggedInUser.name, rating),
+          apiBaseUrl
+        ); //Send email to the business owner
       }
     } catch (error) {
       console.error("Error submitting review:", error);
-    } finally {
-      sendEmail();
-    }
-    //window.location.reload();
-  };
-  
-  const sendEmail = async () => {
-    try {
-      const userEmail = loggedInUser.email;
-      const emailMessage = "TEST";
-      const response = await axios.post(
-        `${apiBaseUrl}/business/mail`,
-        {
-          userEmail,
-          emailMessage,
-        },
-        { withCredentials: true }
-      );
-
-      if (response.status === 201) {
-        console.log("Email sent successfully:", response.data);
-      }
-    } catch (error) {
-      console.error("Error sending email:", error);
     }
   };
 
