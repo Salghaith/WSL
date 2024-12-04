@@ -233,6 +233,7 @@ export const sendEmail = async (req, res, next) => {
         console.log("Error sending email:", error);
       } else {
         console.log("Email sent:", info.response);
+        res.status(200).send("Email sent successfully.");
       }
     });
   } catch (error) {
