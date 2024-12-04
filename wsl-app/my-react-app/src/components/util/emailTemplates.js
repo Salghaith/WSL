@@ -15,6 +15,7 @@ export const userReviewEmailTemplate = () => {
 
 export const ownerReviewNotificationTemplate = (
   reviewerName,
+  reviewerEmail,
   reviewSnippet
 ) => {
   return `
@@ -25,6 +26,7 @@ export const ownerReviewNotificationTemplate = (
           Great news! A new review has been submitted for your business on WSL.
         </p>
         <p><strong>Reviewer Name:</strong> ${reviewerName}</p>
+        <p><strong>Reviewer Email:</strong> ${reviewerEmail}</p>
         <p><strong>Review:</strong> "${reviewSnippet}"</p>        
         <p>Thank you for being an essential part of our platform!</p>
         <p>Best regards,<br>WSL</p>

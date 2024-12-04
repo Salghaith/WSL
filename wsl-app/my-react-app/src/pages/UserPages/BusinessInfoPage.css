@@ -26,7 +26,7 @@
 }
 
 
-@media (min-width: 768px) {
+@media (min-width: 850px) {
   .business-page-container {
     flex-direction: row; 
     width: 85%; 

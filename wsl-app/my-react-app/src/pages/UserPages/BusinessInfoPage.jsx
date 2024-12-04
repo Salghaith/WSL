@@ -75,6 +75,9 @@ export default function BusinessPage() {
         setBusinessData(response.data.business);
         // Optionally update local state to display the new review immediately
         setSuccessReview(true);
+        setTimeout(() => {
+          setSuccessReview(false);
+        }, 3000);
         audio.play();
         sendEmail(
           loggedInUser.email,
@@ -85,7 +88,11 @@ export default function BusinessPage() {
         sendEmail(
           businessData.email,
           "New Review to Your Business!",
-          ownerReviewNotificationTemplate(loggedInUser.name, rating),
+          ownerReviewNotificationTemplate(
+            loggedInUser.name,
+            loggedInUser.email,
+            text
+          ),
           apiBaseUrl
         ); //Send email to the business owner
       }
@@ -121,7 +128,7 @@ export default function BusinessPage() {
       <div className="business-info-wrapper">
         <BusinessInfo businessInfo={businessData} />
         <hr className="section-divider" />
-        <LicenseSection /* Checked */ />
+        <LicenseSection />
         <hr className="section-divider" />
         <AboutSection owner={businessData.owner} />
         <hr className="section-divider" />

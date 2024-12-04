@@ -19,11 +19,8 @@ export default function BusinessInfo({ businessInfo }) {
       const [closingHour, closingMinute] = closingTime.split(":").map(Number);
 
       const isOpen =
-        (currentHour > openingHour ||
-          (currentHour === openingHour && currentMinute >= openingMinute)) &&
-        (currentHour < closingHour ||
-          (currentHour === closingHour && currentMinute < closingMinute));
-
+        (currentHour > openingHour || currentHour === openingHour) &&
+        (currentHour < closingHour || currentHour === closingHour);
       setCurrentStatus({ day: dayOfWeek, status: isOpen ? "Open" : "Closed" });
     };
 

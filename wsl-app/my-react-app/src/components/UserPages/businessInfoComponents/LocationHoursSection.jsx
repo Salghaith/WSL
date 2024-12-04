@@ -5,7 +5,7 @@ import BusinessInfoMap from "./BusinessInfoMap";
 export default function LocationHoursSection({ location, hours, address }) {
   return (
     <div className="location-hours-section">
-      <h3 className="section-titlep">Location & Hours</h3>
+      <h3 className="section-titlep">Location</h3>
       <div className="location-hours-content">
         <div className="map-container">
           <div className="map-image" /* MA==GoogleMap here */>
@@ -15,7 +15,7 @@ export default function LocationHoursSection({ location, hours, address }) {
         </div>
         <div className="business-hours-list">
           <div className="hours-item">
-            <span className="hours">{`${hours.from} - ${hours.to}`}</span>
+            {/* <span className="hours">{`${hours.from} - ${hours.to}`}</span> */}
           </div>
         </div>
       </div>

@@ -10,15 +10,15 @@ const sendOTP = (email, apiBaseUrl) => {
   sendEmail(email, message, apiBaseUrl);
   return otp;
 };
-const sendEmail = async (email, message, apiBaseUrl) => {
+const sendEmail = async (to, subject, apiBaseUrl) => {
   try {
-    const userEmail = email;
-    const emailMessage = message;
+    const html = "<p>No reply email, from WSL</p>";
     const response = await axios.post(
       `${apiBaseUrl}/business/mail`,
       {
-        userEmail,
-        emailMessage,
+        to,
+        subject,
+        html
       },
       { withCredentials: true }
     );
