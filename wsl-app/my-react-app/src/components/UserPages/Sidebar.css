@@ -59,4 +59,10 @@
   .sidebar hr {
     margin: 15px 0;
   }
+
+  @media (max-width: 600px) {  /*Mobile*/
+    .sidebar{
+      display: none;
+    }
+  }
   

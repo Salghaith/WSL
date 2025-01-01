@@ -71,3 +71,11 @@
 .closed {
   color: red;
 }
+@media (max-width: 600px) {  /*Mobile*/
+  .map-image{
+    width: 100%;
+  }
+  .map-container{
+    width: 100%;
+  }
+}

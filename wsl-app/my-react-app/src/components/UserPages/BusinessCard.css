@@ -36,3 +36,12 @@
   font-size: 14px;
   margin: 5px 0;
 }
+
+@media (max-width: 600px) {  /*Mobile*/
+  .business-card .post-image{
+    display: none;
+  }
+  .business-card .post{
+    padding-right: 0;
+  }
+}

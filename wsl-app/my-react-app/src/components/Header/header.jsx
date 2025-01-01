@@ -67,7 +67,7 @@ export default function Header(props) {
             {!loggedInUser && (
               <div className="authentication-links">
                 <Link className="nav-item" to="/business/register">
-                  Register Business
+                  Business
                 </Link>
                 <Link className="nav-item" to="/client/login">
                   Signup

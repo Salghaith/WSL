@@ -20,8 +20,9 @@ const HomePage = () => {
                 type="text" 
                 placeholder="What service are you looking for?" 
                 className="hero-search-bar" 
+                disabled
               />
-              <button className="hero-search-button">Find Now</button>
+              <button className="hero-search-button" disabled>Find Now</button>
             </div>
           </div>
           <div className="hero-image">

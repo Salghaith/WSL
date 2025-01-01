@@ -75,3 +75,20 @@
   top: 50%;
   left: 50%;
 }
+
+@media (max-width: 600px) {  /*Mobile*/
+  .post-section{
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+    width: 100%;
+  }
+  .sort-dropdown{
+    display: none;
+  }
+  .content-container{
+    width: 95%;
+    /* margin: 20px; */
+    
+  }
+}

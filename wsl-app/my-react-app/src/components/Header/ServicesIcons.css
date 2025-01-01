@@ -2,6 +2,7 @@
   width: 100%;
   display: flex;
   overflow-x: auto;
+  padding-left: 10px;
 }
 .services-line input[type="radio"] {
   display: none;
@@ -12,8 +13,9 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 100%;
+  /* width: 100%; */
   cursor: pointer;
+  
 }
 
 .services-line .service-icon:hover p {
@@ -34,4 +36,13 @@
   font-weight: bold;
   padding-bottom: 3%;
   border-bottom: 2px solid #000;
+}
+@media (max-width: 600px) {  /*Mobile*/
+  .services-line .service-icon{
+    width: 100px;
+    padding-right: 30px;
+  }
+
+
+
 }

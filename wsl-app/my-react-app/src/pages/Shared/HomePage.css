@@ -174,3 +174,35 @@
     padding: 18px 30px;
   }
 }
+
+@media (max-width: 600px) {  /*Mobile*/
+  .hero-image {
+    display: none;
+  }
+  .hero-content {
+    width: 100%;
+    padding-right: 0; /* Removes spacing between the text and image */
+  }
+  
+  .hero-heading {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #000000;
+  }
+  .hero-section{
+    padding: 50px 7%;
+  }
+  .hero-search-container{
+    width: 100%;
+    display: none;
+  }
+  .categories{
+    flex-direction: column;
+    align-items: center;
+  }
+  .steps{
+    flex-direction: column;
+    align-items: center;
+  }
+}
