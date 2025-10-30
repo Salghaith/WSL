@@ -1,7 +1,7 @@
 # 🧭 WSL – Local Services Locator  
 > *SWE-444 (Software Construction Lab) – King Saud University, CCIS, Software Engineering Department*  
 
-[![Platform](https://img.shields.io/badge/platform-Web-green)](#)
+[![Platform](https://img.shields.io/badge/platform-Web-green)]([#](https://wsl-app.netlify.app/))
 [![Stack](https://img.shields.io/badge/stack-MERN-lightgrey)](#)
 
 ---
@@ -65,9 +65,9 @@ Each sprint included:
 
 ## 🛠 Collaboration Tools  
 
-- 🧰 **GitHub:** [swe444_project](https://github.com/Salghaith/swe444_project)  
-- 🗂 **Trello Board:** [Sprint Management](https://trello.com/invite/b/66ccc7ab7d60d39b4b54677c/ATTIbc2999923dd66091367f2a7a593539acCDE96F0F/444-swe)  
-- 🎨 **Figma Mockups:** [UI Designs](https://www.figma.com/design/RMfHgktppfcqMyhJF2Y8jY/444-Figma?node-id=0-1&t=93TLtKqNkzYjPYWH-1)
+- 🧰 **GitHub:**
+- 🗂 **Trello Board:**
+- 🎨 **Figma Mockups:**
 
 ---
 
