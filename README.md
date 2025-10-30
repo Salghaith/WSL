@@ -1,7 +1,7 @@
 # 🧭 WSL – Local Services Locator  
 > *SWE-444 (Software Construction Lab) – King Saud University, CCIS, Software Engineering Department*  
 
-[![Platform](https://img.shields.io/badge/platform-Web-green)]([#](https://wsl-app.netlify.app/))
+[![Platform](https://img.shields.io/badge/platform-Web-green)](https://wsl-app.netlify.app/)
 [![Stack](https://img.shields.io/badge/stack-MERN-lightgrey)](#)
 
 ---
